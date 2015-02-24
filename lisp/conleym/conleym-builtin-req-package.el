@@ -2,7 +2,7 @@
 (require 'conleym-init-utils)
 
 
-(req-package abbrev
+(use-package abbrev
   ;; Expands abbreviations from a dictionary.
   :diminish ""
   :init (progn
@@ -43,7 +43,7 @@
   :config (progn
             (setq dired-auto-revert-buffer t)))
 
-(req-package eldoc
+(use-package eldoc
   ;; Shows lisp docstrings in the minibuffer.
   :diminish "")
 
