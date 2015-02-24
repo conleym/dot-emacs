@@ -94,8 +94,11 @@ isn't supported in this major mode."
 	    (setq imenu-auto-rescan t
 		  imenu-sort-function #'imenu--sort-by-name)))
 
+(use-package js-mode
+  :mode ".jsx$")
+
 (req-package lisp-mode
-  ; Turn eldoc-mode on in all lisp modes.
+  ;; Turn eldoc-mode on in all lisp modes.
   :init (progn
 	  (conleym:add-function-to-hooks 'turn-on-eldoc-mode
                                          #'emacs-lisp-mode-hook
@@ -103,7 +106,7 @@ isn't supported in this major mode."
                                          #'ielm-mode-hook)))
 
 (use-package nxml-mode
-  ; Major mode for editing XML.
+  ;; Major mode for editing XML.
   :init (progn
           (push '("<\\?xml" . nxml-mode) magic-mode-alist)
           (push '("<![dD][oO][cC][tT][yY][pP][eE]" . nxml-mode) magic-mode-alist)))
@@ -124,15 +127,15 @@ isn't supported in this major mode."
                   recentf-max-menu-items 25
                   recentf-max-saved-items 400))
   :init (progn
-          (recentf-mode) ; always on.
+          (recentf-mode) ;; always on.
           (defun conleym:recentf-ido-find-file ()
             "Find a recent file using ido."
             (interactive)
             (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
               (when file
                 (find-file file))))
-          ; Up arrow will go to previously opened files in this session if you
-          ; hit up in the minibuffer.
+          ;; Up arrow will go to previously opened files in this session if you
+          ;; hit up in the minibuffer.
           (add-hook 'ido-setup-hook
                     #'(lambda ()
                         (define-key ido-completion-map [up] 'previous-history-element)))))
@@ -149,10 +152,10 @@ isn't supported in this major mode."
                   (conleym:persistence-dir-file "saved-places"))))
 
 (req-package scheme
-  ; built in
-  ; Major mode for editing scheme source.
-  ;
-  ; Enable eldoc-mode for scheme.
+  ;; built in
+  ;; Major mode for editing scheme source.
+  ;;
+  ;; Enable eldoc-mode for scheme.
   :require (eldoc)
   :init (progn
           (add-hook 'scheme-mode-hook
@@ -164,7 +167,7 @@ isn't supported in this major mode."
                   (conleym:persistence-dir-file "semanticdb/"))))
 
 (req-package sh-script
-  ; Configure sh-mode for better zsh support.
+  ;; Configure sh-mode for better zsh support.
   :init (progn
           (defun conleym:zsh-mode()
             (sh-mode)
@@ -174,8 +177,8 @@ isn't supported in this major mode."
 
 (use-package speedbar
   :init (progn
-          ; Turn line numbers off in the speedbar buffer. Counteracts
-          ; global-linum-mode for the speedbar.
+          ;; Turn line numbers off in the speedbar buffer. Counteracts
+          ;; global-linum-mode for the speedbar.
           (add-hook 'speedbar-mode-hook
                     #'(lambda()
                         (linum-mode -1))))
@@ -188,5 +191,6 @@ isn't supported in this major mode."
             ;; Just because it's in version control doesn't mean I want no
             ;; local backups...
             (setq vc-make-backup-files t)))
+
 
 (provide 'conleym-builtin-req-package)
