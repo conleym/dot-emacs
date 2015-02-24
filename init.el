@@ -50,5 +50,34 @@
 (setq custom-file (conleym:dot-dir-file "custom.el"))
 (load custom-file)
 
+; Easily change text size.
+(global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
+(global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
+
+; Ordinarily bound to right click only, but I do this accidentally far too
+;   often on the ol' trackpad.
+(global-set-key (kbd "<M-mouse-3>") 'mouse-buffer-menu)
+
+; This fixes fn+delete when running under X11. Without this it's backspace,
+; same as plain delete.
+(global-set-key [delete] 'delete-char)
+
+(defun conleym:untabify-buffer ()
+  "Unconditionally convert tab to space in the current buffer."
+  (interactive)
+  (untabify (point-min) (point-max)))
+
+(defun conleym:maybe-untabify-buffer ()
+  "Convert tabs to spaces in the current buffer unless `indent-tabs-mode' is active."
+  (interactive)
+  (unless indent-tabs-mode
+    (conleym:untabify-buffer)))
+
+;; Remove trailing whitespace (always) and convert tabs to spaces (usually) before saving.
+(conleym:add-functions-to-hook 'before-save-hook
+                               'delete-trailing-whitespace
+                               'conleym:maybe-untabify-buffer)
+
+
 (require 'conleym-packages)
 (require 'conleym-secrets)
