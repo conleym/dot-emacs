@@ -1,0 +1,29 @@
+# bytecode
+*.elc
+
+# packaging
+.cask
+
+# backups
+*~
+
+# flycheck detritus
+flycheck_init*.el
+
+# the persistence directory
+persistence
+
+# tramp history
+tramp
+
+# eww cache
+url
+
+# secrets
+**/conleym-secrets.el
+
+# elpa packages
+lisp/elpa/**/*
+
+# el-get packages
+lisp/el-get/**/*
