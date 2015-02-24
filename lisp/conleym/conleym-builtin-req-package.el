@@ -35,9 +35,13 @@
 		desktop-not-loaded-hook #'desktop-save-mode-off
 		desktop-restore-eager 1
 		desktop-dirname (conleym:persistence-dir-file "desktop/")
-                desktop-path (list desktop-dirname)))
+                desktop-path (list desktop-dirname))
           ;; Avoid error if dir doesn't yet exist.
-          (conleym:maybe-mkdir desktop-dirname))
+          (conleym:maybe-mkdir desktop-dirname)))
+
+(use-package dired
+  :config (progn
+            (setq dired-auto-revert-buffer t)))
 
 (req-package eldoc
   ;; Shows lisp docstrings in the minibuffer.
