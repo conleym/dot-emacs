@@ -45,9 +45,9 @@
 )
 
 (req-package eimp
-  ; http://mph-emacs-pkgs.alioth.debian.org/EimpEl.html
-  ; Image manipulation using ImageMagick, which must be installed and available
-  ;   in the $PATH.
+  ;; http://mph-emacs-pkgs.alioth.debian.org/EimpEl.html
+  ;; Image manipulation using ImageMagick, which must be installed and available
+  ;;   in the $PATH.
   :init (progn
           (add-hook 'image-mode-hook
                     'eimp-mode))
@@ -75,7 +75,7 @@
   ; Draw a line at a given column.
   :init (progn
           (defun conleym:fci-80-mode()
-            (setq fci-rule-column 80) ; becomes local when set.
+            (setq fci-rule-column 80) ;; becomes local when set.
             (fci-mode 1))
           (conleym:add-function-to-hooks #'conleym:fci-80-mode
                                          'python-mode-hook
@@ -128,7 +128,7 @@
 (req-package gitignore-mode
   ;; https://github.com/magit/git-modes
   ;; .gitignore major mode.
-  :mode "\\.gitignore_global" ; My global settings.
+  :mode "\\.gitignore_global" ;; My global settings.
 )
 
 (req-package ido-ubiquitous
