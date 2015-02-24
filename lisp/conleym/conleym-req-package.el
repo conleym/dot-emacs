@@ -319,6 +319,12 @@
   :mode "\\.gitignore_global" ; My global settings.
 )
 
+(req-package hungry-delete
+  ;; https://github.com/nflath/hungry-delete
+  ;; Deletes all the whitespace at once.
+  :init (progn
+          (global-hungry-delete-mode)))
+
 (req-package ido-ubiquitous
   ;; https://github.com/DarwinAwardWinner/ido-ubiquitous
   ;; Even more ido.
@@ -419,6 +425,13 @@
 		  undo-tree-auto-save-history t
 		  undo-tree-visualizer-diff t
 		  undo-tree-visualizer-timestamps t)))
+
+(req-package web-mode
+  ;; http://web-mode.org
+  ;; Major mode for various web template languages.
+  :mode (("\\.erb$" . web-mode) ;; ruby templates used by puppet
+         ("\\.hbs$" . web-mode) ;; handlebars.js templates
+))
 
 (req-package xkcd
   ;; https://github.com/vibhavp/emacs-xkcd
