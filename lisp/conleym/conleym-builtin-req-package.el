@@ -6,8 +6,8 @@
   ;; Expands abbreviations from a dictionary.
   :diminish ""
   :init (progn
-	  ;; Global abbrev mode. Curiously not customizable.
-	  (setq-default abbrev-mode t))
+          ;; Global abbrev mode. Curiously not customizable.
+          (setq-default abbrev-mode t))
   :config (progn
             (setq abbrev-file-name
                   (conleym:persistence-dir-file "abbrev_defs"))
@@ -29,12 +29,12 @@
 
 (req-package desktop
   :init (progn
-	  (setq desktop-save t
-	        desktop-save-mode t
-		desktop-load-locked-desktop t
-		desktop-not-loaded-hook #'desktop-save-mode-off
-		desktop-restore-eager 1
-		desktop-dirname (conleym:persistence-dir-file "desktop/")
+          (setq desktop-save t
+                desktop-save-mode t
+                desktop-load-locked-desktop t
+                desktop-not-loaded-hook #'desktop-save-mode-off
+                desktop-restore-eager t
+                desktop-dirname (conleym:persistence-dir-file "desktop/")
                 desktop-path (list desktop-dirname))
           ;; Avoid error if dir doesn't yet exist.
           (conleym:maybe-mkdir desktop-dirname)))
@@ -95,8 +95,8 @@ isn't supported in this major mode."
           (conleym:add-function-to-hooks 'conleym:safe-imenu
                                          #'after-change-major-mode-hook))
   :config (progn
-	    (setq imenu-auto-rescan t
-		  imenu-sort-function #'imenu--sort-by-name)))
+            (setq imenu-auto-rescan t
+                  imenu-sort-function #'imenu--sort-by-name)))
 
 (use-package js-mode
   :mode ".jsx$")
@@ -104,7 +104,7 @@ isn't supported in this major mode."
 (req-package lisp-mode
   ;; Turn eldoc-mode on in all lisp modes.
   :init (progn
-	  (conleym:add-function-to-hooks 'turn-on-eldoc-mode
+          (conleym:add-function-to-hooks 'turn-on-eldoc-mode
                                          #'emacs-lisp-mode-hook
                                          #'lisp-interaction-mode-hook
                                          #'ielm-mode-hook)))
@@ -187,8 +187,12 @@ isn't supported in this major mode."
                     #'(lambda()
                         (linum-mode -1))))
   :config (progn
-	    (setq speedbar-default-position 'left)
-	    (setq speedbar-show-unknown-files t)))
+            (setq speedbar-default-position 'left)
+            (setq speedbar-show-unknown-files t)))
+
+(use-package subword
+  :init (progn
+          (global-subword-mode t)))
 
 (use-package vc-hooks
   :config (progn
