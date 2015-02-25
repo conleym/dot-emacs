@@ -206,6 +206,38 @@
  ;; Major mode for editing puppet manifests.
 )
 
+(req-package rainbow-mode
+  ;; https://julien.danjou.info/projects/emacs-packages#rainbow-mode
+  ;; Show strings representing colors in the color they represent.
+  :init (progn
+          ;; Automatically start rainbow-mode in any mode that it supports.
+          ;;
+          ;; Overwrought, overcomplicated, and simultaneously over-and-
+          ;; underthought. Probably not necessary or desirable, it goes in
+          ;; anyhow.
+          (let* (
+                 ;; Generate a list, each element of which is the (list) value of
+                 ;; one of the rainbow-*-colors-major-mode-list variables. These
+                 ;; variables are customized
+                 (rainbow-modes
+                   (mapcar #'(lambda(color-type)
+                               (eval
+                                (intern-soft
+                                 (concat "rainbow-"
+                                         color-type
+                                         "-colors-major-mode-list"))))
+                           '("ansi" "html" "latex" "r" "x")))
+                 ;; Flatten it.
+                 (rainbow-modes-flat (apply #'append rainbow-modes))
+                 ;; Get the hook for each mode in previous line.
+                 (rainbow-mode-hooks
+                   (mapcar #'(lambda(mode)
+                               (intern (concat (symbol-name mode) "-hook")))
+                           rainbow-modes-flat)))
+            ;; Add rainbow-mode to each supported hook.
+            (dolist (hook rainbow-mode-hooks)
+              (add-hook hook #'rainbow-mode)))))
+
 (req-package smex
   ;; https://github.com/nonsequitur/smex
   ;; Better M-x, built on ido.
