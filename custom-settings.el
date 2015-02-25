@@ -7,15 +7,12 @@
  '(blink-cursor-blinks 0 nil nil "Blink forever")
  '(column-number-mode t)
  '(compilation-ask-about-save nil nil nil "Prompts are annoying. Of course I want to save the file before compiling it.")
- '(custom-enabled-themes (quote (solarized-dark)))
- '(custom-safe-themes
-   (quote
-    ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(delete-by-moving-to-trash t)
  '(delete-old-versions t nil nil "We're keeping a lot of backups. No need to ask about getting rid of older ones.")
  '(eimp-ignore-read-only-modes
    (quote
     (gnus-article-mode puzzle-mode tumme-display-image-mode tumme-thumbnail-mode w3m-mode xkcd-mode)))
+ '(frame-background-mode (quote dark))
  '(gc-cons-threshold 20000000 nil nil "Suggestion from flx-ido author on improving performance: GC every 20MB instead of every .76MB.")
  '(global-linum-mode t)
  '(gnutls-min-prime-bits 1024)
