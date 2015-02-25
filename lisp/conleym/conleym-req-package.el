@@ -185,11 +185,14 @@
           ;; let-binding to prevent infinite recursion.
           (let ((list-packages #'package-list-packages))
             (defun conleym:list-packages (&optional no-fetch)
+              "Replacement for `package-list-packages` that also updates the github star count."
               (interactive)
               (unless no-fetch
                 (paradox--refresh-star-count))
               (list-packages no-fetch)))
           (paradox-enable)
+          ;; paradox-enable makes package-list-packages use the paradox-menu,
+          ;; but doesn't update the star counts. This fixes it.
           (defalias #'package-list-packages #'conleym:list-packages))
   :config (progn
             (setq paradox-column-width-package 36
