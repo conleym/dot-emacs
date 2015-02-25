@@ -46,6 +46,17 @@
           #'(lambda()
               (put 'inhibit-startup-echo-area-message 'saved-value nil)))
 
+
+;; Keep themes in one place, not just cluttering ~/.emacs.d
+(setq custom-theme-directory
+      (conleym:dot-dir-file "themes/"))
+(add-to-list 'custom-theme-load-path
+             custom-theme-directory)
+
+;; Grabbed this from github, since the elpa package wants to install color-theme.
+(add-to-list 'custom-theme-load-path
+             (conleym:dot-dir-file "themes/emacs-color-theme-solarized/"))
+
 ;; customized settings go in a separate file.
 (setq custom-file (conleym:dot-dir-file "custom.el"))
 (load custom-file)
