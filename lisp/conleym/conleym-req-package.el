@@ -335,6 +335,10 @@
 (req-package yasnippet
   :diminish yas-minor-mode
   :config (progn
+            (let ((user-yas-snippets-dir (conleym:dot-dir-file "snippets/")))
+              (setq yas-snippet-dirs
+                    (list 'user-yas-snippets-dir 'yas-installed-snippets-dir))
+              (conleym:maybe-mkdir user-yas-snippets-dir))
             ;; Do not bind to tab. I want to indent with it. Always.
             (define-key yas-minor-mode-map (kbd "<tab>") nil)
             (define-key yas-minor-mode-map (kbd "TAB") nil)
