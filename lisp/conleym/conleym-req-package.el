@@ -32,10 +32,10 @@
   ;; https://github.com/defunkt/coffee-mode
   ;; Coffeescript major mode
   :config (progn
-	    (setq coffee-args-compile '("-c" "-m"))
+            (setq coffee-args-compile '("-c" "-m"))
             (bind-key "M-r" #'coffee-compile-buffer coffee-mode-map)
-	    (add-hook 'coffee-after-compile-hook 
-		      #'sourcemap-goto-corresponding-point))
+            (add-hook 'coffee-after-compile-hook
+                      #'sourcemap-goto-corresponding-point))
   :require (exec-path-from-shell sourcemap))
 
 (req-package dired-imenu
@@ -53,7 +53,7 @@
                     'eimp-mode))
   :config (progn
             (setq eimp-enable-undo t))
-  ; Need $PATH to find ImageMagick tools.
+  ;; Need $PATH to find ImageMagick tools.
   :require (exec-path-from-shell))
 
 (req-package elpy
@@ -71,8 +71,8 @@
             (setq exec-path-from-shell-variables '("PATH" "MANPATH" "WORKON_HOME" "PYTHONPATH"))))
 
 (req-package fill-column-indicator
-  ; https://github.com/alpaker/Fill-Column-Indicator
-  ; Draw a line at a given column.
+  ;; https://github.com/alpaker/Fill-Column-Indicator
+  ;; Draw a line at a given column.
   :init (progn
           (defun conleym:fci-80-mode()
             (setq fci-rule-column 80) ;; becomes local when set.
@@ -87,8 +87,8 @@
 )
 
 (req-package flx-ido
-  ; https://github.com/lewang/flx
-  ; Fuzzy matching for ido-mode.
+  ;; https://github.com/lewang/flx
+  ;; Fuzzy matching for ido-mode.
   :require (ido)
   :init (progn
           (flx-ido-mode t))
@@ -104,10 +104,10 @@
   ;; Most checkers call external programs. Need $PATH to find them.
   :require (exec-path-from-shell)
   :init (progn
-	  (global-flycheck-mode))
+          (global-flycheck-mode))
   :config (progn
-	    (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
-	    (setq-default flycheck-emacs-lisp-load-path 'inherit)))
+            (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+            (setq-default flycheck-emacs-lisp-load-path 'inherit)))
 
 (req-package gitattributes-mode
   ;; https://github.com/magit/git-modes
@@ -129,194 +129,6 @@
   ;; https://github.com/magit/git-modes
   ;; .gitignore major mode.
   :mode "\\.gitignore_global" ;; My global settings.
-)
-
-(req-package ido-ubiquitous
-  ;; https://github.com/DarwinAwardWinner/ido-ubiquitous
-  ;; Even more ido.
-  :init (progn
-          (ido-ubiquitous-mode t)))
-
-(req-package json-mode
-  ;; https://github.com/joshwnj/json-mode
-  ;; Major mode for editing JSON.
-)
-
-(req-package manage-minor-mode
-  ;; https://github.com/ShingoFukuyama/manage-minor-mode
-  ;; List, activate and deactivate minor modes easily.
-)
-
-(req-package markdown-mode
-  ;; http://jblevins.org/projects/markdown-mode/
-  ;; Major mode for editing markdown. Includes gfm-mode for github-flavored
-  ;;   markdown. An external markdown program must be installed for preview
-  ;;   functionality. I've installed `multimarkdown` with homebrew.
-  ;;
-  ;; It's possible to specify the whole path to the markdown command,
-  ;; but I prefer not to. Instead, use $PATH.
-  :require (exec-path-from-shell)
-  :config (progn
-            (setq markdown-command "multimarkdown")))
-
-(req-package nyan-mode
-  ;; http://nyan-mode.buildsomethingamazing.com
-  ;; The most useful thing ever.
-  :init (progn
-          (nyan-mode))
-  :config (progn
-            (setq nyan-animation-frame-interval 0.1
-                  nyan-wavy-trail t)
-            ;; Customizing nyan-animate-nyancat calls this, but I don't want
-            ;; to use customize for packages.
-            (nyan-start-animation)))
-
-(req-package paradox
-  ;; https://github.com/Bruce-Connor/paradox
-  ;; Better package management, with asynchrony.
-  :require(async))
-
-(req-package puppet-mode
- ;; https://github.com/lunaryorn/puppet-mode
- ;; Major mode for editing puppet manifests.
-)
-
-(req-package smex
-  ;; https://github.com/nonsequitur/smex
-  ;; Better M-x, built on ido.
-  :bind (("M-x" . smex)
-         ("M-X" . smex-major-mode-commands))
-  :config (progn
-	    (setq smex-history-length 200)
-            (setq smex-save-file
-                  (conleym:persistence-dir-file "smex-items")))
-  :idle (smex-initialize))
-
-(req-package sourcemap
-  ;; https://github.com/syohex/emacs-sourcemap
-  ;; sourcemap support.
-)
-
-(req-package sr-speedbar
-  ;;
-  ;; Speedbar without the separate frame.
-  :config (progn
-            (setq sr-speedbar-right-side nil)))
-
-(req-package swift-mode)
-
-(req-package syslog-mode
-  ;; https://github.com/vapniks/syslog-mode
-  ;; Fontifies system logs.
-  :init (progn
-          (add-to-list 'auto-mode-alist
-                       '("/var/log/.*\\.log.*\\'" . syslog-mode))))
-
-;; AucTeX does some weird stuff...apparently this is how you get it loaded with
-;; {req,use}-package.
-(req-package tex-site
-  :ensure auctex
-  ;; There are lots of TeX command line tools and environment variables....
-  :require (exec-path-from-shell))
-
-(req-package undo-tree
-  ;; http://www.dr-qubit.org/emacs.php#undo-tree
-  ;; Minor mode that makes undo and redo easier to understand, use, and visualize.
-  :diminish ""
-  :init (progn
-	  (global-undo-tree-mode))
-  :config (progn
-            (setq undo-tree-history-directory-alist
-                  `(( ".*" . ,(conleym:persistence-dir-file "undo/")))
-		  undo-tree-auto-save-history t
-		  undo-tree-visualizer-diff t
-		  undo-tree-visualizer-timestamps t)))
-
-(req-package eimp
-  ; http://mph-emacs-pkgs.alioth.debian.org/EimpEl.html
-  ; Image manipulation using ImageMagick, which must be installed and available
-  ;   in the $PATH.
-  :init (progn
-          (add-hook 'image-mode-hook
-                    'eimp-mode))
-  :config (progn
-            (setq eimp-enable-undo t))
-  ; Need $PATH to find ImageMagick tools.
-  :require (exec-path-from-shell))
-
-(req-package elpy
-  :init (progn
-          (elpy-enable)))
-
-(req-package exec-path-from-shell
-  ;; https://github.com/purcell/exec-path-from-shell
-  ;; Get environment variables from a login shell. Necessary for a reasonable
-  ;;   Emacs.app setup on Mac. Variables to copy are customized.
-  :if (conleym:is-mac-app)
-  :init (progn
-          (exec-path-from-shell-initialize))
-  :config (progn
-            (setq exec-path-from-shell-variables '("PATH" "MANPATH" "WORKON_HOME" "PYTHONPATH"))))
-
-(req-package fill-column-indicator
-  ; https://github.com/alpaker/Fill-Column-Indicator
-  ; Draw a line at a given column.
-  :init (progn
-          (defun conleym:fci-80-mode()
-            (setq fci-rule-column 80) ; becomes local when set.
-            (fci-mode 1))
-          (conleym:add-function-to-hooks #'conleym:fci-80-mode
-                                         'python-mode-hook
-                                         'coffee-mode-hook)))
-
-(req-package floobits
-  ;; https://github.com/Floobits/floobits-emacs
-  ;; Floobits integration.
-)
-
-(req-package flx-ido
-  ; https://github.com/lewang/flx
-  ; Fuzzy matching for ido-mode.
-  :require (ido)
-  :init (progn
-          (flx-ido-mode t))
-  :config (progn
-            ;; disable ido's faces so we can see flx's highlighting instead
-            (setq ido-use-faces nil
-                  flx-ido-threshold 10000)))
-
-(req-package flycheck
-  ;; http://flycheck.readthedocs.org/en/latest/
-  ;; On the fly syntax checking. Easier to configure and use than flymake.
-  ;;
-  ;; Most checkers call external programs. Need $PATH to find them.
-  :require (exec-path-from-shell)
-  :init (progn
-	  (global-flycheck-mode))
-  :config (progn
-	    (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
-	    (setq-default flycheck-emacs-lisp-load-path 'inherit)))
-
-(req-package gitattributes-mode
-  ;; https://github.com/magit/git-modes
-  ;; .gitattributes major mode.
-)
-
-(req-package gitconfig-mode
-  ;; https://github.com/magit/git-modes
-  ;; .gitconfig major mode.
-)
-
-(req-package github-browse-file
-  ;; https://github.com/osener/github-browse-file
-  ;; View files on github.com
-  :config (progn
-            (setq github-browse-file-show-line-at-point t)))
-
-(req-package gitignore-mode
-  ;; https://github.com/magit/git-modes
-  ;; .gitignore major mode.
-  :mode "\\.gitignore_global" ; My global settings.
 )
 
 (req-package hungry-delete
@@ -368,7 +180,23 @@
 (req-package paradox
   ;; https://github.com/Bruce-Connor/paradox
   ;; Better package management, with asynchrony.
-  :require(async))
+  :require(async)
+  :init (progn
+          ;; let-binding to prevent infinite recursion.
+          (let ((list-packages #'package-list-packages))
+            (defun conleym:list-packages (&optional no-fetch)
+              (interactive)
+              (unless no-fetch
+                (paradox--refresh-star-count))
+              (list-packages no-fetch)))
+          (paradox-enable)
+          (defalias #'package-list-packages #'conleym:list-packages))
+  :config (progn
+            (setq paradox-column-width-package 36
+                  paradox-column-width-version 16
+                  paradox-column-width-download 8
+                  paradox-display-download-count t
+                  paradox-lines-per-entry 2)))
 
 (req-package puppet-mode
  ;; https://github.com/lunaryorn/puppet-mode
@@ -381,7 +209,7 @@
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands))
   :config (progn
-	    (setq smex-history-length 200)
+            (setq smex-history-length 200)
             (setq smex-save-file
                   (conleym:persistence-dir-file "smex-items")))
   :idle (smex-initialize))
@@ -418,13 +246,13 @@
   ;; Minor mode that makes undo and redo easier to understand, use, and visualize.
   :diminish ""
   :init (progn
-	  (global-undo-tree-mode))
+          (global-undo-tree-mode))
   :config (progn
             (setq undo-tree-history-directory-alist
                   `(( ".*" . ,(conleym:persistence-dir-file "undo/")))
-		  undo-tree-auto-save-history t
-		  undo-tree-visualizer-diff t
-		  undo-tree-visualizer-timestamps t)))
+                  undo-tree-auto-save-history t
+                  undo-tree-visualizer-diff t
+                  undo-tree-visualizer-timestamps t)))
 
 (req-package web-mode
   ;; http://web-mode.org
