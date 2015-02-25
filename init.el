@@ -18,7 +18,7 @@
     (xterm-mouse-mode 1))
 
 (if (conleym:is-darwin)
-    (progn 
+    (progn
       ;; Delete using Mac trash rather than freedesktop.org trash.
       (setq trash-directory "~/.Trash")
       ;; OS X ls doesn't suport --dired
@@ -27,10 +27,10 @@
             (setq insert-directory-program ls)))))
 
 ;; Use y/n instead of yes/no. defalias also works here.
-(fset 'yes-or-no-p 'y-or-n-p)
+(fset #'yes-or-no-p #'y-or-n-p)
 
 ;; Turn the fucking bell off.
-(setq ring-bell-function 'ignore)
+(setq ring-bell-function #'ignore)
 
 ;; Get rid of "For information about..." minibuffer message on startup.
 ;;
@@ -51,16 +51,16 @@
 (load custom-file)
 
 ; Easily change text size.
-(global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
-(global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
+(global-set-key (kbd "<C-wheel-up>") #'text-scale-increase)
+(global-set-key (kbd "<C-wheel-down>") #'text-scale-decrease)
 
 ; Ordinarily bound to right click only, but I do this accidentally far too
 ;   often on the ol' trackpad.
-(global-set-key (kbd "<M-mouse-3>") 'mouse-buffer-menu)
+(global-set-key (kbd "<M-mouse-3>") #'mouse-buffer-menu)
 
 ; This fixes fn+delete when running under X11. Without this it's backspace,
 ; same as plain delete.
-(global-set-key [delete] 'delete-char)
+(global-set-key [delete] #'delete-char)
 
 (defun conleym:untabify-buffer ()
   "Unconditionally convert tab to space in the current buffer."
@@ -75,8 +75,8 @@
 
 ;; Remove trailing whitespace (always) and convert tabs to spaces (usually) before saving.
 (conleym:add-functions-to-hook 'before-save-hook
-                               'delete-trailing-whitespace
-                               'conleym:maybe-untabify-buffer)
+                               #'delete-trailing-whitespace
+                               #'conleym:maybe-untabify-buffer)
 
 
 (require 'conleym-packages)
