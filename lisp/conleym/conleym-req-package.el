@@ -107,7 +107,12 @@
           (global-flycheck-mode))
   :config (progn
             (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
-            (setq-default flycheck-emacs-lisp-load-path 'inherit)))
+            (setq-default flycheck-emacs-lisp-load-path 'inherit)
+            (setq-default flycheck-display-errors-delay 0)
+            (req-package flycheck-pos-tip
+              :init (progn
+                      (setq flycheck-display-errors-function
+                            #'flycheck-pos-tip-error-messages)))))
 
 (req-package gitattributes-mode
   ;; https://github.com/magit/git-modes

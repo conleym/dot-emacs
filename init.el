@@ -1,8 +1,6 @@
 (setq load-prefer-newer t)
 
 ;; Bootstrap.
-(require 'package)
-(package-initialize)
 (load "~/.emacs.d/lisp/conleym/conleym-init-utils")
 (require 'conleym-init-utils)
 
@@ -10,7 +8,24 @@
 (conleym:add-lisp-dir "lisp/conleym")
 
 ;; Recompile anything that isn't current.
-(byte-recompile-directory user-emacs-directory 0)
+;;(byte-recompile-directory user-emacs-directory 0)
+
+
+;; Keep themes in one place, not just cluttering ~/.emacs.d
+(setq custom-theme-directory
+      (conleym:dot-dir-file "themes/"))
+
+;; Grabbed this from github, since the elpa package wants to install color-theme.
+(add-to-list 'custom-theme-load-path
+             (conleym:dot-dir-file "themes/emacs-color-theme-solarized/"))
+
+;; customized settings go in a separate file.
+(setq custom-file (conleym:dot-dir-file "custom-settings.el"))
+(load custom-file)
+
+;; This absoultely does not work right when customized. Also goes awry if
+;; the files have been byte compiled, for reasons.
+(load-theme 'solarized t)
 
 ;; Make mouse work in the terminal.
 (if (not window-system)
@@ -45,21 +60,6 @@
 (add-hook 'emacs-startup-hook
           #'(lambda()
               (put 'inhibit-startup-echo-area-message 'saved-value nil)))
-
-
-;; Keep themes in one place, not just cluttering ~/.emacs.d
-(setq custom-theme-directory
-      (conleym:dot-dir-file "themes/"))
-(add-to-list 'custom-theme-load-path
-             custom-theme-directory)
-
-;; Grabbed this from github, since the elpa package wants to install color-theme.
-(add-to-list 'custom-theme-load-path
-             (conleym:dot-dir-file "themes/emacs-color-theme-solarized/"))
-
-;; customized settings go in a separate file.
-(setq custom-file (conleym:dot-dir-file "custom.el"))
-(load custom-file)
 
 ; Easily change text size.
 (global-set-key (kbd "<C-wheel-up>") #'text-scale-increase)
