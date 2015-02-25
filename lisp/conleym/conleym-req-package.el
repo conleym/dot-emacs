@@ -274,7 +274,9 @@
 (req-package tex-site
   :ensure auctex
   ;; There are lots of TeX command line tools and environment variables....
-  :require (exec-path-from-shell))
+  :require (exec-path-from-shell)
+  :config (progn
+            (setq preview-auto-cache-preamble t)))
 
 (req-package undo-tree
   ;; http://www.dr-qubit.org/emacs.php#undo-tree
