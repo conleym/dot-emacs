@@ -98,6 +98,17 @@ isn't supported in this major mode."
             (setq imenu-auto-rescan t
                   imenu-sort-function #'imenu--sort-by-name)))
 
+(req-package ispell
+  :config (progn
+            ;; Prefer hunspell if available.
+            (when (executable-find "hunspell")
+              (setq-default ispell-program-name "hunspell")
+              (setq-default ispell-dictionary "en_US")
+              (add-to-list 'ispell-local-dictionary-alist
+                           '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "'" t ("-d en_US") "~tex" utf-8)))))
+  ;; ispell uses {a,i,hun}spell. Need $PATH.
+  :require (exec-path-from-shell))
+
 (use-package js-mode
   :mode ".jsx$")
 
