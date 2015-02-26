@@ -38,6 +38,10 @@
                       #'sourcemap-goto-corresponding-point))
   :require (exec-path-from-shell sourcemap))
 
+(req-package company
+  :init (progn
+          (global-company-mode)))
+
 (req-package dired-imenu
   ;; https://github.com/DamienCassou/dired-imenu
   ;; Fill imenu with the list of files in the current directory when in dired
