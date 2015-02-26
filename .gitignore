@@ -23,7 +23,9 @@ url
 **/conleym-secrets.el
 
 # elpa packages
+lisp/elpa
 lisp/elpa/**/*
 
-# el-get packages
+# el-get and packages
+lisp/el-get
 lisp/el-get/**/*
