@@ -5,6 +5,11 @@
 (req-package 2048-game
   ;; https://bitbucket.org/zck/2048.el
   ;; It's a game. It's fun.
+  )
+
+(req-package ag
+  ;; https://github.com/Wilfred/ag.el
+  ;; Silver searcher front end
 )
 
 (req-package anzu
@@ -63,6 +68,13 @@
 (req-package elpy
   :init (progn
           (elpy-enable)))
+
+(req-package emr
+  ;; https://github.com/chrisbarrett/emacs-refactor
+  ;; Refactoring library
+  :init (progn
+          (define-key prog-mode-map (kbd "M-RET") 'emr-show-refactor-menu)
+          (add-hook 'prog-mode-hook #'emr-initialize)))
 
 (req-package exec-path-from-shell
   ;; https://github.com/purcell/exec-path-from-shell
@@ -218,6 +230,7 @@
 (req-package rainbow-mode
   ;; https://julien.danjou.info/projects/emacs-packages#rainbow-mode
   ;; Show strings representing colors in the color they represent.
+  :diminish rainbow-mode
   :init (progn
           ;; Automatically start rainbow-mode in any mode that it supports.
           ;;
@@ -343,6 +356,8 @@
 
 (req-package yasnippet
   :diminish yas-minor-mode
+  :idle (progn
+          (yas-global-mode))
   :config (progn
             (let ((user-yas-snippets-dir (conleym:dot-dir-file "snippets/")))
               (setq yas-snippet-dirs
