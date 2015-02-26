@@ -8,7 +8,7 @@
 (conleym:add-lisp-dir "lisp/conleym")
 
 ;; Recompile anything that isn't current.
-;;(byte-recompile-directory user-emacs-directory 0)
+;; (byte-recompile-directory user-emacs-directory 0)
 
 
 ;; Keep themes in one place, not just cluttering ~/.emacs.d
@@ -61,16 +61,16 @@
           #'(lambda()
               (put 'inhibit-startup-echo-area-message 'saved-value nil)))
 
-; Easily change text size.
+;; Easily change text size with control + mouse wheel.
 (global-set-key (kbd "<C-wheel-up>") #'text-scale-increase)
 (global-set-key (kbd "<C-wheel-down>") #'text-scale-decrease)
 
-; Ordinarily bound to right click only, but I do this accidentally far too
-;   often on the ol' trackpad.
+;; Ordinarily bound to right click only, but I do this accidentally far too
+;; often on the ol' trackpad.
 (global-set-key (kbd "<M-mouse-3>") #'mouse-buffer-menu)
 
-; This fixes fn+delete when running under X11. Without this it's backspace,
-; same as plain delete.
+;; This fixes fn+delete when running under X11. Without this it's backspace,
+;; same as plain delete.
 (global-set-key [delete] #'delete-char)
 
 (defun conleym:untabify-buffer ()
