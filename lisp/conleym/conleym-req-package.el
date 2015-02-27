@@ -216,7 +216,8 @@
           ;; but doesn't update the star counts. This fixes it.
           (defalias #'package-list-packages #'conleym:list-packages))
   :config (progn
-            (setq paradox-column-width-package 36
+            (setq paradox-automatically-star nil
+                  paradox-column-width-package 36
                   paradox-column-width-version 16
                   paradox-column-width-download 8
                   paradox-display-download-count t

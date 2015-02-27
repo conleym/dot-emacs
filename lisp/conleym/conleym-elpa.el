@@ -11,7 +11,7 @@
         ("elpy" . "http://jorgenschaefer.github.io/packages/")
         ("marmalade" . "http://marmalade-repo.org/packages/")
         ("melpa" . "http://melpa.org/packages/")
-        ("melpa-stable" . "http://stable.melpa.org/packages/")
+;;        ("melpa-stable" . "http://stable.melpa.org/packages/")
         ("org" . "http://orgmode.org/elpa/")
         ("sunrise" . "http://joseito.republika.pl/sunrise-commander/")
      ))
