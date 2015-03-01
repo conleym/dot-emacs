@@ -26,6 +26,7 @@
     (read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt)) nil nil "Make minbuffer prompt read only (default) and don't allow the cursor into it (not default).")
  '(mouse-yank-at-point t)
  '(ns-pop-up-frames nil nil nil "Documents opened via Mac's open command show up in the current frame, not a new one.")
+ '(package-enable-at-startup nil)
  '(rainbow-html-colors-major-mode-list
    (quote
     (html-mode css-mode php-mode nxml-mode xml-mode web-mode)))
