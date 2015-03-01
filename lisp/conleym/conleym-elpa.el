@@ -13,7 +13,7 @@
         ("melpa" . "http://melpa.org/packages/")
 ;;        ("melpa-stable" . "http://stable.melpa.org/packages/")
         ("org" . "http://orgmode.org/elpa/")
-        ("sunrise" . "http://joseito.republika.pl/sunrise-commander/")
+;;        ("sunrise" . "http://joseito.republika.pl/sunrise-commander/")
      ))
 
 (package-initialize)
