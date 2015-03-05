@@ -31,6 +31,6 @@
   (eq system-type 'darwin))
 
 (defun conleym:is-mac-app ()
-  (memq window-system '(mac ns)))
+  (memq window-system '(ns)))
 
 (provide 'conleym-init-utils)
