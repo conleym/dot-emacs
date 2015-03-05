@@ -30,7 +30,7 @@
 ;; Make mouse work in the terminal.
 (if (not window-system)
     ;; Xterm setup
-    (xterm-mouse-mode 1))
+    (xterm-mouse-mode t))
 
 (if (conleym:is-darwin)
     (progn
