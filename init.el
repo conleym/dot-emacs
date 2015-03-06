@@ -24,16 +24,23 @@
 (load custom-file)
 
 ;; This absoultely does not work right when customized. Also goes awry if
-;; the files have been byte compiled, for reasons.
-(load-theme 'solarized t)
+;; the files have been byte compiled, for reasons. Furthermore, solarized
+;; looks like ass in the terminal, so we use a different theme there.
+(if (display-graphic-p)
+    (load-theme 'solarized t)
+  (load-theme 'leuven t))
 
 ;; Make mouse work in the terminal.
+;;
+;; Continue to use deprecated window-system-as-boolean, since display-mouse-p
+;; returns false in the terminal unless this is already enabled.
 (if (not window-system)
     ;; Xterm setup
     (xterm-mouse-mode t))
 
 (if (conleym:is-darwin)
     (progn
+      (setq browse-url-browser-function #'browse-url-default-macosx-browser)
       ;; Delete using Mac trash rather than freedesktop.org trash.
       (setq trash-directory "~/.Trash")
       ;; OS X ls doesn't suport --dired
