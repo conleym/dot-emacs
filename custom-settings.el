@@ -7,6 +7,7 @@
  '(blink-cursor-blinks 0 nil nil "Blink forever")
  '(column-number-mode t)
  '(compilation-ask-about-save nil nil nil "Prompts are annoying. Of course I want to save the file before compiling it.")
+ '(cua-mode t nil (cua-base))
  '(delete-by-moving-to-trash t)
  '(delete-old-versions t nil nil "We're keeping a lot of backups. No need to ask about getting rid of older ones.")
  '(eimp-ignore-read-only-modes
@@ -21,6 +22,7 @@
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
  '(large-file-warning-threshold 200000000 nil nil "Default (10 MB) is way too small. Let's try 200 MB instead.")
+ '(midnight-mode t nil (midnight))
  '(minibuffer-prompt-properties
    (quote
     (read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt)) nil nil "Make minbuffer prompt read only (default) and don't allow the cursor into it (not default).")
