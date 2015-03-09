@@ -211,5 +211,8 @@ isn't supported in this major mode."
             ;; local backups...
             (setq vc-make-backup-files t)))
 
+(use-package which-func
+  :init (progn
+          (which-function-mode t)))
 
 (provide 'conleym-builtin-req-package)
