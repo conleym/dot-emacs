@@ -38,6 +38,7 @@
   ;; Coffeescript major mode
   :config (progn
             (setq coffee-args-compile '("-c" "-m"))
+            (coffee-cos-mode t)
             (bind-key "M-r" #'coffee-compile-buffer coffee-mode-map)
             (add-hook 'coffee-after-compile-hook
                       #'sourcemap-goto-corresponding-point))
