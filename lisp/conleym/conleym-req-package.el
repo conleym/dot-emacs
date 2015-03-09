@@ -5,7 +5,7 @@
 (req-package 2048-game
   ;; https://bitbucket.org/zck/2048.el
   ;; It's a game. It's fun.
-  )
+)
 
 (req-package ag
   ;; https://github.com/Wilfred/ag.el
