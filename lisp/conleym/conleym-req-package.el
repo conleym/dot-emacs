@@ -130,6 +130,8 @@
                       (setq flycheck-display-errors-function
                             #'flycheck-pos-tip-error-messages)))))
 
+(req-package git-timemachine)
+
 (req-package gitattributes-mode
   ;; https://github.com/magit/git-modes
   ;; .gitattributes major mode.
@@ -168,6 +170,8 @@
   ;; https://github.com/joshwnj/json-mode
   ;; Major mode for editing JSON.
 )
+
+(req-package less-css-mode)
 
 (req-package manage-minor-mode
   ;; https://github.com/ShingoFukuyama/manage-minor-mode
