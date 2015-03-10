@@ -194,6 +194,15 @@ isn't supported in this major mode."
   :mode ("\\.zsh$" . conleym:zsh-mode)
         ("^\\.zshenv$" . conleym:zsh-mode))
 
+(req-package shell
+  :require (exec-path-from-shell)
+  :init (progn
+          ;; Use zsh if available.
+          (let ((zsh (executable-find "zsh")))
+            (when zsh
+              (setq explicit-shell-file-name "zsh")
+              (setenv "SHELL" zsh)))))
+
 (use-package speedbar
   :init (progn
           ;; Turn line numbers off in the speedbar buffer. Counteracts
