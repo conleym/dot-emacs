@@ -85,7 +85,7 @@
   :init (progn
           (exec-path-from-shell-initialize))
   :config (progn
-            (setq exec-path-from-shell-variables '("PATH" "MANPATH" "WORKON_HOME" "PYTHONPATH"))))
+            (setq exec-path-from-shell-variables '("MANPATH" "PATH" "PYTHONPATH" "WORKON_HOME"))))
 
 (req-package fill-column-indicator
   ;; https://github.com/alpaker/Fill-Column-Indicator
