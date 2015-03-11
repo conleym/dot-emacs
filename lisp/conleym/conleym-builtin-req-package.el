@@ -171,9 +171,6 @@ isn't supported in this major mode."
                   (conleym:persistence-dir-file "saved-places"))))
 
 (req-package scheme
-  ;; built in
-  ;; Major mode for editing scheme source.
-  ;;
   ;; Enable eldoc-mode for scheme.
   :require (eldoc)
   :init (progn

@@ -45,6 +45,8 @@
   :require (exec-path-from-shell sourcemap))
 
 (req-package company
+  ;; https://github.com/company-mode/company-mode
+  ;; Autocompletion
   :init (progn
           (global-company-mode)))
 
@@ -206,7 +208,7 @@
 (req-package paradox
   ;; https://github.com/Bruce-Connor/paradox
   ;; Better package management, with asynchrony.
-  :require(async)
+  :require (async)
   :init (progn
           ;; let-binding to prevent infinite recursion.
           (let ((list-packages #'package-list-packages))
