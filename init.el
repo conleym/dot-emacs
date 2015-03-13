@@ -23,6 +23,9 @@
 (setq custom-file (conleym:dot-dir-file "custom-settings.el"))
 (load custom-file)
 
+;; Set dark background in terminal to match (customized) frame setting.
+(set-terminal-parameter nil 'background-mode 'dark)
+
 ;; This absoultely does not work right when customized. Also goes awry if
 ;; the files have been byte compiled, for reasons. Furthermore, solarized
 ;; looks like ass in the terminal, so we use a different theme there.
