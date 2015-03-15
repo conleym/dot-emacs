@@ -126,9 +126,7 @@ isn't supported in this major mode."
           (push '("<\\?xml" . nxml-mode) magic-mode-alist)
           (push '("<![dD][oO][cC][tT][yY][pP][eE]" . nxml-mode) magic-mode-alist))
   :config (progn
-            (setq nxml-attribute-indent tab-width
-                  nxml-slash-auto-complete-flag t
-                  nxml-child-indent tab-width)))
+            (setq nxml-slash-auto-complete-flag t)))
 
 (use-package rcirc
   :config (progn
