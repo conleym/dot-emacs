@@ -74,9 +74,9 @@
           ;; and use flex matching.
           (setq ido-use-virtual-buffers t
                 ido-enable-flex-matching t)
-          (ido-everywhere t)
           (ido-mode t))
   :config (progn
+            (ido-everywhere t)
             (setq ido-save-directory-list-file
                   (conleym:persistence-dir-file "ido.last"))
             (setq ido-max-prospects 10)))

@@ -218,16 +218,17 @@
               (unless no-fetch
                 (paradox--refresh-star-count))
               (list-packages no-fetch)))
-          (paradox-enable)
           ;; paradox-enable makes package-list-packages use the paradox-menu,
           ;; but doesn't update the star counts. This fixes it.
           (defalias #'package-list-packages #'conleym:list-packages))
   :config (progn
+            (paradox-enable)
             (setq paradox-automatically-star nil
                   paradox-column-width-package 36
                   paradox-column-width-version 16
                   paradox-column-width-download 8
                   paradox-display-download-count t
+                  paradox-execute-asynchronously t
                   paradox-lines-per-entry 2)))
 
 (req-package puppet-mode
@@ -235,38 +236,43 @@
  ;; Major mode for editing puppet manifests.
 )
 
+(req-package pydoc
+  ;; https://github.com/statmobile/pydoc
+  ;; Nicely formatted, linkable buffer display of pydoc.
+)
+
 (req-package rainbow-mode
   ;; https://julien.danjou.info/projects/emacs-packages#rainbow-mode
   ;; Show strings representing colors in the color they represent.
   :diminish rainbow-mode
-  :init (progn
-          ;; Automatically start rainbow-mode in any mode that it supports.
-          ;;
-          ;; Overwrought, overcomplicated, and simultaneously over-and-
-          ;; underthought. Probably not necessary or desirable, it goes in
-          ;; anyhow.
-          (let* (
-                 ;; Generate a list, each element of which is the (list) value of
-                 ;; one of the rainbow-*-colors-major-mode-list variables. These
-                 ;; variables are customized
-                 (rainbow-modes
-                   (mapcar #'(lambda(color-type)
-                               (eval
-                                (intern-soft
-                                 (concat "rainbow-"
-                                         color-type
-                                         "-colors-major-mode-list"))))
-                           '("ansi" "html" "latex" "r" "x")))
-                 ;; Flatten it.
-                 (rainbow-modes-flat (apply #'append rainbow-modes))
-                 ;; Get the hook for each mode in previous line.
-                 (rainbow-mode-hooks
-                   (mapcar #'(lambda(mode)
-                               (intern (concat (symbol-name mode) "-hook")))
-                           rainbow-modes-flat)))
-            ;; Add rainbow-mode to each supported hook.
-            (dolist (hook rainbow-mode-hooks)
-              (add-hook hook #'rainbow-mode)))))
+  :config (progn
+            ;; Automatically start rainbow-mode in any mode that it supports.
+            ;;
+            ;; Overwrought, overcomplicated, and simultaneously over-and-
+            ;; underthought. Probably not necessary or desirable, it goes in
+            ;; anyhow.
+            (let* (
+                   ;; Generate a list, each element of which is the (list) value of
+                   ;; one of the rainbow-*-colors-major-mode-list variables. These
+                   ;; variables are customized
+                   (rainbow-modes
+                    (mapcar #'(lambda(color-type)
+                                (eval
+                                 (intern-soft
+                                  (concat "rainbow-"
+                                          color-type
+                                          "-colors-major-mode-list"))))
+                            '("ansi" "html" "latex" "r" "x")))
+                   ;; Flatten it.
+                   (rainbow-modes-flat (apply #'append rainbow-modes))
+                   ;; Get the hook for each mode in previous line.
+                   (rainbow-mode-hooks
+                    (mapcar #'(lambda(mode)
+                                (intern (concat (symbol-name mode) "-hook")))
+                            rainbow-modes-flat)))
+              ;; Add rainbow-mode to each supported hook.
+              (dolist (hook rainbow-mode-hooks)
+                (add-hook hook #'rainbow-mode)))))
 
 (req-package smex
   ;; https://github.com/nonsequitur/smex
