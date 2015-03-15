@@ -108,12 +108,11 @@
   ;; https://github.com/lewang/flx
   ;; Fuzzy matching for ido-mode.
   :require (ido)
-  :init (progn
-          (flx-ido-mode t))
   :config (progn
             ;; disable ido's faces so we can see flx's highlighting instead
             (setq ido-use-faces nil
-                  flx-ido-threshold 10000)))
+                  flx-ido-threshold 10000))
+              (flx-ido-mode t))
 
 (req-package flycheck
   ;; http://flycheck.readthedocs.org/en/latest/
@@ -121,16 +120,17 @@
   ;;
   ;; Most checkers call external programs. Need $PATH to find them.
   :require (exec-path-from-shell)
-  :init (progn
-          (global-flycheck-mode))
   :config (progn
+            (global-flycheck-mode)
             (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
             (setq-default flycheck-emacs-lisp-load-path 'inherit)
-            (setq-default flycheck-display-errors-delay 0)
-            (req-package flycheck-pos-tip
-              :init (progn
-                      (setq flycheck-display-errors-function
-                            #'flycheck-pos-tip-error-messages)))))
+            (setq-default flycheck-display-errors-delay 0)))
+
+(req-package flycheck-pos-tip
+  :require (flycheck)
+  :config (progn
+            (setq flycheck-display-errors-function
+                  #'flycheck-pos-tip-error-messages)))
 
 (req-package git-timemachine)
 
@@ -191,6 +191,8 @@
   :require (exec-path-from-shell)
   :config (progn
             (setq markdown-command "multimarkdown")))
+
+(req-package minesweeper)
 
 (req-package nyan-mode
   ;; http://nyan-mode.buildsomethingamazing.com
