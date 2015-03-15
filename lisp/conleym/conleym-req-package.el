@@ -84,10 +84,9 @@
   ;; Get environment variables from a login shell. Necessary for a reasonable
   ;;   Emacs.app setup on Mac. Variables to copy are customized.
   :if (conleym:is-mac-app)
-  :init (progn
-          (exec-path-from-shell-initialize))
   :config (progn
-            (setq exec-path-from-shell-variables '("MANPATH" "PATH" "PYTHONPATH" "WORKON_HOME"))))
+            (setq exec-path-from-shell-variables '("MANPATH" "PATH" "PYTHONPATH" "WORKON_HOME"))
+            (exec-path-from-shell-initialize)))
 
 (req-package fill-column-indicator
   ;; https://github.com/alpaker/Fill-Column-Indicator
