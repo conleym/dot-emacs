@@ -57,20 +57,6 @@
 ;; Turn the fucking bell off.
 (setq ring-bell-function #'ignore)
 
-;; Get rid of "For information about..." minibuffer message on startup.
-;;
-;; No, guys, your startup message is *NOT* important enough to warrant your
-;; extreme measures. Whatever machine I'm on, whatever my username is, I don't
-;; need to see it.
-(put 'inhibit-startup-echo-area-message 'saved-value t)
-(setq inhibit-startup-echo-area-message (user-login-name))
-;; Remove the symbol table crap from inhibit-startup-echo-area-message.
-;; Customize will write invalid data if it's a plist, so we *need* to
-;; do this. emacs-startup-hook runs AFTER the message would be displayed.
-(add-hook 'emacs-startup-hook
-          #'(lambda()
-              (put 'inhibit-startup-echo-area-message 'saved-value nil)))
-
 ;; Easily change text size with control + mouse wheel.
 (global-set-key (kbd "<C-wheel-up>") #'text-scale-increase)
 (global-set-key (kbd "<C-wheel-down>") #'text-scale-decrease)
