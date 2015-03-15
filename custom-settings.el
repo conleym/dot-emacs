@@ -29,6 +29,9 @@
  '(mouse-yank-at-point t)
  '(ns-pop-up-frames nil nil nil "Documents opened via Mac's open command show up in the current frame, not a new one.")
  '(package-enable-at-startup nil)
+ '(package-selected-packages
+   (quote
+    (wordsmith-mode reveal-in-finder dash-at-point yaml-mode yagist xkcd web-mode undo-tree syslog-mode swift-mode sr-speedbar smex rainbow-mode pydoc puppet-mode paradox async nyan-mode minesweeper markdown-mode manage-minor-mode less-css-mode json-mode ido-ubiquitous hungry-delete gitignore-mode github-browse-file gitconfig-mode gitattributes-mode git-timemachine flycheck-pos-tip flycheck flx-ido floobits fill-column-indicator emr elpy eimp dired-imenu company sourcemap coffee-mode apples-mode auto-compile anzu ag 2048-game auctex exec-path-from-shell req-package)))
  '(rainbow-html-colors-major-mode-list
    (quote
     (html-mode css-mode php-mode nxml-mode xml-mode web-mode)))
