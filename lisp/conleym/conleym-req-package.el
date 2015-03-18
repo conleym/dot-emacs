@@ -104,15 +104,16 @@
   ;; Floobits integration.
 )
 
+
 (req-package flx-ido
   ;; https://github.com/lewang/flx
   ;; Fuzzy matching for ido-mode.
-  :require (ido)
-  :config (progn
-            ;; disable ido's faces so we can see flx's highlighting instead
-            (setq ido-use-faces nil
-                  flx-ido-threshold 10000))
-              (flx-ido-mode t))
+  :config
+  ;; disable ido's faces so we can see flx's highlighting instead
+  (setq ido-use-faces nil
+        flx-ido-threshold 10000)
+  (flx-ido-mode t))
+
 
 (req-package flycheck
   ;; http://flycheck.readthedocs.org/en/latest/
@@ -275,16 +276,18 @@
               (dolist (hook rainbow-mode-hooks)
                 (add-hook hook #'rainbow-mode)))))
 
+
 (req-package smex
   ;; https://github.com/nonsequitur/smex
   ;; Better M-x, built on ido.
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands))
-  :config (progn
-            (setq smex-history-length 200)
-            (setq smex-save-file
-                  (conleym:persistence-dir-file "smex-items")))
-  :idle (smex-initialize))
+  :config
+  (setq smex-history-length 200)
+  (setq smex-save-file
+        (conleym:persistence-dir-file "smex-items"))
+  (smex-initialize))
+
 
 (req-package sourcemap
   ;; https://github.com/syohex/emacs-sourcemap
@@ -371,17 +374,16 @@
 
 (req-package yasnippet
   :diminish yas-minor-mode
-  :idle (progn
-          (yas-global-mode))
-  :config (progn
-            (let ((user-yas-snippets-dir (conleym:dot-dir-file "snippets/")))
-              (setq yas-snippet-dirs
-                    (list user-yas-snippets-dir 'yas-installed-snippets-dir))
-              (conleym:maybe-mkdir user-yas-snippets-dir))
-            ;; Do not bind to tab. I want to indent with it. Always.
-            (define-key yas-minor-mode-map (kbd "<tab>") nil)
-            (define-key yas-minor-mode-map (kbd "TAB") nil)
-            (define-key yas-minor-mode-map (kbd "C-<tab>") #'yas-expand)))
+  :config
+  (let ((user-yas-snippets-dir (conleym:dot-dir-file "snippets/")))
+    (setq yas-snippet-dirs
+          (list user-yas-snippets-dir 'yas-installed-snippets-dir))
+    (conleym:maybe-mkdir user-yas-snippets-dir))
+  ;; Do not bind to tab. I want to indent with it. Always.
+  (define-key yas-minor-mode-map (kbd "<tab>") nil)
+  (define-key yas-minor-mode-map (kbd "TAB") nil)
+  (define-key yas-minor-mode-map (kbd "C-<tab>") #'yas-expand)
+  (yas-global-mode))
 
 
 (provide 'conleym-req-package)
