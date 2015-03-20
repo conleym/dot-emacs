@@ -8,7 +8,7 @@
 *~
 
 # flycheck detritus
-flycheck_init*.el
+flycheck_*.el
 
 # the persistence directory
 persistence
