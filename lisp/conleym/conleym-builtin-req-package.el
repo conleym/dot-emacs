@@ -186,7 +186,7 @@ isn't supported in this major mode."
   :require (eldoc)
   :config
   (add-hook 'scheme-mode-hook
-            #'turn-on-eldoc-mode))
+            #'eldoc-mode))
 
 
 (use-package semantic
