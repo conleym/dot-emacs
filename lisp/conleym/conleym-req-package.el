@@ -23,11 +23,10 @@
 (req-package auto-compile
   ;; https://github.com/tarsius/auto-compile
   ;; Automatically byte (re)compile elisp files.
-  :init
-  (setq auto-compile-on-load-mode t
-        auto-compile-on-save-mode t)
   :config
   (setq auto-compile-display-buffer nil
+        auto-compile-on-load-mode t
+        auto-compile-on-save-mode t
         auto-compile-update-autoloads t))
 
 
