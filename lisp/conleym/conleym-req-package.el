@@ -94,9 +94,11 @@
 (req-package exec-path-from-shell
   ;; https://github.com/purcell/exec-path-from-shell
   ;; Get environment variables from a login shell. Necessary for a reasonable
-  ;;   Emacs.app setup on Mac. Variables to copy are customized.
+  ;;   Emacs.app setup on Mac.
   :if (conleym:is-mac-app)
-  :config
+  ;; Seems this must be :init rather than :config. Otherwise eimp can't find
+  ;; mogrify and complains.
+  :init
   (setq exec-path-from-shell-variables '("MANPATH" "PATH" "PYTHONPATH" "WORKON_HOME"))
   (exec-path-from-shell-initialize))
 
@@ -104,7 +106,7 @@
 (req-package fill-column-indicator
   ;; https://github.com/alpaker/Fill-Column-Indicator
   ;; Draw a line at a given column.
-  :init
+  :config
   (defun conleym:fci-80-mode()
     (setq fci-rule-column 80) ;; becomes local when set.
     (fci-mode 1))
@@ -136,10 +138,10 @@
   ;; Most checkers call external programs. Need $PATH to find them.
   :require (exec-path-from-shell)
   :config
-  (global-flycheck-mode)
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (setq-default flycheck-emacs-lisp-load-path 'inherit)
-  (setq-default flycheck-display-errors-delay 0))
+  (setq-default flycheck-display-errors-delay 0)
+  (global-flycheck-mode))
 
 
 (req-package flycheck-pos-tip
@@ -178,7 +180,7 @@
 (req-package hungry-delete
   ;; https://github.com/nflath/hungry-delete
   ;; Deletes all the whitespace at once.
-  :init
+  :config
   (global-hungry-delete-mode))
 
 
@@ -221,11 +223,10 @@
 (req-package nyan-mode
   ;; http://nyan-mode.buildsomethingamazing.com
   ;; The most useful thing ever.
-  :init
-  (nyan-mode)
   :config
   (setq nyan-animation-frame-interval 0.1
         nyan-wavy-trail t)
+  (nyan-mode)
   ;; Customizing nyan-animate-nyancat calls this, but I don't want
   ;; to use customize for packages.
   (nyan-start-animation))
@@ -235,7 +236,7 @@
   ;; https://github.com/Bruce-Connor/paradox
   ;; Better package management, with asynchrony.
   :require (async)
-  :init
+  :config
   ;; let-binding to prevent infinite recursion.
   (let ((list-packages #'package-list-packages))
     (defun conleym:list-packages (&optional no-fetch)
@@ -247,7 +248,6 @@
   ;; paradox-enable makes package-list-packages use the paradox-menu,
   ;; but doesn't update the star counts. This fixes it.
   (defalias #'package-list-packages #'conleym:list-packages)
-  :config
   (paradox-enable)
   (setq paradox-automatically-star nil
         paradox-column-width-package 36
@@ -330,6 +330,7 @@
 
 (req-package swift-mode)
 
+
 (req-package syslog-mode
   ;; https://github.com/vapniks/syslog-mode
   ;; Fontifies system logs.
@@ -344,22 +345,21 @@
   :ensure auctex
   ;; There are lots of TeX command line tools and environment variables....
   :require (exec-path-from-shell)
-  :config (progn
-            (setq preview-auto-cache-preamble t)))
+  :config
+  (setq preview-auto-cache-preamble t))
 
 
 (req-package undo-tree
   ;; http://www.dr-qubit.org/emacs.php#undo-tree
   ;; Minor mode that makes undo and redo easier to understand, use, and visualize.
   :diminish ""
-  :init
-  (global-undo-tree-mode)
   :config
   (setq undo-tree-history-directory-alist
         `(( ".*" . ,(conleym:persistence-dir-file "undo/")))
         undo-tree-auto-save-history t
         undo-tree-visualizer-diff t
-        undo-tree-visualizer-timestamps t))
+        undo-tree-visualizer-timestamps t)
+  (global-undo-tree-mode))
 
 
 (req-package web-mode
@@ -375,11 +375,6 @@
   ;; Read XKCD in Emacs.
   :require (eimp)
   :init
-  ;; I want to be able to resize the images. Note that xkcd-mode must be
-  ;; added to eimp-ignore-readonly-modes for that to work (it's
-  ;; customized).
-  (add-hook 'xkcd-mode-hook
-            #'eimp-mode)
   ;; It appears that these variables must be set in :init rather than
   ;; :config. Otherwise, it tries to open the latest from the default
   ;; cache.
@@ -388,6 +383,11 @@
   ;; Avoid stupid mkdir-RET-RET message when directory doesn't exist.
   (conleym:maybe-mkdir xkcd-cache-dir)
   (setq xkcd-cache-latest (concat xkcd-cache-dir "latest"))
+  ;; I want to be able to resize the images. Note that xkcd-mode must be
+  ;; added to eimp-ignore-readonly-modes for that to work (it's
+  ;; customized).
+  (add-hook 'xkcd-mode-hook
+            #'eimp-mode)
   :config
   ;; Rebind keys, since eimp uses the arrows.
   (bind-key "n" #'xkcd-next xkcd-mode-map)
