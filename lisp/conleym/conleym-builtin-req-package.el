@@ -17,11 +17,10 @@
 
 
 (use-package autorevert
-  :init
-  (global-auto-revert-mode)
   :config
   ;; Default (5 seconds) is too long to wait.
-  (setq auto-revert-interval 1))
+  (setq auto-revert-interval 1)
+  (global-auto-revert-mode))
 
 
 (use-package bookmark
@@ -30,8 +29,9 @@
         (conleym:persistence-dir-file "bookmarks")))
 
 
-(req-package desktop
-  :init
+(use-package desktop
+  :functions (desktop-save-mode-off)
+  :config
   (setq desktop-save t
         desktop-save-mode t
         desktop-load-locked-desktop t
@@ -54,7 +54,7 @@
 
 
 (use-package files
-  :init
+  :config
   ;; Number of versions to keep. Just picked a relatively large
   ;; number. Default is 2.
   (let ((kept-versions 20))
@@ -75,23 +75,22 @@
           `(( ".*" . ,backup-dir)))))
 
 
-(req-package ido
-  :init
+(use-package ido
   ;; Search recently opened files, not just currently open ones
   ;; and use flex matching.
-  (setq ido-use-virtual-buffers t
-        ido-enable-flex-matching t)
-  (ido-mode t)
+  :functions (ido-everywhere)
   :config
-  (ido-everywhere t)
-  (setq ido-save-directory-list-file
-        (conleym:persistence-dir-file "ido.last"))
-  (setq ido-max-prospects 10))
+  (setq ido-enable-flex-matching t
+        ido-max-prospects 10
+        ido-save-directory-list-file (conleym:persistence-dir-file "ido.last")
+        ido-use-virtual-buffers t)
+  (ido-mode t)
+  (ido-everywhere t))
 
 
 (req-package imenu
   ;; Show definitions from current file in a menu.
-  :init
+  :config
   (defun conleym:safe-imenu()
     "Try to add imenu index to the menubar, ignoring errors if imenu
 isn't supported in this major mode."
@@ -102,7 +101,6 @@ isn't supported in this major mode."
         (imenu-add-menubar-index))))
   (conleym:add-function-to-hooks #'conleym:safe-imenu
                                  'after-change-major-mode-hook)
-  :config
   (setq imenu-auto-rescan t
         imenu-sort-function #'imenu--sort-by-name))
 
@@ -123,20 +121,19 @@ isn't supported in this major mode."
   :mode ".jsx$")
 
 
-(req-package lisp-mode
+(use-package lisp-mode
   ;; Turn eldoc-mode on in all lisp modes.
-  :init
-  (conleym:add-function-to-hooks #'turn-on-eldoc-mode
+  :config
+  (conleym:add-function-to-hooks #'eldoc-mode
                                  'emacs-lisp-mode-hook
                                  'lisp-interaction-mode-hook
                                  'ielm-mode-hook))
 
 (use-package nxml-mode
   ;; Major mode for editing XML.
-  :init
+  :config
   (push '("<\\?xml" . nxml-mode) magic-mode-alist)
   (push '("<![dD][oO][cC][tT][yY][pP][eE]" . nxml-mode) magic-mode-alist)
-  :config
   (setq nxml-slash-auto-complete-flag t))
 
 
@@ -151,13 +148,12 @@ isn't supported in this major mode."
 
 
 (req-package recentf
+  :require (ido)
   :bind ("C-x C-r" . conleym:recentf-ido-find-file)
-  :config
+  :init ;; Doesn't seem to load if we use :config.
   (setq recentf-save-file (conleym:persistence-dir-file "recentf")
         recentf-max-menu-items 25
         recentf-max-saved-items 400)
-  :init
-  (recentf-mode) ;; always on.
   (defun conleym:recentf-ido-find-file ()
     "Find a recent file using ido."
     (interactive)
@@ -168,7 +164,9 @@ isn't supported in this major mode."
   ;; hit up in the minibuffer.
   (add-hook 'ido-setup-hook
             #'(lambda ()
-                (define-key ido-completion-map [up] 'previous-history-element))))
+                (define-key ido-completion-map [up] 'previous-history-element)))
+  ;; always on.
+  (recentf-mode))
 
 
 (use-package ruby-mode
@@ -176,9 +174,8 @@ isn't supported in this major mode."
 
 
 (use-package saveplace
-  :init
-  (setq-default save-place t)
   :config
+  (setq-default save-place t)
   (setq save-place-version-control t)
   (setq save-place-file
         (conleym:persistence-dir-file "saved-places")))
@@ -187,12 +184,13 @@ isn't supported in this major mode."
 (req-package scheme
   ;; Enable eldoc-mode for scheme.
   :require (eldoc)
-  :init
+  :config
   (add-hook 'scheme-mode-hook
             #'turn-on-eldoc-mode))
 
 
-(req-package semantic
+(use-package semantic
+  :defines (semanticdb-default-save-directory)
   :config
   (setq semanticdb-default-save-directory
         (conleym:persistence-dir-file "semanticdb/")))
@@ -200,7 +198,7 @@ isn't supported in this major mode."
 
 (req-package sh-script
   ;; Configure sh-mode for better zsh support.
-  :init
+  :config
   (defun conleym:zsh-mode()
     (sh-mode)
     (sh-set-shell "zsh"))
@@ -210,7 +208,7 @@ isn't supported in this major mode."
 
 (req-package shell
   :require (exec-path-from-shell)
-  :init
+  :config
   ;; Use zsh if available.
   (let ((zsh (executable-find "zsh")))
     (when zsh
@@ -219,19 +217,18 @@ isn't supported in this major mode."
 
 
 (use-package speedbar
-  :init
+  :config
+  (setq speedbar-default-position 'left
+        speedbar-show-unknown-files t)
   ;; Turn line numbers off in the speedbar buffer. Counteracts
   ;; global-linum-mode for the speedbar.
   (add-hook 'speedbar-mode-hook
             #'(lambda()
-                (linum-mode -1)))
-  :config
-  (setq speedbar-default-position 'left
-        speedbar-show-unknown-files t))
+                (linum-mode -1))))
 
 
 (use-package subword
-  :init
+  :config
   (global-subword-mode t))
 
 
@@ -243,7 +240,7 @@ isn't supported in this major mode."
 
 
 (use-package which-func
-  :init
+  :config
   (which-function-mode t))
 
 
