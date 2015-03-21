@@ -67,14 +67,16 @@
   ;; http://mph-emacs-pkgs.alioth.debian.org/EimpEl.html
   ;; Image manipulation using ImageMagick, which must be installed and available
   ;;   in the $PATH.
+  :require
+  ;; Need $PATH to find ImageMagick tools.
+  (exec-path-from-shell)
+  :commands
+  (eimp-mode)
   :init
   (add-hook 'image-mode-hook
             #'eimp-mode)
   :config
-  (setq eimp-enable-undo t)
-  ;; Need $PATH to find ImageMagick tools.
-  :require
-  (exec-path-from-shell))
+  (setq eimp-enable-undo t))
 
 
 (req-package elpy
@@ -136,6 +138,7 @@
   ;;
   ;; Most checkers call external programs. Need $PATH to find them.
   :require (exec-path-from-shell)
+  :commands (global-flycheck-mode)
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (setq-default flycheck-emacs-lisp-load-path 'inherit)
@@ -145,9 +148,11 @@
 
 (req-package flycheck-pos-tip
   :require (flycheck)
+  :defer t
   :config
-  (setq flycheck-display-errors-function
-        #'flycheck-pos-tip-error-messages))
+  (eval-after-load 'flycheck
+    (setq flycheck-display-errors-function
+          #'flycheck-pos-tip-error-messages)))
 
 
 (req-package git-timemachine)
@@ -212,6 +217,7 @@
   ;; It's possible to specify the whole path to the markdown command,
   ;; but I prefer not to. Instead, use $PATH.
   :require (exec-path-from-shell)
+  :defer t
   :config
   (setq markdown-command "multimarkdown"))
 
@@ -235,6 +241,7 @@
   ;; https://github.com/Bruce-Connor/paradox
   ;; Better package management, with asynchrony.
   :require (async)
+  :commands (paradox-enable)
   :config
   ;; let-binding to prevent infinite recursion.
   (let ((list-packages #'package-list-packages))
