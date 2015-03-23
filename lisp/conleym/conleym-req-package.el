@@ -145,15 +145,12 @@
   (setq-default flycheck-display-errors-delay 0)
   (global-flycheck-mode))
 
-
-(req-package flycheck-pos-tip
-  :require (flycheck)
-  :defer t
+(use-package flycheck-pos-tip
+  :ensure t
   :config
   (eval-after-load 'flycheck
-    (setq flycheck-display-errors-function
-          #'flycheck-pos-tip-error-messages)))
-
+    (custom-set-variables '(flycheck-display-errors-function
+                            #'flycheck-pos-tip-error-messages))))
 
 (req-package git-timemachine)
 
