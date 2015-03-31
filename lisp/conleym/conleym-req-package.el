@@ -203,7 +203,12 @@
 (req-package json-mode
   ;; https://github.com/joshwnj/json-mode
   ;; Major mode for editing JSON.
-)
+  :defer t)
+
+
+(req-package key-chord
+  :config
+  (key-chord-mode 1))
 
 
 (req-package less-css-mode)
@@ -287,6 +292,7 @@
   ;; https://julien.danjou.info/projects/emacs-packages#rainbow-mode
   ;; Show strings representing colors in the color they represent.
   :diminish rainbow-mode
+  :defer t
   :config
   ;; Automatically start rainbow-mode in any mode that it supports.
   ;;

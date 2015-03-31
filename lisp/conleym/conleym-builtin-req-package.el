@@ -116,8 +116,11 @@ isn't supported in this major mode."
   :require (exec-path-from-shell))
 
 
-(use-package js-mode
-  :mode ".jsx$")
+(req-package js
+  :require (key-chord)
+  :mode ".jsx$"
+  :config
+  (key-chord-define js-mode-map ";;" "\C-e;"))
 
 
 (use-package lisp-mode
