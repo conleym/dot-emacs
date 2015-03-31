@@ -343,9 +343,9 @@
   (setq sr-speedbar-right-side nil))
 
 
-; Flycheck stuff somehow breaks this whole package :(
-;(req-package swift-mode
-;  :defer t)
+(req-package swift-mode
+  :defer t
+  :require (flycheck))
 
 
 (req-package syslog-mode
