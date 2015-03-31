@@ -47,14 +47,14 @@
 (req-package coffee-mode
   ;; https://github.com/defunkt/coffee-mode
   ;; Coffeescript major mode
+  :require
+  (exec-path-from-shell sourcemap)
   :config
   (setq coffee-args-compile '("-c" "-m"))
   (coffee-cos-mode t)
   (bind-key "M-r" #'coffee-compile-buffer coffee-mode-map)
   (add-hook 'coffee-after-compile-hook
-            #'sourcemap-goto-corresponding-point)
-  :require
-  (exec-path-from-shell sourcemap))
+            #'sourcemap-goto-corresponding-point))
 
 
 (req-package company
@@ -86,6 +86,7 @@
 
 
 (req-package elpy
+  :require (exec-path-from-shell)
   :init
   (elpy-enable))
 
