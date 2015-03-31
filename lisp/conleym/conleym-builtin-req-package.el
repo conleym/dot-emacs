@@ -30,12 +30,11 @@
 
 
 (use-package desktop
-  :functions (desktop-save-mode-off)
   :config
   (setq desktop-save t
         desktop-save-mode t
         desktop-load-locked-desktop t
-        desktop-not-loaded-hook #'desktop-save-mode-off
+        desktop-not-loaded-hook 'desktop-save-mode-off
         desktop-restore-eager t
         desktop-dirname (conleym:persistence-dir-file "desktop/")
         desktop-path (list desktop-dirname))
