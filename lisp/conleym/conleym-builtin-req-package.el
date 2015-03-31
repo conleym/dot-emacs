@@ -134,9 +134,10 @@ isn't supported in this major mode."
 (use-package nxml-mode
   ;; Major mode for editing XML.
   :defer t
-  :config
+  :init
   (push '("<\\?xml" . nxml-mode) magic-mode-alist)
   (push '("<![dD][oO][cC][tT][yY][pP][eE]" . nxml-mode) magic-mode-alist)
+  :config
   (setq nxml-slash-auto-complete-flag t))
 
 

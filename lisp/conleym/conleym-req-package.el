@@ -22,6 +22,26 @@
   :init (global-anzu-mode))
 
 
+(req-package cider
+  ;; https://github.com/clojure-emacs/cider
+  ;; Clojure IDE.
+  :require (eldoc)
+  :defer t
+  :config
+  (add-hook 'cider-mode-hook
+            #'eldoc-mode)
+  (setq cider-repl-history-file (conleym:persistence-dir-file "cider-history")
+        cider-repl-history-size 1000 ;; the default is 500
+        cider-repl-wrap-history t
+        nrepl-log-messages t))
+
+
+(req-package clojure
+  ;; https://github.com/clojure-emacs/clojure-mode
+  ;; Major mode for clojure programming.
+  :defer t)
+
+
 (req-package bug-hunter
   ;; https://github.com/Malabarba/elisp-bug-hunter
   ;; Helps find bugs in init
@@ -189,6 +209,11 @@
 )
 
 
+(use-package hl-line
+  :config
+  (global-hl-line-mode))
+
+
 (req-package hungry-delete
   ;; https://github.com/nflath/hungry-delete
   ;; Deletes all the whitespace at once.
@@ -280,9 +305,9 @@
 
 
 (req-package puppet-mode
- ;; https://github.com/lunaryorn/puppet-mode
- ;; Major mode for editing puppet manifests.
-)
+  ;; https://github.com/lunaryorn/puppet-mode
+  ;; Major mode for editing puppet manifests.
+  :defer t)
 
 
 (req-package pydoc
