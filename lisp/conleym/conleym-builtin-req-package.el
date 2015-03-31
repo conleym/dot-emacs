@@ -76,10 +76,9 @@
           `(( ".*" . ,backup-dir)))))
 
 
-(use-package ido
+(req-package ido
   ;; Search recently opened files, not just currently open ones
   ;; and use flex matching.
-  :functions (ido-everywhere)
   :config
   (setq ido-enable-flex-matching t
         ido-max-prospects 10

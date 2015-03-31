@@ -142,26 +142,29 @@
   ;;
   ;; Most checkers call external programs. Need $PATH to find them.
   :require (exec-path-from-shell)
-  :commands (global-flycheck-mode)
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (setq-default flycheck-emacs-lisp-load-path 'inherit)
   (setq-default flycheck-display-errors-delay 0)
   (global-flycheck-mode))
 
-(use-package flycheck-pos-tip
-  :ensure t
+
+(req-package flycheck-pos-tip
+  :require (flycheck)
   :config
   (eval-after-load 'flycheck
     (custom-set-variables '(flycheck-display-errors-function
                             #'flycheck-pos-tip-error-messages))))
 
+
 (req-package git-timemachine)
+
 
 (req-package gitattributes-mode
   ;; https://github.com/magit/git-modes
   ;; .gitattributes major mode.
 )
+
 
 (req-package gitconfig-mode
   ;; https://github.com/magit/git-modes
@@ -181,6 +184,7 @@
   ;; .gitignore major mode.
   :mode "\\.gitignore_global" ;; My global settings.
 )
+
 
 (req-package hungry-delete
   ;; https://github.com/nflath/hungry-delete
