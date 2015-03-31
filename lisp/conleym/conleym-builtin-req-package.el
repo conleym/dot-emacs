@@ -50,6 +50,7 @@
 
 (use-package eldoc
   ;; Shows lisp docstrings in the minibuffer.
+  :defer t
   :diminish "")
 
 
@@ -131,6 +132,7 @@ isn't supported in this major mode."
 
 (use-package nxml-mode
   ;; Major mode for editing XML.
+  :defer t
   :config
   (push '("<\\?xml" . nxml-mode) magic-mode-alist)
   (push '("<![dD][oO][cC][tT][yY][pP][eE]" . nxml-mode) magic-mode-alist)
@@ -138,6 +140,7 @@ isn't supported in this major mode."
 
 
 (use-package rcirc
+  :defer t
   :config
   (rcirc-track-minor-mode)
   (setq rcirc-log-flag t
@@ -183,6 +186,7 @@ isn't supported in this major mode."
 
 (req-package scheme
   ;; Enable eldoc-mode for scheme.
+  :defer t
   :require (eldoc)
   :config
   (add-hook 'scheme-mode-hook
@@ -190,6 +194,7 @@ isn't supported in this major mode."
 
 
 (use-package semantic
+  :defer t
   :defines (semanticdb-default-save-directory)
   :config
   (setq semanticdb-default-save-directory

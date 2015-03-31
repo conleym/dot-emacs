@@ -7,6 +7,7 @@
       (req-package dash-at-point)
       (req-package reveal-in-finder)
       ;; Seems vaguely interesting. must have 'syn' installed, which I do.
-      (req-package wordsmith-mode)))
+      (req-package wordsmith-mode
+        :defer t)))
 
 (provide 'conleym-darwin-req-package)
