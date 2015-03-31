@@ -70,8 +70,6 @@
   :require
   ;; Need $PATH to find ImageMagick tools.
   (exec-path-from-shell)
-  :commands
-  (eimp-mode)
   :init
   (add-hook 'image-mode-hook
             #'eimp-mode)
@@ -266,10 +264,11 @@
  ;; Major mode for editing puppet manifests.
 )
 
+
 (req-package pydoc
   ;; https://github.com/statmobile/pydoc
   ;; Nicely formatted, linkable buffer display of pydoc.
-)
+  :defer t)
 
 
 (req-package rainbow-mode
@@ -327,16 +326,20 @@
 (req-package sr-speedbar
   ;;
   ;; Speedbar without the separate frame.
+  :defer t
   :config
   (setq sr-speedbar-right-side nil))
 
 
-(req-package swift-mode)
+; Flycheck stuff somehow breaks this whole package :(
+;(req-package swift-mode
+;  :defer t)
 
 
 (req-package syslog-mode
   ;; https://github.com/vapniks/syslog-mode
   ;; Fontifies system logs.
+  :defer t
   :init
   (add-to-list 'auto-mode-alist
                '("/var/log/.*\\.log.*\\'" . syslog-mode)))
@@ -346,6 +349,7 @@
 ;; {req,use}-package.
 (req-package tex-site
   :ensure auctex
+  :defer t
   ;; There are lots of TeX command line tools and environment variables....
   :require (exec-path-from-shell)
   :config
@@ -377,10 +381,7 @@
   ;; https://github.com/vibhavp/emacs-xkcd
   ;; Read XKCD in Emacs.
   :require (eimp)
-  :init
-  ;; It appears that these variables must be set in :init rather than
-  ;; :config. Otherwise, it tries to open the latest from the default
-  ;; cache.
+  :config
   (setq xkcd-cache-dir
         (conleym:persistence-dir-file "xkcd/"))
   ;; Avoid stupid mkdir-RET-RET message when directory doesn't exist.
@@ -391,7 +392,6 @@
   ;; customized).
   (add-hook 'xkcd-mode-hook
             #'eimp-mode)
-  :config
   ;; Rebind keys, since eimp uses the arrows.
   (bind-key "n" #'xkcd-next xkcd-mode-map)
   (bind-key "p" #'xkcd-prev xkcd-mode-map))

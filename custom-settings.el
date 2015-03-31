@@ -13,6 +13,7 @@
  '(eimp-ignore-read-only-modes
    (quote
     (gnus-article-mode puzzle-mode tumme-display-image-mode tumme-thumbnail-mode w3m-mode xkcd-mode)))
+ '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
  '(frame-background-mode (quote dark))
  '(gc-cons-threshold 20000000 nil nil "Suggestion from flx-ido author on improving performance: GC every 20MB instead of every .76MB.")
  '(global-linum-mode t)
@@ -36,6 +37,7 @@
    (quote
     (html-mode css-mode php-mode nxml-mode xml-mode web-mode)))
  '(require-final-newline t)
+ '(save-interprogram-paste-before-kill t)
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(show-paren-style (quote expression))
