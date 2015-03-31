@@ -7,10 +7,12 @@
   ;; It's a game. It's fun.
 )
 
+
 (req-package ag
   ;; https://github.com/Wilfred/ag.el
   ;; Silver searcher front end
-)
+  :require (exec-path-from-shell)
+  :commands (ag ag-files ag-regexp ag-project ag-project-files ag-project-regexp))
 
 
 (req-package anzu
