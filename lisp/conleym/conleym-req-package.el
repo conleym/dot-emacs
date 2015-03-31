@@ -20,6 +20,12 @@
   :init (global-anzu-mode))
 
 
+(req-package bug-hunter
+  ;; https://github.com/Malabarba/elisp-bug-hunter
+  ;; Helps find bugs in init
+)
+
+
 (req-package auto-compile
   ;; https://github.com/tarsius/auto-compile
   ;; Automatically byte (re)compile elisp files.
@@ -195,7 +201,9 @@
   ;; Major mode for editing JSON.
 )
 
+
 (req-package less-css-mode)
+
 
 (req-package manage-minor-mode
   ;; https://github.com/ShingoFukuyama/manage-minor-mode
