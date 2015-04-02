@@ -36,7 +36,7 @@
  '(show-paren-mode t)
  '(show-paren-style (quote expression))
  '(size-indication-mode t)
- '(tab-width 8 nil nil "Who the hell uses a tab width of 8 (the default)?")
+ '(tab-width 4 nil nil "Who the hell uses a tab width of 8 (the default)?")
  '(tool-bar-mode nil)
  '(use-dialog-box nil nil nil "The dialog box is annoying and, in some situations, works incorrectly on Mac."))
 (custom-set-faces
