@@ -116,7 +116,7 @@ isn't supported in this major mode."
   :require (exec-path-from-shell))
 
 
-(req-package js
+(req-package js-mode
   :require (key-chord)
   :mode ".jsx$"
   :config
