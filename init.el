@@ -1,3 +1,6 @@
+;; Emacs will add a call to package-initialize unless we have this here.
+;; (package-initialize)
+
 (setq load-prefer-newer t)
 
 ;; Bootstrap.
@@ -26,12 +29,6 @@
 ;; Set dark background in terminal to match (customized) frame setting.
 (set-terminal-parameter nil 'background-mode 'dark)
 
-;; This absoultely does not work right when customized. Also goes awry if
-;; the files have been byte compiled, for reasons. Furthermore, solarized
-;; looks like ass in the terminal, so we use a different theme there.
-(if (display-graphic-p)
-    (load-theme 'solarized t)
-  (load-theme 'leuven t))
 
 ;; Make mouse work in the terminal.
 ;;

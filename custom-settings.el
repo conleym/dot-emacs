@@ -8,6 +8,7 @@
  '(column-number-mode t)
  '(compilation-ask-about-save nil nil nil "Prompts are annoying. Of course I want to save the file before compiling it.")
  '(cua-mode t nil (cua-base))
+ '(custom-enabled-themes (quote (wheatgrass)))
  '(delete-by-moving-to-trash t)
  '(delete-old-versions t nil nil "We're keeping a lot of backups. No need to ask about getting rid of older ones.")
  '(eimp-ignore-read-only-modes
