@@ -7,6 +7,10 @@
 (load "~/.emacs.d/lisp/conleym/conleym-init-utils")
 (require 'conleym-init-utils)
 
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
 ;; Tell Emacs to look in the directory where I keep most of my stuff.
 (conleym:add-lisp-dir "lisp/conleym")
 
