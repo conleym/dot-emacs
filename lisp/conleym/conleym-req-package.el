@@ -168,7 +168,7 @@
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (setq-default flycheck-emacs-lisp-load-path 'inherit)
-  (setq-default flycheck-display-errors-delay 0)
+  (setq-default flycheck-display-errors-delay 1)
   (global-flycheck-mode))
 
 
