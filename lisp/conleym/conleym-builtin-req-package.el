@@ -149,9 +149,7 @@ isn't supported in this major mode."
   (rcirc-track-minor-mode)
   (setq rcirc-log-flag t
         rcirc-default-full-name user-full-name
-        rcirc-log-directory (conleym:persistence-dir-file "rcirc-logs/")
-        rcirc-server-alist
-        '(("irc.freenode.net" :port 6697 :encryption tls))))
+        rcirc-log-directory (conleym:persistence-dir-file "rcirc-logs/")))
 
 
 (req-package recentf

@@ -29,3 +29,6 @@ lisp/elpa/**/*
 # el-get and packages
 lisp/el-get
 lisp/el-get/**/*
+
+# Networking poop
+network-security.data
