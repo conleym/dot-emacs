@@ -142,6 +142,11 @@ isn't supported in this major mode."
         nxml-child-indent tab-width
         nxml-slash-auto-complete-flag t))
 
+(use-package nsm
+  :defer t
+  :config
+  (setq nsm-settings-file (conleym:persistence-dir-file "network-security.data")))
+
 
 (use-package rcirc
   :defer t
@@ -149,7 +154,39 @@ isn't supported in this major mode."
   (rcirc-track-minor-mode)
   (setq rcirc-log-flag t
         rcirc-default-full-name user-full-name
-        rcirc-log-directory (conleym:persistence-dir-file "rcirc-logs/")))
+        rcirc-log-directory (conleym:persistence-dir-file "rcirc-logs/")
+        rcirc-time-format "%Y-%m-%d %H:%M ")
+  (defun-rcirc-command j (arg)
+    "Shorthand for /join."
+    (interactive "M")
+    (rcirc-cmd-join arg))
+  (defun-rcirc-command p (arg)
+    "Shorthand for /part."
+    (interactive "i")
+    (rcirc-cmd-part arg))
+  ;; From the rcirc manual. Defines /reconnect.
+  (defun-rcirc-command reconnect (arg)
+    "Reconnect the server process."
+    (interactive "i")
+    (unless process
+      (error "There's no process for this target"))
+    (let* ((server (car (process-contact process)))
+           (port (process-contact process :service))
+           (nick (rcirc-nick process))
+           channels query-buffers)
+      (dolist (buf (buffer-list))
+        (with-current-buffer buf
+          (when (eq process (rcirc-buffer-process))
+            (remove-hook 'change-major-mode-hook
+                         'rcirc-change-major-mode-hook)
+            (if (rcirc-channel-p rcirc-target)
+                (setq channels (cons rcirc-target channels))
+              (setq query-buffers (cons buf query-buffers))))))
+      (delete-process process)
+      (rcirc-connect server port nick
+                     rcirc-default-user-name
+                     rcirc-default-full-name
+                     channels))))
 
 
 (req-package recentf
