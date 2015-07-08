@@ -211,6 +211,12 @@ isn't supported in this major mode."
   (recentf-mode))
 
 
+(req-package reftex
+  :require (tex-site)
+  :config
+  (setq reftex-plug-into-AUCTeX))
+
+
 (use-package ruby-mode
   :mode ("Vagrantfile\\'" . ruby-mode))
 
