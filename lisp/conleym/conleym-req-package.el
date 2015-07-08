@@ -397,9 +397,13 @@
   :ensure auctex
   :defer t
   ;; There are lots of TeX command line tools and environment variables....
-  :require (exec-path-from-shell)
+  :require (exec-path-from-shell auctex-latexmk)
   :config
-  (setq preview-auto-cache-preamble t))
+  (auctex-latexmk-setup)
+  (setq preview-auto-cache-preamble t
+        TeX-auto-save t
+        TeX-auto-untabify t
+        TeX-parse-self t))
 
 
 (req-package undo-tree
