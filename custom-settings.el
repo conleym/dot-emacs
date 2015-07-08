@@ -33,7 +33,7 @@
  '(package-enable-at-startup nil)
  '(package-selected-packages
    (quote
-    (flycheck company yaml-mode yagist xkcd web-mode undo-tree syslog-mode swift-mode sr-speedbar sourcemap smex reveal-in-finder req-package rainbow-mode pydoc puppet-mode paradox nyan-mode minesweeper markdown-mode manage-minor-mode less-css-mode key-chord json-mode ido-ubiquitous hungry-delete gitignore-mode github-browse-file gitconfig-mode gitattributes-mode git-timemachine flycheck-pos-tip flx-ido floobits fill-column-indicator exec-path-from-shell emr elpy eimp dired-imenu dash-at-point coffee-mode cider bug-hunter auto-compile auctex async apples-mode anzu ag 2048-game)))
+    (auctex-latexmk flycheck company yaml-mode yagist xkcd web-mode undo-tree syslog-mode swift-mode sr-speedbar sourcemap smex reveal-in-finder req-package rainbow-mode pydoc puppet-mode paradox nyan-mode minesweeper markdown-mode manage-minor-mode less-css-mode key-chord json-mode ido-ubiquitous hungry-delete gitignore-mode github-browse-file gitconfig-mode gitattributes-mode git-timemachine flycheck-pos-tip flx-ido floobits fill-column-indicator exec-path-from-shell emr elpy eimp dired-imenu dash-at-point coffee-mode cider bug-hunter auto-compile auctex async apples-mode anzu ag 2048-game)))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-bar-mode nil)
