@@ -135,7 +135,7 @@
   ;; https://github.com/alpaker/Fill-Column-Indicator
   ;; Draw a line at a given column.
   :config
-  (defun conleym:fci-80-mode()
+  (defun conleym:fci-80-mode ()
     (setq fci-rule-column 80) ;; becomes local when set.
     (fci-mode 1))
   (conleym:add-function-to-hooks #'conleym:fci-80-mode

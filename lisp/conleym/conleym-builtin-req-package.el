@@ -29,6 +29,12 @@
         (conleym:persistence-dir-file "bookmarks")))
 
 
+(use-package browse-url
+  :config
+  (if (conleym:is-darwin)
+      (setq browse-url-browser-function #'browse-url-default-macosx-browser)))
+
+
 (use-package desktop
   :config
   (setq desktop-save t
@@ -214,7 +220,7 @@ isn't supported in this major mode."
 (req-package reftex
   :require (tex-site)
   :config
-  (setq reftex-plug-into-AUCTeX))
+  (setq reftex-plug-into-AUCTeX t))
 
 
 (use-package ruby-mode
