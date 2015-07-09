@@ -264,6 +264,7 @@
 
 (req-package minesweeper)
 
+
 (req-package noflet
   :config
   ;; Eliminate prompt when processes are running.
