@@ -44,7 +44,6 @@
 
 (if (conleym:is-darwin)
     (progn
-      (setq browse-url-browser-function #'browse-url-default-macosx-browser)
       ;; Delete using Mac trash rather than freedesktop.org trash.
       (setq trash-directory "~/.Trash")
       ;; OS X ls doesn't suport --dired
