@@ -264,6 +264,13 @@
 
 (req-package minesweeper)
 
+(req-package noflet
+  :config
+  ;; Eliminate prompt when processes are running.
+  (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
+    "Prevent annoying \"Active processes exist\" query when you quit Emacs."
+    (noflet ((process-list ())) ad-do-it)))
+
 
 (req-package nyan-mode
   ;; http://nyan-mode.buildsomethingamazing.com

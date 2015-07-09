@@ -86,6 +86,5 @@
                                #'delete-trailing-whitespace
                                #'conleym:maybe-untabify-buffer)
 
-
 (require 'conleym-packages)
 (require 'conleym-secrets)
