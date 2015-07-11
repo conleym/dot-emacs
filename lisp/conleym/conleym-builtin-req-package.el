@@ -220,6 +220,7 @@ isn't supported in this major mode."
 (req-package reftex
   :require (tex-site)
   :config
+  (add-hook 'LaTeX-mode #'reftex-plug-into-AUCTeX)
   (setq reftex-plug-into-AUCTeX t))
 
 
