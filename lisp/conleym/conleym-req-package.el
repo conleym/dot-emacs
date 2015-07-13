@@ -408,10 +408,18 @@
   :require (exec-path-from-shell auctex-latexmk)
   :config
   (auctex-latexmk-setup)
+  (TeX-global-PDF-mode t)
+  (conleym:add-functions-to-hook 'LaTeX-mode-hook #'TeX-source-correlate-mode (lambda() (setq TeX-command-default "LatexMk")))
   (setq preview-auto-cache-preamble t
         TeX-auto-save t
         TeX-auto-untabify t
-        TeX-parse-self t))
+        TeX-parse-self t
+        TeX-source-correlate-method 'synctex
+        TeX-source-correlate-start-server t
+        TeX-view-program-list '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b"))
+        TeX-view-program-selection '((output-pdf "Skim")
+                                     (output-dvi "Skim")
+                                     (output-html "open"))))
 
 
 (req-package undo-tree
