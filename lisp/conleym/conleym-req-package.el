@@ -413,6 +413,7 @@
                                  #'TeX-source-correlate-mode
                                  (lambda()
                                    (setq TeX-command-default "LatexMk")
+                                   (TeX-fold-mode 1)
                                    (bind-keys :map LaTeX-mode-map
                                               ("<S-s-mouse-1>" . TeX-view))))
   (setq-default TeX-master nil)
@@ -420,7 +421,6 @@
         TeX-auto-save t
         TeX-auto-untabify t
         TeX-parse-self t
-        TeX-source-correlate-method 'synctex
         TeX-source-correlate-start-server t
         TeX-view-program-list '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b"))
         TeX-view-program-selection '((output-pdf "Skim")
