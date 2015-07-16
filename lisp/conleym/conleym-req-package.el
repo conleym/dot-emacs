@@ -405,11 +405,12 @@
   :ensure auctex
   :defer t
   ;; There are lots of TeX command line tools and environment variables....
-  :require (exec-path-from-shell auctex-latexmk)
+  :require (exec-path-from-shell reftex auctex-latexmk)
   :config
   (auctex-latexmk-setup)
   (TeX-global-PDF-mode t)
   (conleym:add-functions-to-hook 'LaTeX-mode-hook #'TeX-source-correlate-mode (lambda() (setq TeX-command-default "LatexMk")))
+  (setq-default TeX-master nil)
   (setq preview-auto-cache-preamble t
         TeX-auto-save t
         TeX-auto-untabify t
@@ -439,8 +440,8 @@
   ;; http://web-mode.org
   ;; Major mode for various web template languages.
   :mode (("\\.erb$" . web-mode) ;; ruby templates used by puppet
-         ("\\.hbs$" . web-mode) ;; handlebars.js templates
-))
+         ;; handlebars.js templates
+         ("\\.hbs$" . web-mode)))
 
 
 (req-package xkcd

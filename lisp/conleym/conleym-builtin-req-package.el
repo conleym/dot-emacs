@@ -218,9 +218,8 @@ isn't supported in this major mode."
 
 
 (req-package reftex
-  :require (tex-site)
   :config
-  (add-hook 'LaTeX-mode #'reftex-plug-into-AUCTeX)
+  (add-hook 'LaTeX-mode-hook #'turn-on-reftex)
   (setq reftex-plug-into-AUCTeX t))
 
 
