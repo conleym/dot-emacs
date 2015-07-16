@@ -409,7 +409,12 @@
   :config
   (auctex-latexmk-setup)
   (TeX-global-PDF-mode t)
-  (conleym:add-functions-to-hook 'LaTeX-mode-hook #'TeX-source-correlate-mode (lambda() (setq TeX-command-default "LatexMk")))
+  (conleym:add-functions-to-hook 'LaTeX-mode-hook
+                                 #'TeX-source-correlate-mode
+                                 (lambda()
+                                   (setq TeX-command-default "LatexMk")
+                                   (bind-keys :map LaTeX-mode-map
+                                              ("<S-s-mouse-1>" . TeX-view))))
   (setq-default TeX-master nil)
   (setq preview-auto-cache-preamble t
         TeX-auto-save t
