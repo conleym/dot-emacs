@@ -192,7 +192,10 @@
 (req-package gitconfig-mode
   ;; https://github.com/magit/git-modes
   ;; .gitconfig major mode.
-)
+  :config
+  ;; I don't want to indent with tabs. Tabs are stupid.
+  (add-hook 'gitconfig-mode-hook (lambda()
+                                   (setq indent-tabs-mode nil))))
 
 
 (req-package github-browse-file
