@@ -22,6 +22,12 @@
   :init (global-anzu-mode))
 
 
+(req-package auctex-latexmk
+  ;; https://github.com/tom-tan/auctex-latexmk
+  ;; Sets auctex up to use the latexmk command.
+)
+
+
 (req-package cider
   ;; https://github.com/clojure-emacs/cider
   ;; Clojure IDE.
@@ -82,6 +88,9 @@
   ;; Autocompletion
   :init
   (global-company-mode))
+
+
+(req-package company-auctex)
 
 
 (req-package dired-imenu
@@ -406,9 +415,9 @@
 ;; {req,use}-package.
 (req-package tex-site
   :ensure auctex
-  :defer t
   ;; There are lots of TeX command line tools and environment variables....
-  :require (exec-path-from-shell reftex auctex-latexmk)
+  :require
+  (exec-path-from-shell auctex-latexmk reftex company-auctex)
   :config
   (auctex-latexmk-setup)
   (TeX-global-PDF-mode t)
@@ -417,6 +426,7 @@
                                  (lambda()
                                    (setq TeX-command-default "LatexMk")
                                    (TeX-fold-mode 1)
+                                   ;; cmd-shift-click = TeX-view
                                    (bind-keys :map LaTeX-mode-map
                                               ("<S-s-mouse-1>" . TeX-view))))
   (setq-default TeX-master nil)
