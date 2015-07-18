@@ -10,7 +10,7 @@
 
 (req-package ag
   ;; https://github.com/Wilfred/ag.el
-  ;; Silver searcher front end
+  ;; Silver searcher front end.
   :require (exec-path-from-shell)
   :commands (ag ag-files ag-regexp ag-project ag-project-files ag-project-regexp))
 
@@ -155,7 +155,7 @@
 (req-package floobits
   ;; https://github.com/Floobits/floobits-emacs
   ;; Floobits integration.
-)
+  :defer t)
 
 
 (req-package flx-ido
@@ -189,18 +189,20 @@
                             #'flycheck-pos-tip-error-messages))))
 
 
-(req-package git-timemachine)
+(req-package git-timemachine
+  :defer t)
 
 
 (req-package gitattributes-mode
   ;; https://github.com/magit/git-modes
   ;; .gitattributes major mode.
-)
+  :defer t)
 
 
 (req-package gitconfig-mode
   ;; https://github.com/magit/git-modes
   ;; .gitconfig major mode.
+  :defer t
   :config
   ;; I don't want to indent with tabs. Tabs are stupid.
   (add-hook 'gitconfig-mode-hook (lambda()
@@ -210,6 +212,7 @@
 (req-package github-browse-file
   ;; https://github.com/osener/github-browse-file
   ;; View files on github.com
+  :defer t
   :config
   (setq github-browse-file-show-line-at-point t))
 
@@ -251,13 +254,14 @@
   (key-chord-mode 1))
 
 
-(req-package less-css-mode)
+(req-package less-css-mode
+  :defer t)
 
 
 (req-package manage-minor-mode
   ;; https://github.com/ShingoFukuyama/manage-minor-mode
   ;; List, activate and deactivate minor modes easily.
-)
+  :defer t)
 
 
 (req-package markdown-mode
@@ -274,7 +278,8 @@
   (setq markdown-command "multimarkdown"))
 
 
-(req-package minesweeper)
+(req-package minesweeper
+  :defer t)
 
 
 (req-package noflet
@@ -421,15 +426,17 @@
   (exec-path-from-shell auctex-latexmk reftex company-auctex)
   :init
   (auctex-latexmk-setup)
-  (conleym:add-functions-to-hook 'LaTeX-mode-hook
+  (conleym:add-functions-to-hook 'TeX-mode-hook
                                  #'TeX-source-correlate-mode
-                                 #'LaTeX-math-mode
                                  (lambda()
-                                   (setq TeX-command-default "LatexMk")
                                    (TeX-fold-mode t)
                                    ;; cmd-shift-click = TeX-view
-                                   (bind-keys :map LaTeX-mode-map
+                                   (bind-keys :map TeX-mode-map
                                               ("<S-s-mouse-1>" . TeX-view))))
+  (conleym:add-functions-to-hook 'LaTeX-mode-hook
+                                 #'LaTeX-math-mode
+                                 (lambda()
+                                   (setq TeX-command-default "LatexMk")))
   :config
   (company-auctex-init)
   (TeX-global-PDF-mode t)
@@ -439,6 +446,10 @@
         TeX-auto-save t
         TeX-auto-untabify t
         TeX-complete-expert-commands t
+        ;; Don't ask me if I want to see the errors. Of course I want to see the errors.
+        TeX-error-overview-open-after-TeX-run t
+        ;; Don't automatically insert braces when inserting macros.
+        TeX-insert-braces nil
         TeX-parse-self t
         TeX-source-correlate-start-server t
         TeX-view-program-list '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b"))
@@ -491,12 +502,13 @@
 (req-package yagist
   ;; https://github.com/mhayashi1120/yagist.el
   ;; Create and manage gists on github.
-)
+  :defer t)
 
 
 (req-package yaml-mode
   ;; https://github.com/yoshiki/yaml-mode
   ;; Major mode for editing YAML.
+  :defer t
   :config
   (setq yaml-indent-offset tab-width))
 
