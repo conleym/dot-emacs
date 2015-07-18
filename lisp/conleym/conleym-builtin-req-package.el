@@ -137,6 +137,7 @@ isn't supported in this major mode."
                                  'lisp-interaction-mode-hook
                                  'ielm-mode-hook))
 
+
 (use-package nxml-mode
   ;; Major mode for editing XML.
   :defer t
@@ -147,6 +148,7 @@ isn't supported in this major mode."
   (setq nxml-attribute-indent tab-width
         nxml-child-indent tab-width
         nxml-slash-auto-complete-flag t))
+
 
 (use-package nsm
   :defer t
@@ -230,9 +232,8 @@ isn't supported in this major mode."
 (use-package saveplace
   :config
   (setq-default save-place t)
-  (setq save-place-version-control t)
-  (setq save-place-file
-        (conleym:persistence-dir-file "saved-places")))
+  (setq save-place-version-control t
+        save-place-file (conleym:persistence-dir-file "saved-places")))
 
 
 (req-package scheme
