@@ -5,7 +5,7 @@
 (req-package 2048-game
   ;; https://bitbucket.org/zck/2048.el
   ;; It's a game. It's fun.
-)
+  :defer t)
 
 
 (req-package ag
@@ -51,7 +51,7 @@
 (req-package bug-hunter
   ;; https://github.com/Malabarba/elisp-bug-hunter
   ;; Helps find bugs in init
-)
+  :disabled t) ;; enable to debug
 
 
 (req-package auto-compile
@@ -415,24 +415,30 @@
 ;; {req,use}-package.
 (req-package tex-site
   :ensure auctex
+  :defer t
   ;; There are lots of TeX command line tools and environment variables....
   :require
   (exec-path-from-shell auctex-latexmk reftex company-auctex)
-  :config
+  :init
   (auctex-latexmk-setup)
-  (TeX-global-PDF-mode t)
   (conleym:add-functions-to-hook 'LaTeX-mode-hook
                                  #'TeX-source-correlate-mode
+                                 #'LaTeX-math-mode
                                  (lambda()
                                    (setq TeX-command-default "LatexMk")
-                                   (TeX-fold-mode 1)
+                                   (TeX-fold-mode t)
                                    ;; cmd-shift-click = TeX-view
                                    (bind-keys :map LaTeX-mode-map
                                               ("<S-s-mouse-1>" . TeX-view))))
+  :config
+  (company-auctex-init)
+  (TeX-global-PDF-mode t)
   (setq-default TeX-master nil)
-  (setq preview-auto-cache-preamble t
+  (setq LaTeX-math-menu-unicode t
+        preview-auto-cache-preamble t
         TeX-auto-save t
         TeX-auto-untabify t
+        TeX-complete-expert-commands t
         TeX-parse-self t
         TeX-source-correlate-start-server t
         TeX-view-program-list '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b"))
