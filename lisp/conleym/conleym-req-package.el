@@ -308,6 +308,10 @@
   (nyan-start-animation))
 
 
+(req-package oauth
+  :require (sasl))
+
+
 (req-package paradox
   ;; https://github.com/Bruce-Connor/paradox
   ;; Better package management, with asynchrony.
@@ -462,6 +466,13 @@
         TeX-view-program-selection '((output-pdf "Skim")
                                      (output-dvi "Skim")
                                      (output-html "open"))))
+
+
+(req-package tumblesocks
+  :require (oauth)
+  :config
+  (setq tumblesocks-blog "mpconley.tumblr.com"
+        tumblesocks-token-file (conleym:persistence-dir-file "tumblr-oauth-token")))
 
 
 (req-package undo-tree
