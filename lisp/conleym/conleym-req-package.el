@@ -8,6 +8,12 @@
   :defer t)
 
 
+(req-package ace-jump-mode
+  ;; https://github.com/winterTTr/ace-jump-mode
+  :config
+  (ace-jump-mode-enable-mark-sync))
+
+
 (req-package ag
   ;; https://github.com/Wilfred/ag.el
   ;; Silver searcher front end.
