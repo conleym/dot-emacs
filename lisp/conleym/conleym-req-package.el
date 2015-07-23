@@ -39,19 +39,30 @@
   ;; Clojure IDE.
   :require (eldoc)
   :defer t
+  :init
+  (add-hook 'clojure-mode-hook
+            #'cider-mode)
   :config
   (add-hook 'cider-mode-hook
             #'eldoc-mode)
-  (setq cider-repl-history-file (conleym:persistence-dir-file "cider-history")
+  (setq cider-auto-mode nil ;; We take care of it ourselves with a clojure-mode hook.
+        cider-auto-select-error-buffer nil ;; I don't want to automatically switch buffers on errors.
+        cider-prompt-save-file-on-load nil ;; Of course I want to save it before running. Don't ask me.
+        cider-repl-history-file (conleym:persistence-dir-file "cider-history")
         cider-repl-history-size 1000 ;; the default is 500
+        cider-repl-pop-to-buffer-on-connect t ;; I do want to switch to the REPL buffer on connect.
         cider-repl-wrap-history t
+        cider-show-error-buffer t
         nrepl-log-messages t))
 
 
-(req-package clojure
+(req-package clojure-mode
   ;; https://github.com/clojure-emacs/clojure-mode
   ;; Major mode for clojure programming.
-  :defer t)
+  :defer t
+  :config
+  (add-hook clojure-mode-hook (lambda()
+                                (setq inferior-lisp-program "lein repl"))))
 
 
 (req-package bug-hunter
@@ -97,6 +108,9 @@
 
 
 (req-package company-auctex)
+
+
+(req-package define-word)
 
 
 (req-package dired-imenu
