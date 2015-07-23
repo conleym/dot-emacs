@@ -25,8 +25,9 @@
 
 (use-package bookmark
   :config
-  (setq bookmark-default-file
-        (conleym:persistence-dir-file "bookmarks")))
+  (setq bookmark-default-file (conleym:persistence-dir-file "bookmarks")
+        ;; Save every time the bookmarks are changed.
+        bookmark-save-flag 1))
 
 
 (use-package browse-url
