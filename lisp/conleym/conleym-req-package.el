@@ -410,9 +410,8 @@
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands))
   :config
-  (setq smex-history-length 200)
-  (setq smex-save-file
-        (conleym:persistence-dir-file "smex-items"))
+  (setq smex-history-length 200
+        smex-save-file (conleym:persistence-dir-file "smex-items"))
   (smex-initialize))
 
 
