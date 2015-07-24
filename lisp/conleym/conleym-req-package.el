@@ -145,6 +145,12 @@
   (add-hook 'prog-mode-hook #'emr-initialize))
 
 
+(req-package ess
+  ;; http://ess.r-project.org/
+  ;; S/R support.
+  :defer t)
+
+
 (req-package exec-path-from-shell
   ;; https://github.com/purcell/exec-path-from-shell
   ;; Get environment variables from a login shell. Necessary for a reasonable
@@ -173,6 +179,12 @@
 (req-package floobits
   ;; https://github.com/Floobits/floobits-emacs
   ;; Floobits integration.
+  :defer t)
+
+
+(req-package format-sql
+  ;; https://github.com/paetzke/format-sql.el
+  ;; Format SQL embedded in python source code.
   :defer t)
 
 
@@ -328,7 +340,6 @@
   ;; https://github.com/Bruce-Connor/paradox
   ;; Better package management, with asynchrony.
   :require (async)
-  :commands (paradox-enable)
   :config
   ;; let-binding to prevent infinite recursion.
   (let ((list-packages #'package-list-packages))
