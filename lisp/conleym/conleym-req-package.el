@@ -491,8 +491,7 @@
 (req-package tumblesocks
   :require (oauth)
   :config
-  (setq tumblesocks-blog "mpconley.tumblr.com"
-        tumblesocks-token-file (conleym:persistence-dir-file "tumblr-oauth-token")))
+  (setq tumblesocks-token-file (conleym:persistence-dir-file "tumblr-oauth-token")))
 
 
 (req-package undo-tree
