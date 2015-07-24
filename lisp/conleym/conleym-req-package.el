@@ -320,7 +320,7 @@
 
 
 (req-package oauth
-  :require (sasl))
+  :require (sasl)) ;; Require sasl so that oauth will use it to generate nonces.
 
 
 (req-package paradox
@@ -348,6 +348,12 @@
         paradox-display-download-count t
         paradox-execute-asynchronously t
         paradox-lines-per-entry 2))
+
+
+(req-package pip-requirements
+  ;; https://github.com/Wilfred/pip-requirements.el
+  ;; requirements.txt highlighting and autocompletion.
+  :defer t)
 
 
 (req-package puppet-mode

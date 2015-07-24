@@ -60,6 +60,19 @@
   :diminish "")
 
 
+(use-package elide-head
+  :defer t
+  :init
+  (add-hook 'prog-mode-hook #'elide-head))
+
+
+(use-package elisp-mode
+  ;; Turn eldoc-mode on in elisp mode.
+  :defer t
+  :config
+  (add-hook 'emacs-lisp-mode-hook #'eldoc-mode))
+
+
 (use-package files
   :config
   ;; Number of versions to keep. Just picked a relatively large
@@ -94,6 +107,12 @@
   (ido-everywhere t))
 
 
+(use-package ielm
+  :defer t
+  :init
+  (add-hook 'ielm-mode-hook #'eldoc-mode))
+
+
 (req-package imenu
   ;; Show definitions from current file in a menu.
   :config
@@ -105,8 +124,7 @@ isn't supported in this major mode."
     (ignore-errors
       (progn
         (imenu-add-menubar-index))))
-  (conleym:add-function-to-hooks #'conleym:safe-imenu
-                                 'after-change-major-mode-hook)
+  (add-hook 'after-change-major-mode-hook #'conleym:safe-imenu)
   (setq imenu-auto-rescan t
         imenu-sort-function #'imenu--sort-by-name))
 
@@ -131,12 +149,11 @@ isn't supported in this major mode."
 
 
 (use-package lisp-mode
-  ;; Turn eldoc-mode on in all lisp modes.
+  :defer t
   :config
   (conleym:add-function-to-hooks #'eldoc-mode
-                                 'emacs-lisp-mode-hook
-                                 'lisp-interaction-mode-hook
-                                 'ielm-mode-hook))
+                                 'lisp-mode-hook
+                                 'lisp-interaction-mode-hook))
 
 
 (use-package nxml-mode
