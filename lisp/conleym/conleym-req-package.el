@@ -28,16 +28,16 @@
   :init (global-anzu-mode))
 
 
+(req-package apples-mode
+  ;; https://github.com/tequilasunset/apples-mode
+  ;; Major mode for applescript.
+  :mode "\\.applescript$")
+
+
 (req-package auctex-latexmk
   ;; https://github.com/tom-tan/auctex-latexmk
   ;; Sets auctex up to use the latexmk command.
 )
-
-
-(req-package bug-hunter
-  ;; https://github.com/Malabarba/elisp-bug-hunter
-  ;; Helps find bugs in init
-  :disabled t) ;; enable to debug
 
 
 (req-package auto-compile
@@ -50,10 +50,10 @@
         auto-compile-update-autoloads t))
 
 
-(req-package apples-mode
-  ;; https://github.com/tequilasunset/apples-mode
-  ;; Major mode for applescript.
-  :mode "\\.applescript$")
+(req-package bug-hunter
+  ;; https://github.com/Malabarba/elisp-bug-hunter
+  ;; Helps find bugs in init
+  :disabled t) ;; enable to debug
 
 
 (req-package cider
