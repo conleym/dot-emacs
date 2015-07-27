@@ -555,8 +555,11 @@
 
 
 (req-package which-key
+  ;; https://github.com/justbur/emacs-which-key
+  ;; Helps me with keybindings I can't remember.
   :diminish ""
   :config
+  (setq which-key-show-remaining-keys t)
   (which-key-mode))
 
 
