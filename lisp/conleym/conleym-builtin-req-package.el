@@ -17,6 +17,7 @@
 
 
 (use-package autorevert
+  :diminish auto-revert-mode
   :config
   ;; Default (5 seconds) is too long to wait.
   (setq auto-revert-interval 1)
