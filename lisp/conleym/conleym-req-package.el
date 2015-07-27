@@ -426,6 +426,14 @@
   (smex-initialize))
 
 
+(req-package smooth-scroll
+  :diminish ""
+  :config
+  (smooth-scroll-mode 1)
+  (setq smooth-scroll/vscroll-step-size 3
+        smooth-scroll/hscroll-step-size 1))
+
+
 (req-package sourcemap
   ;; https://github.com/syohex/emacs-sourcemap
   ;; sourcemap support.
