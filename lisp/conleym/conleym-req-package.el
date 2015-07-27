@@ -184,7 +184,7 @@
 
 (req-package format-sql
   ;; https://github.com/paetzke/format-sql.el
-  ;; Format SQL embedded in python source code.
+  ;; Format SQL embedded in python source code. Must `pip-install format-sql --user`
   :defer t)
 
 
@@ -552,6 +552,12 @@
   ;; Rebind keys, since eimp uses the arrows.
   (bind-key "n" #'xkcd-next xkcd-mode-map)
   (bind-key "p" #'xkcd-prev xkcd-mode-map))
+
+
+(req-package which-key
+  :diminish ""
+  :config
+  (which-key-mode))
 
 
 (req-package yagist
