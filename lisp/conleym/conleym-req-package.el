@@ -513,6 +513,16 @@
   (setq tumblesocks-token-file (conleym:persistence-dir-file "tumblr-oauth-token")))
 
 
+(req-package twittering-mode
+  :defer t
+  :config
+  (setq twittering-display-remaining t   ;; Show # of remaining API calls.
+        twittering-icon-mode t           ;; Show icons
+        twittering-icon-storage-file (conleym:persistence-dir-file "twittering-mode-icons.gz")
+        twittering-use-icon-storage t
+        twittering-use-master-password t)) ;; Store oauth token.
+
+
 (req-package undo-tree
   ;; http://www.dr-qubit.org/emacs.php#undo-tree
   ;; Minor mode that makes undo and redo easier to understand, use, and visualize.
