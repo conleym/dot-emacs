@@ -53,7 +53,7 @@
 (req-package bug-hunter
   ;; https://github.com/Malabarba/elisp-bug-hunter
   ;; Helps find bugs in init
-  :disabled t) ;; enable to debug
+  :defer t)
 
 
 (req-package cider
