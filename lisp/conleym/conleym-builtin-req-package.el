@@ -303,6 +303,17 @@ isn't supported in this major mode."
                 (linum-mode -1))))
 
 
+(use-package sql
+  :defer t
+  :config
+  (setq sql-postgres-login-params
+        '((user :default "postgres")
+          (port :default 5432)
+          (server :default "localhost")
+          (database :default "postgres")
+          (password :default "postgres"))))
+
+
 (use-package subword
   :config
   (global-subword-mode t))
