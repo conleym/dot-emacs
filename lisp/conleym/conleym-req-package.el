@@ -254,6 +254,12 @@
 )
 
 
+(req-package graphviz-dot-mode
+  ;; https://github.com/ppareit/graphviz-dot-mode
+  ;; Support for the .dot file format.
+  :defer t)
+
+
 (use-package hl-line
   :config
   (global-hl-line-mode))
