@@ -59,13 +59,11 @@
 (req-package cider
   ;; https://github.com/clojure-emacs/cider
   ;; Clojure IDE.
-  :require (clojure-mode eldoc)
+  :require (clojure-mode)
   :defer t
   :init
   (add-hook 'clojure-mode-hook
             #'cider-mode)
-  (add-hook 'cider-mode-hook
-            #'eldoc-mode)
   :config
   (setq cider-auto-mode nil ;; We take care of it ourselves with a clojure-mode hook.
         cider-auto-select-error-buffer nil ;; I don't want to automatically switch buffers on errors.
