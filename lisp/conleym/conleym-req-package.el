@@ -59,7 +59,8 @@
 (req-package cider
   ;; https://github.com/clojure-emacs/cider
   ;; Clojure IDE.
-  :require (clojure-mode)
+  :require
+  (clojure-mode)
   :defer t
   :init
   (add-hook 'clojure-mode-hook
@@ -79,7 +80,11 @@
 (req-package clojure-mode
   ;; https://github.com/clojure-emacs/clojure-mode
   ;; Major mode for clojure programming.
-  :defer t)
+  :defer t
+  :config
+  (req-package clj-refactor)
+  (add-hook 'clojure-mode-hook (lambda()
+                                 (clj-refactor-mode 1))))
 
 
 (req-package coffee-mode
@@ -201,20 +206,25 @@
   ;; On the fly syntax checking. Easier to configure and use than flymake.
   ;;
   ;; Most checkers call external programs. Need $PATH to find them.
-  :require (exec-path-from-shell)
+  :require
+  (exec-path-from-shell)
   :config
+  (req-package flycheck-clojure
+    :require
+    (flycheck)
+    :config
+    (flycheck-clojure-setup))
+  (req-package flycheck-pos-tip
+    :require
+    (flycheck)
+    :config
+    (eval-after-load 'flycheck
+      (custom-set-variables '(flycheck-display-errors-function
+                            #'flycheck-pos-tip-error-messages))))
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)) ;; Checkdoc just annoys me.
   (setq-default flycheck-emacs-lisp-load-path 'inherit)
   (setq-default flycheck-display-errors-delay 1)
   (global-flycheck-mode))
-
-
-(req-package flycheck-pos-tip
-  :require (flycheck)
-  :config
-  (eval-after-load 'flycheck
-    (custom-set-variables '(flycheck-display-errors-function
-                            #'flycheck-pos-tip-error-messages))))
 
 
 (req-package git-timemachine
@@ -306,7 +316,8 @@
   ;;
   ;; It's possible to specify the whole path to the markdown command,
   ;; but I prefer not to. Instead, use $PATH.
-  :require (exec-path-from-shell)
+  :require
+  (exec-path-from-shell)
   :defer t
   :config
   (setq markdown-command "multimarkdown"))
@@ -337,13 +348,15 @@
 
 
 (req-package oauth
-  :require (sasl)) ;; Require sasl so that oauth will use it to generate nonces.
+  :require
+  (sasl)) ;; Require sasl so that oauth will use it to generate nonces.
 
 
 (req-package paradox
   ;; https://github.com/Bruce-Connor/paradox
   ;; Better package management, with asynchrony.
-  :require (async)
+  :require
+  (async)
   :config
   ;; let-binding to prevent infinite recursion.
   (let ((list-packages #'package-list-packages))
@@ -454,7 +467,8 @@
 
 (req-package swift-mode
   :defer t
-  :require (flycheck))
+  :require
+  (flycheck))
 
 
 (req-package syslog-mode
