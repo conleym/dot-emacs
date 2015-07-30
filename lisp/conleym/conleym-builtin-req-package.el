@@ -57,8 +57,9 @@
 
 (use-package eldoc
   ;; Shows lisp docstrings in the minibuffer.
-  :defer t
-  :diminish "")
+  :diminish ""
+  :init
+  (global-eldoc-mode))
 
 
 (use-package elide-head
@@ -69,9 +70,7 @@
 
 (use-package elisp-mode
   ;; Turn eldoc-mode on in elisp mode.
-  :defer t
-  :config
-  (add-hook 'emacs-lisp-mode-hook #'eldoc-mode))
+  :defer t)
 
 
 (use-package files
@@ -109,9 +108,7 @@
 
 
 (use-package ielm
-  :defer t
-  :init
-  (add-hook 'ielm-mode-hook #'eldoc-mode))
+  :defer t)
 
 
 (req-package imenu
@@ -147,14 +144,6 @@ isn't supported in this major mode."
   :mode ".jsx$"
   :config
   (key-chord-define js-mode-map ";;" "\C-e;"))
-
-
-(use-package lisp-mode
-  :defer t
-  :config
-  (conleym:add-function-to-hooks #'eldoc-mode
-                                 'lisp-mode-hook
-                                 'lisp-interaction-mode-hook))
 
 
 (use-package nxml-mode
@@ -253,15 +242,6 @@ isn't supported in this major mode."
   (setq-default save-place t)
   (setq save-place-version-control t
         save-place-file (conleym:persistence-dir-file "saved-places")))
-
-
-(req-package scheme
-  ;; Enable eldoc-mode for scheme.
-  :defer t
-  :require (eldoc)
-  :config
-  (add-hook 'scheme-mode-hook
-            #'eldoc-mode))
 
 
 (use-package semantic
