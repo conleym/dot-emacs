@@ -432,6 +432,13 @@
       (add-hook hook #'rainbow-mode))))
 
 
+(req-package smartparens
+  ;; https://github.com/Fuco1/smartparens
+  ;; Pair completion.
+  :config
+  (smartparens-global-mode 1))
+
+
 (req-package smex
   ;; https://github.com/nonsequitur/smex
   ;; Better M-x, built on ido.
