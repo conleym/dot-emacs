@@ -258,8 +258,9 @@
 (req-package gitignore-mode
   ;; https://github.com/magit/git-modes
   ;; .gitignore major mode.
-  :mode "\\.gitignore_global" ;; My global settings.
-)
+  :mode
+  ;; My global settings.
+  "\\.gitignore_global$")
 
 
 (req-package graphviz-dot-mode
@@ -290,7 +291,9 @@
 (req-package json-mode
   ;; https://github.com/joshwnj/json-mode
   ;; Major mode for editing JSON.
-  :defer t)
+  :mode
+  ;; HTTP archives
+  "\\.har$")
 
 
 (req-package key-chord
