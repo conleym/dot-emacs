@@ -1,11 +1,12 @@
 (require 'conleym-init-utils)
 
-; Define vars to shut the byte compiler up. Most of these can be customized,
-; but we want them to be in place when el-get is installed.
+;; Define vars and functions to shut the byte compiler up. Most of these can be
+;; customized, but we want them to be in place when el-get is installed.
 (defvar el-get-dir)
 (defvar el-get-recipe-path)
 (defvar el-get-git-shallow-clone)
 (defvar el-get-user-package-directory)
+(defun el-get(&rest args))
 
 ;; Grab only the most recent version when cloning, not the whole repository.
 (setq el-get-git-shallow-clone t)
