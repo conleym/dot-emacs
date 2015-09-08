@@ -162,7 +162,10 @@
   ;; Seems this must be :init rather than :config. Otherwise eimp can't find
   ;; mogrify and complains.
   :init
-  (setq exec-path-from-shell-variables '("MANPATH" "PATH" "PYTHONPATH" "WORKON_HOME"))
+  (setq exec-path-from-shell-variables
+        '("AWS_ACCESS_KEY_ID" "AWS_CONFIG_FILE ""AWS_DEFAULT_PROFILE"
+          "AWS_DEFAULT_REGION" "AWS_PROFILE" "AWS_SECRET_ACCESS_KEY"
+          "MANPATH" "PATH" "PYTHONPATH" "WORKON_HOME"))
   (exec-path-from-shell-initialize))
 
 
@@ -595,7 +598,7 @@
 (req-package which-key
   ;; https://github.com/justbur/emacs-which-key
   ;; Helps me with keybindings I can't remember.
-  :diminish ""
+  :diminish which-key-mode
   :config
   (setq which-key-show-remaining-keys t)
   (which-key-mode))
