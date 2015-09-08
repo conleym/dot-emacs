@@ -163,7 +163,7 @@
   ;; mogrify and complains.
   :init
   (setq exec-path-from-shell-variables
-        '("AWS_ACCESS_KEY_ID" "AWS_CONFIG_FILE ""AWS_DEFAULT_PROFILE"
+        '("AWS_ACCESS_KEY_ID" "AWS_CONFIG_FILE" "AWS_DEFAULT_PROFILE"
           "AWS_DEFAULT_REGION" "AWS_PROFILE" "AWS_SECRET_ACCESS_KEY"
           "MANPATH" "PATH" "PYTHONPATH" "WORKON_HOME"))
   (exec-path-from-shell-initialize))
