@@ -55,6 +55,12 @@
   (setq dired-auto-revert-buffer t))
 
 
+(use-package ede/base
+  :defer t
+  :config
+  (setq ede-project-placeholder-cache-file (conleym:persistence-dir-file "ede-projects.el")))
+
+
 (use-package eldoc
   ;; Shows lisp docstrings in the minibuffer.
   :diminish ""
