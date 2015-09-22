@@ -73,7 +73,7 @@
         cider-repl-history-size 1000 ;; the default is 500
         cider-repl-pop-to-buffer-on-connect t ;; I do want to switch to the REPL buffer on connect.
         cider-repl-wrap-history t
-        cider-show-error-buffer t
+        cider-show-error-buffer nil
         nrepl-log-messages t))
 
 
