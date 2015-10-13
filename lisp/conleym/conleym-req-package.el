@@ -140,6 +140,17 @@
   (elpy-enable))
 
 
+(req-package emmet-mode
+  ;; https://github.com/smihica/emmet-mode
+  ;; emmet.io stuff (web editing shortcuts) for emacs.
+  :defer t
+  :diminish ""
+  :init
+  (conleym:add-function-to-hooks #'emmet-mode
+                                 'sgml-mode-hook
+                                 'css-mode-hook))
+
+
 (req-package emr
   ;; https://github.com/chrisbarrett/emacs-refactor
   ;; Refactoring library
@@ -162,8 +173,10 @@
   ;; Seems this must be :init rather than :config. Otherwise eimp can't find
   ;; mogrify and complains.
   :init
+  (setq exec-path-from-shell-debug t)
   (setq exec-path-from-shell-variables
-        '("AWS_PROFILE" "MANPATH" "PATH" "PYTHONPATH" "WORKON_HOME"))
+        '("AWS_ACCESS_KEY_ID" "AWS_DEFAULT_PROFILE" "AWS_PROFILE" "AWS_SECRET_ACCESS_KEY"
+          "MANPATH" "PATH" "PYTHONPATH" "WORKON_HOME"))
   (exec-path-from-shell-initialize))
 
 
@@ -303,6 +316,10 @@
 
 
 (req-package less-css-mode
+  ;; https://github.com/purcell/less-css-mode
+  ;; Major mode for less css preprocessor language.
+  ;;
+  ;; `npm install -g less` to use compilation and flycheck support.
   :defer t)
 
 
@@ -392,6 +409,9 @@
 (req-package puppet-mode
   ;; https://github.com/lunaryorn/puppet-mode
   ;; Major mode for editing puppet manifests.
+  ;;
+  ;; Note: install puppet lint with `gem install --user puppet-lint` to get
+  ;; flycheck to check puppet manifests.
   :defer t)
 
 
@@ -436,9 +456,26 @@
       (add-hook hook #'rainbow-mode))))
 
 
+(req-package sass-mode
+  ;; https://github.com/nex3/sass-mode
+  ;; Major mode for SASS with the SASS syntax.
+  ;;
+  ;; `gem install --user sass` to make it go.
+  :defer t)
+
+
+(req-package scss-mode
+  ;; https://github.com/antonj/scss-mode
+  ;; Major mode for SASS with the SCSS syntax.
+  ;;
+  ;; `gem install --user sass` to make it go.
+  :defer t)
+
+
 (req-package smartparens
   ;; https://github.com/Fuco1/smartparens
   ;; Pair completion.
+  :diminish ""
   :config
   (smartparens-global-mode 1))
 
