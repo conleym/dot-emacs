@@ -21,6 +21,12 @@
   :commands (ag ag-files ag-regexp ag-project ag-project-files ag-project-regexp))
 
 
+(req-package ansible-doc
+  ;; https://github.com/lunaryorn/ansible-doc.el
+  ;; Ansible documentation lookup with C-c ?
+  :defer t)
+
+
 (req-package anzu
   ;; https://github.com/syohex/emacs-anzu
   ;; Shows number of matches and the number of the current match when searching.
@@ -649,6 +655,9 @@
   ;; https://github.com/yoshiki/yaml-mode
   ;; Major mode for editing YAML.
   :defer t
+  :require (ansible-doc)
+  :init
+  (add-hook 'yaml-mode-hook #'ansible-doc-mode)
   :config
   (setq yaml-indent-offset tab-width))
 
