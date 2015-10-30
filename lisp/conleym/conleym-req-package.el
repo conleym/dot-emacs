@@ -608,6 +608,18 @@
   (global-undo-tree-mode))
 
 
+(req-package vagrant
+  ;; https://github.com/ottbot/vagrant.el
+  ;; Manage vagrant boxes from emacs.
+  :defer t)
+
+
+(req-package vagrant-tramp
+  ;; https://github.com/dougm/vagrant-tramp
+  ;; vagrant-ssh for tramp.
+  :defer t)
+
+
 (req-package web-mode
   ;; http://web-mode.org
   ;; Major mode for various web template languages.
@@ -674,6 +686,12 @@
   (define-key yas-minor-mode-map (kbd "TAB") nil)
   (define-key yas-minor-mode-map (kbd "C-<tab>") #'yas-expand)
   (yas-global-mode))
+
+
+(req-package zone-nyan
+  :require (zone)
+  :config
+  (add-to-list 'zone-programs #'zone-nyan)
 
 
 (provide 'conleym-req-package)
