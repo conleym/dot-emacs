@@ -182,7 +182,7 @@
   (setq exec-path-from-shell-debug t)
   (setq exec-path-from-shell-variables
         '("AWS_ACCESS_KEY_ID" "AWS_DEFAULT_PROFILE" "AWS_PROFILE" "AWS_SECRET_ACCESS_KEY"
-          "MANPATH" "PATH" "PYTHONPATH" "WORKON_HOME"))
+          "MANPATH" "PATH" "PKG_CONFIG_PATH" "PYTHONPATH" "WORKON_HOME"))
   (exec-path-from-shell-initialize))
 
 
@@ -404,6 +404,13 @@
         paradox-display-download-count t
         paradox-execute-asynchronously t
         paradox-lines-per-entry 2))
+
+
+(req-package pdf-tools
+  ;; https://github.com/politza/pdf-tools
+  ;; PDF rendering and such.
+  :init
+  (pdf-tools-install))
 
 
 (req-package pip-requirements
@@ -691,7 +698,7 @@
 (req-package zone-nyan
   :require (zone)
   :config
-  (add-to-list 'zone-programs #'zone-nyan)
+  (add-to-list 'zone-programs #'zone-nyan))
 
 
 (provide 'conleym-req-package)

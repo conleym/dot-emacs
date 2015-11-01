@@ -32,3 +32,6 @@ lisp/el-get/**/*
 
 # Networking poop
 network-security.data
+
+# image-dired thumbnail cache
+image-dired
