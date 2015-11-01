@@ -356,7 +356,7 @@
 
 (req-package noflet
   :config
-  ;; Eliminate prompt when processes are running.
+  ;; Eliminate prompt when exiting emacs when processes are running.
   (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
     "Prevent annoying \"Active processes exist\" query when you quit Emacs."
     (noflet ((process-list ())) ad-do-it)))
@@ -613,6 +613,13 @@
         undo-tree-visualizer-diff t
         undo-tree-visualizer-timestamps t)
   (global-undo-tree-mode))
+
+
+(req-package unicode-troll-stopper
+  ;; https://github.com/camsaul/emacs-unicode-troll-stopper
+  ;; Highlight homoglpyhs.
+  ;; TODO turn on global mode when available. See issue #2.
+  )
 
 
 (req-package vagrant

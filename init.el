@@ -33,6 +33,10 @@
 ;; Set dark background in terminal to match (customized) frame setting.
 (set-terminal-parameter nil 'background-mode 'dark)
 
+;; Don't ask to kill buffers with processes.
+(setq kill-buffer-query-functions
+      (remq #'process-kill-buffer-query-function
+            kill-buffer-query-functions))
 
 ;; Make mouse work in the terminal.
 ;;
