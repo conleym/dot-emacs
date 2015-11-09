@@ -116,6 +116,15 @@
 (req-package company-auctex)
 
 
+(req-package company-tern
+  ;; https://github.com/proofit404/company-tern
+  ;; Company mode backend for tern (javascript completion).
+  :require (company tern)
+  :defer t
+  :init
+  (add-to-list 'company-backends #'company-tern))
+
+
 (req-package define-word)
 
 
@@ -163,6 +172,12 @@
   :init
   (define-key prog-mode-map (kbd "M-RET") 'emr-show-refactor-menu)
   (add-hook 'prog-mode-hook #'emr-initialize))
+
+
+(req-package es-mode
+  ;; https://github.com/dakrone/es-mode
+  ;; Elasticsearch stuff.
+  :defer t)
 
 
 (req-package ess
@@ -539,6 +554,15 @@
   :init
   (add-to-list 'auto-mode-alist
                '("/var/log/.*\\.log.*\\'" . syslog-mode)))
+
+
+(req-package tern
+  ;; http://ternjs.net/doc/manual.html#emacs
+  ;; Code completion and other useful things for javascript.
+  ;;
+  ;; Install tern with `npm install -g tern`
+  :init
+  (add-hook #'js-mode-hook (lambda() (tern-mode t))))
 
 
 ;; AucTeX does some weird stuff...apparently this is how you get it loaded with
