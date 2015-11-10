@@ -88,7 +88,8 @@
   ;; Major mode for clojure programming.
   :defer t
   :config
-  (req-package clj-refactor)
+  (req-package clj-refactor
+    :defer t)
   (add-hook 'clojure-mode-hook (lambda()
                                  (clj-refactor-mode 1))))
 
@@ -728,6 +729,7 @@
 
 (req-package zone-nyan
   :require (zone)
+  :defer t
   :config
   (add-to-list 'zone-programs #'zone-nyan))
 
