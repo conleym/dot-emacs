@@ -136,6 +136,13 @@
 )
 
 
+(req-package editorconfig
+  ;; https://github.com/editorconfig/editorconfig-emacs
+  ;; editorconfig support for emacs.
+  :config
+  (editorconfig-mode 1))
+
+
 (req-package eimp
   ;; http://mph-emacs-pkgs.alioth.debian.org/EimpEl.html
   ;; Image manipulation using ImageMagick, which must be installed and available
