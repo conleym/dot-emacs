@@ -159,6 +159,7 @@
 
 (req-package elpy
   :require (exec-path-from-shell)
+  :pin elpy
   :init
   (elpy-enable))
 
@@ -202,7 +203,7 @@
   ;; Seems this must be :init rather than :config. Otherwise eimp can't find
   ;; mogrify and complains.
   :init
-  (setq exec-path-from-shell-debug t)
+;;  (setq exec-path-from-shell-debug t)
   (setq exec-path-from-shell-variables
         '("AWS_ACCESS_KEY_ID" "AWS_DEFAULT_PROFILE" "AWS_PROFILE" "AWS_SECRET_ACCESS_KEY"
           "MANPATH" "PATH" "PKG_CONFIG_PATH" "PYTHONPATH" "WORKON_HOME"))
