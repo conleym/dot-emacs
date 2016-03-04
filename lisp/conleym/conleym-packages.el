@@ -1,5 +1,4 @@
 (require 'conleym-elpa)
-(require 'conleym-el-get)
 (require 'package)
 
 ;; Ensure package archive contents are current to avoid 404s from
