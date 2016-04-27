@@ -2,6 +2,7 @@
 ;; (package-initialize)
 
 (setq load-prefer-newer t)
+(prefer-coding-system 'utf-8)
 
 ;; Bootstrap.
 (load "~/.emacs.d/lisp/conleym/conleym-init-utils")
