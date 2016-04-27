@@ -254,22 +254,27 @@
   :require
   (exec-path-from-shell)
   :config
-  (req-package flycheck-clojure
-    :require
-    (flycheck)
-    :config
-    (flycheck-clojure-setup))
-  (req-package flycheck-pos-tip
-    :require
-    (flycheck)
-    :config
-    (eval-after-load 'flycheck
-      (custom-set-variables '(flycheck-display-errors-function
-                            #'flycheck-pos-tip-error-messages))))
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)) ;; Checkdoc just annoys me.
   (setq-default flycheck-emacs-lisp-load-path 'inherit)
   (setq-default flycheck-display-errors-delay 1)
   (global-flycheck-mode))
+
+
+(req-package flycheck-clojure
+  :require
+  (flycheck)
+  :config
+  (flycheck-clojure-setup))
+
+
+
+(req-package flycheck-pos-tip
+  :require
+  (flycheck)
+  :config
+  (eval-after-load 'flycheck
+    (custom-set-variables '(flycheck-display-errors-function
+                             #'flycheck-pos-tip-error-messages))))
 
 
 (req-package git-timemachine
