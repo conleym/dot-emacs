@@ -94,18 +94,6 @@
                                  (clj-refactor-mode 1))))
 
 
-(req-package coffee-mode
-  ;; https://github.com/defunkt/coffee-mode
-  ;; Coffeescript major mode
-  :require
-  (exec-path-from-shell sourcemap)
-  :config
-  (setq coffee-args-compile '("-c" "-m"))
-  (coffee-cos-mode t)
-  (bind-key "M-r" #'coffee-compile-buffer coffee-mode-map)
-  (add-hook 'coffee-after-compile-hook
-            #'sourcemap-goto-corresponding-point))
-
 
 (req-package company
   ;; https://github.com/company-mode/company-mode
@@ -220,8 +208,7 @@
     (setq fci-rule-column 80) ;; becomes local when set.
     (fci-mode 1))
   (conleym:add-function-to-hooks #'conleym:fci-80-mode
-                                 'python-mode-hook
-                                 'coffee-mode-hook))
+                                 'python-mode-hook))
 
 
 (req-package floobits
