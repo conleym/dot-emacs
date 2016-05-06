@@ -83,13 +83,17 @@
         nrepl-log-messages t))
 
 
+(req-package clj-refactor
+  :defer t)
+
+
 (req-package clojure-mode
   ;; https://github.com/clojure-emacs/clojure-mode
   ;; Major mode for clojure programming.
   :defer t
+  : require
+  (clj-refactor)
   :config
-  (req-package clj-refactor
-    :defer t)
   (add-hook 'clojure-mode-hook (lambda()
                                  (clj-refactor-mode 1))))
 
@@ -412,7 +416,7 @@
       (list-packages no-fetch)))
   ;; paradox-enable makes package-list-packages use the paradox-menu,
   ;; but doesn't update the star counts. This fixes it.
-  (defalias #'package-list-packages #'conleym:list-packages)
+;;  (defalias #'package-list-packages #'conleym:list-packages)
   (paradox-enable)
   (setq paradox-automatically-star nil
         paradox-column-width-package 36
