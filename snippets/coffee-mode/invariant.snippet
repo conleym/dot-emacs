@@ -1,9 +1,0 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: invariant
-# key: invariant
-# binding: direct-keybinding
-# --
-if process.env.NODE_ENV isnt 'production'
-   invariant($1,'$2')
-else
-   invariant($1)
