@@ -55,6 +55,14 @@
         auto-compile-on-save-mode t
         auto-compile-update-autoloads t))
 
+(req-package auto-package-update
+  ;; https://github.com/rranelli/auto-package-update.el
+  ;; Automatically update installed packages
+  :init
+  (setq auto-package-update-delete-old-versions t
+    auto-package-update-interval 1)
+  (auto-package-update-maybe))
+
 
 (req-package bug-hunter
   ;; https://github.com/Malabarba/elisp-bug-hunter
