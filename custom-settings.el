@@ -34,6 +34,9 @@
  '(mouse-yank-at-point t)
  '(ns-pop-up-frames nil nil nil "Documents opened via Mac's open command show up in the current frame, not a new one.")
  '(package-enable-at-startup nil)
+ '(package-selected-packages
+   (quote
+    (oauth markdown-mode flycheck company cider zone-nyan yaml-mode yagist xkcd which-key web-mode vagrant-tramp vagrant unicode-troll-stopper undo-tree twittering-mode tumblesocks syslog-mode swift-mode sr-speedbar sourcemap smooth-scroll smex smartparens scss-mode sass-mode reveal-in-osx-finder req-package rainbow-mode pydoc puppet-mode pip-requirements pdf-tools paradox nyan-mode noflet minesweeper manage-minor-mode less-css-mode key-chord json-mode ido-ubiquitous hungry-delete graphviz-dot-mode gitignore-mode github-browse-file gitconfig-mode gitattributes-mode git-timemachine format-sql flycheck-pos-tip flycheck-clojure flx-ido floobits fill-column-indicator exec-path-from-shell ess es-mode emr emmet-mode elpy eimp editorconfig dired-imenu define-word dash-at-point company-tern company-auctex clj-refactor bug-hunter auto-compile auctex-latexmk async apples-mode anzu ansible-doc ag ace-jump-mode 2048-game)))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-bar-mode nil)

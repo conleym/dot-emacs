@@ -223,7 +223,7 @@
 
 (req-package format-sql
   ;; https://github.com/paetzke/format-sql.el
-  ;; Format SQL embedded in python source code. Must `pip-install format-sql --user`
+  ;; Format SQL embedded in python source code. Must `pip install format-sql --user`
   :defer t)
 
 
