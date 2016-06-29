@@ -35,3 +35,6 @@ network-security.data
 
 # image-dired thumbnail cache
 image-dired
+
+# auto-update-package poop
+.last-package-update-day
