@@ -13,6 +13,10 @@
   :config
   (ace-jump-mode-enable-mark-sync))
 
+(req-package adoc-mode
+  ;; https://github.com/sensorflo/adoc-mode
+  ;; asciidoc mode
+  :mode "\\.adoc$")
 
 (req-package ag
   ;; https://github.com/Wilfred/ag.el
@@ -124,6 +128,9 @@
   :defer t
   :init
   (add-to-list 'company-backends #'company-tern))
+
+
+(req-package crux)
 
 
 (req-package define-word)
