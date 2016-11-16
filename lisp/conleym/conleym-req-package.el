@@ -445,7 +445,7 @@
 (req-package pdf-tools
   ;; https://github.com/politza/pdf-tools
   ;; PDF rendering and such.
-  :init
+  :config
   (pdf-tools-install))
 
 
