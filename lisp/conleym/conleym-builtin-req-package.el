@@ -220,7 +220,7 @@ isn't supported in this major mode."
 (req-package recentf
   :require (ido)
   :bind ("C-x C-r" . conleym:recentf-ido-find-file)
-  :init ;; Doesn't seem to load if we use :config.
+  :config
   (setq recentf-save-file (conleym:persistence-dir-file "recentf")
         recentf-max-menu-items 25
         recentf-max-saved-items 400)
@@ -235,6 +235,7 @@ isn't supported in this major mode."
   (add-hook 'ido-setup-hook
             #'(lambda ()
                 (define-key ido-completion-map [up] 'previous-history-element)))
+  :init
   ;; always on.
   (recentf-mode))
 
