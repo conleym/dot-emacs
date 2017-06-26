@@ -120,7 +120,7 @@
   ;; https://github.com/clojure-emacs/clojure-mode
   ;; Major mode for clojure programming.
   :defer t
-  : require
+  :require
   (clj-refactor)
   :config
   (add-hook 'clojure-mode-hook (lambda()
