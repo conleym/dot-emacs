@@ -36,6 +36,9 @@
 (req-package all-the-icons-dired
   ;; Add icons to dired-mode
   :require (all-the-icons dired)
+  :config
+  (add-to-list 'all-the-icons-icon-alist
+               '("\\.dtx$" all-the-icons-fileicon "tex" :face all-the-icons-lblue))
   :init
   (add-hook 'dired-mode-hook
             #'all-the-icons-dired-mode))
