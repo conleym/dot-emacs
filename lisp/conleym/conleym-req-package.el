@@ -13,16 +13,32 @@
   :config
   (ace-jump-mode-enable-mark-sync))
 
+
 (req-package adoc-mode
   ;; https://github.com/sensorflo/adoc-mode
   ;; asciidoc mode
   :mode "\\.adoc$")
+
 
 (req-package ag
   ;; https://github.com/Wilfred/ag.el
   ;; Silver searcher front end.
   :require (exec-path-from-shell)
   :commands (ag ag-files ag-regexp ag-project ag-project-files ag-project-regexp))
+
+
+(req-package all-the-icons
+  ;; https://github.com/domtronn/all-the-icons.el
+  ;; Fonts containing icons
+  )
+
+
+(req-package all-the-icons-dired
+  ;; Add icons to dired-mode
+  :require (all-the-icons dired)
+  :init
+  (add-hook 'dired-mode-hook
+            #'all-the-icons-dired-mode))
 
 
 (req-package ansible-doc
@@ -58,6 +74,7 @@
         auto-compile-on-load-mode t
         auto-compile-on-save-mode t
         auto-compile-update-autoloads t))
+
 
 (req-package auto-package-update
   ;; https://github.com/rranelli/auto-package-update.el
@@ -108,7 +125,6 @@
   :config
   (add-hook 'clojure-mode-hook (lambda()
                                  (clj-refactor-mode 1))))
-
 
 
 (req-package company
@@ -271,7 +287,6 @@
   (flycheck)
   :config
   (flycheck-clojure-setup))
-
 
 
 (req-package flycheck-pos-tip
