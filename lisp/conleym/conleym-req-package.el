@@ -355,7 +355,7 @@
   (global-hungry-delete-mode))
 
 
-(req-package ido-ubiquitous
+(req-package ido-completing-read+
   ;; https://github.com/DarwinAwardWinner/ido-ubiquitous
   ;; Even more ido.
   :init
