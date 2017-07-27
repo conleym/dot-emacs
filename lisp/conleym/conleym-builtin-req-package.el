@@ -9,6 +9,7 @@
   ;; Global abbrev mode. Curiously not customizable.
   (setq-default abbrev-mode t)
   :config
+  (setq save-abbrevs 'silently)
   (setq abbrev-file-name
         (conleym:persistence-dir-file "abbrev_defs"))
   ;; Load the file if it exists, don't bother me if it doesn't.
