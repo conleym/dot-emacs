@@ -309,6 +309,7 @@ isn't supported in this major mode."
 
 
 (use-package subword
+  :diminish ""
   :config
   (global-subword-mode t))
 
