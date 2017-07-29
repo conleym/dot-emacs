@@ -36,6 +36,7 @@
 (req-package all-the-icons-dired
   ;; Add icons to dired-mode
   :require (all-the-icons dired)
+  :diminish ""
   :config
   (add-to-list 'all-the-icons-icon-alist
                '("\\.dtx$" all-the-icons-fileicon "tex" :face all-the-icons-lblue))
@@ -165,6 +166,7 @@
 (req-package editorconfig
   ;; https://github.com/editorconfig/editorconfig-emacs
   ;; editorconfig support for emacs.
+  :diminish ""
   :config
   (editorconfig-mode 1))
 
@@ -278,6 +280,7 @@
   ;; Most checkers call external programs. Need $PATH to find them.
   :require
   (exec-path-from-shell)
+  :diminish ""
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)) ;; Checkdoc just annoys me.
   (setq-default flycheck-emacs-lisp-load-path 'inherit)
@@ -351,6 +354,7 @@
 (req-package hungry-delete
   ;; https://github.com/nflath/hungry-delete
   ;; Deletes all the whitespace at once.
+  :diminish ""
   :config
   (global-hungry-delete-mode))
 
@@ -539,10 +543,11 @@
   :defer t)
 
 
-(req-package smartparens
+(req-package smartparens-config
+  :ensure smartparens
   ;; https://github.com/Fuco1/smartparens
   ;; Pair completion.
-  :diminish ""
+  :diminish 'smartparens-mode
   :config
   (smartparens-global-mode 1))
 
@@ -728,8 +733,8 @@
 (req-package which-key
   ;; https://github.com/justbur/emacs-which-key
   ;; Helps me with keybindings I can't remember.
-  :diminish which-key-mode
   :config
+  (setq which-key-lighter "")
   (setq which-key-show-remaining-keys t)
   (which-key-mode))
 
