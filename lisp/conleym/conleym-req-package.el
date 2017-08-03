@@ -362,6 +362,7 @@
 (req-package ido-completing-read+
   ;; https://github.com/DarwinAwardWinner/ido-ubiquitous
   ;; Even more ido.
+  :require (ido)
   :init
   (ido-ubiquitous-mode t))
 
