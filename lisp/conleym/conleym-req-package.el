@@ -266,6 +266,7 @@
 (req-package flx-ido
   ;; https://github.com/lewang/flx
   ;; Fuzzy matching for ido-mode.
+  :require (ido)
   :config
   ;; disable ido's faces so we can see flx's highlighting instead
   (setq ido-use-faces nil
