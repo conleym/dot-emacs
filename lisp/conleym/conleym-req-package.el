@@ -138,7 +138,8 @@
   (global-company-mode))
 
 
-(req-package company-auctex)
+(req-package company-auctex
+  :defer t)
 
 
 (req-package company-tern
