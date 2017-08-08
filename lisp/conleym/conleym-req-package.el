@@ -281,7 +281,7 @@
   ;;
   ;; Most checkers call external programs. Need $PATH to find them.
   :require
-  (exec-path-from-shell)
+  (exec-path-from-shell flycheck-pos-tip)
   :diminish ""
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)) ;; Checkdoc just annoys me.
@@ -298,12 +298,9 @@
 
 
 (req-package flycheck-pos-tip
-  :require
-  (flycheck)
   :config
-  (eval-after-load 'flycheck
-    (custom-set-variables '(flycheck-display-errors-function
-                             #'flycheck-pos-tip-error-messages))))
+  (custom-set-variables '(flycheck-display-errors-function
+                           #'flycheck-pos-tip-error-messages)))
 
 
 (req-package git-timemachine
