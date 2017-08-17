@@ -76,11 +76,6 @@
   (add-hook 'prog-mode-hook #'elide-head))
 
 
-(use-package elisp-mode
-  ;; Turn eldoc-mode on in elisp mode.
-  :defer t)
-
-
 (use-package files
   :config
   ;; Number of versions to keep. Just picked a relatively large
