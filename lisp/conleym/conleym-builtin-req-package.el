@@ -98,7 +98,7 @@
           `(( ".*" . ,backup-dir)))))
 
 
-(req-package ido
+(use-package ido
   ;; Search recently opened files, not just currently open ones
   ;; and use flex matching.
   :config
