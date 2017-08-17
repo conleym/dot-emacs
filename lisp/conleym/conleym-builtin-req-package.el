@@ -322,6 +322,11 @@ isn't supported in this major mode."
   (setq vc-make-backup-files t))
 
 
+(use-package wdired
+  :config
+  (setq wdired-allow-to-change-permissions t))
+
+
 (use-package which-func
   :config
   (which-function-mode t))
