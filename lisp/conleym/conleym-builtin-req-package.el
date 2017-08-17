@@ -120,7 +120,7 @@
   (setq image-dired-dir (conleym:persistence-dir-file "image-dired")))
 
 
-(req-package imenu
+(use-package imenu
   ;; Show definitions from current file in a menu.
   :config
   (defun conleym:safe-imenu()
