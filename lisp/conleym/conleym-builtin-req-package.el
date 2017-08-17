@@ -22,6 +22,7 @@
   :config
   ;; Default (5 seconds) is too long to wait.
   (setq auto-revert-interval 1)
+  (add-hook 'dired-mode-hook #'auto-revert-mode)
   (global-auto-revert-mode))
 
 
