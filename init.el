@@ -90,5 +90,21 @@
                                #'delete-trailing-whitespace
                                #'conleym:maybe-untabify-buffer)
 
+
+;; A variation on this using nadvice
+;; https://lists.gnu.org/archive/html/emacs-devel/2010-07/msg01410.html
+(defun conleym:advise-debug-on-error (old-function &rest arguments)
+  (condition-case err
+      (apply old-function arguments)
+    ;; Let the debugger run
+    ((debug error) (signal (car err) (cdr err)))))
+
+(defun conleym:advise-debug-on-error-nosignal (old-function &rest arguments)
+  (condition-case nil
+    (apply old-function arguments)
+    ((debug error) nil)))
+
+
+
 (require 'conleym-packages)
 (require 'conleym-secrets)
