@@ -630,6 +630,8 @@
                                  #'LaTeX-math-mode
                                  (lambda()
                                    (setq TeX-command-default "LatexMk")))
+  ;; suggestion from pdf-tools readme.
+  (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
   :config
   (company-auctex-init)
   (setq-default TeX-master nil)
