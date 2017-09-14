@@ -67,7 +67,8 @@
 (req-package auctex-latexmk
   ;; https://github.com/tom-tan/auctex-latexmk
   ;; Sets auctex up to use the latexmk command.
-)
+  :config
+  (setq auctex-latexmk-inherit-TeX-PDF-mode t))
 
 
 (req-package auto-compile
