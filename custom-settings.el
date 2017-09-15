@@ -9,6 +9,9 @@
  '(compilation-ask-about-save nil nil nil "Prompts are annoying. Of course I want to save the file before compiling it.")
  '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (wheatgrass)))
+  '(custom-safe-themes
+     (quote
+       ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" default)))
  '(delete-by-moving-to-trash t)
  '(delete-old-versions t nil nil "We're keeping a lot of backups. No need to ask about getting rid of older ones.")
   '(eimp-ignore-read-only-modes
