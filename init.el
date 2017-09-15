@@ -47,15 +47,6 @@
     ;; Xterm setup
     (xterm-mouse-mode t))
 
-(if (conleym:is-darwin)
-    (progn
-      ;; Delete using Mac trash rather than freedesktop.org trash.
-      (setq trash-directory "~/.Trash")
-      ;; OS X ls doesn't suport --dired
-      (let ((ls "/opt/local/bin/gls")) ;; macports GNU ls
-        (if (file-executable-p ls)
-            (setq insert-directory-program ls)))))
-
 ;; Use y/n instead of yes/no. defalias also works here.
 (fset #'yes-or-no-p #'y-or-n-p)
 

@@ -76,7 +76,8 @@
   (add-hook 'prog-mode-hook #'elide-head))
 
 
-(use-package files
+(req-package files
+  :require (exec-path-from-shell)
   :config
   ;; Number of versions to keep. Just picked a relatively large
   ;; number. Default is 2.
@@ -95,7 +96,15 @@
     (setq auto-save-file-name-transforms
           `((".*" ,auto-save-dir)))
     (setq backup-directory-alist
-          `(( ".*" . ,backup-dir)))))
+      `(( ".*" . ,backup-dir))))
+  (if (conleym:is-darwin)
+    (progn
+      ;; Delete using Mac trash rather than freedesktop.org trash.
+      (setq trash-directory "~/.Trash")
+      ;; OS X ls doesn't suport --dired. Try to use GNU ls instead, if
+      ;; available.
+      (when-let ((gls (executable-find "gls")))
+        (setq insert-directory-program gls)))))
 
 
 (use-package ido
@@ -137,15 +146,14 @@ isn't supported in this major mode."
 
 
 (req-package ispell
+  :require (exec-path-from-shell) ;; ispell uses {a,i,hun}spell. Need $PATH.
   :config
   ;; Prefer hunspell if available.
   (when (executable-find "hunspell")
     (setq-default ispell-program-name "hunspell")
     (setq-default ispell-dictionary "en_US")
     (add-to-list 'ispell-local-dictionary-alist
-                 '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "'" t ("-d en_US") "~tex" utf-8))))
-  ;; ispell uses {a,i,hun}spell. Need $PATH.
-  :require (exec-path-from-shell))
+                 '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "'" t ("-d en_US") "~tex" utf-8)))))
 
 
 (req-package js-mode
