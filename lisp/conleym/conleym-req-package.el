@@ -478,15 +478,6 @@
   :defer t)
 
 
-(req-package puppet-mode
-  ;; https://github.com/lunaryorn/puppet-mode
-  ;; Major mode for editing puppet manifests.
-  ;;
-  ;; Note: install puppet lint with `gem install --user puppet-lint` to get
-  ;; flycheck to check puppet manifests.
-  :defer t)
-
-
 (req-package pydoc
   ;; https://github.com/statmobile/pydoc
   ;; Nicely formatted, linkable buffer display of pydoc.
