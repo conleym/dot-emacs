@@ -469,6 +469,11 @@
   ;; https://github.com/politza/pdf-tools
   ;; PDF rendering and such.
   :config
+  ;; Turn line numbers off in the pdf-view-mode.
+  ;; See pdf-tools readme.
+  (add-hook 'pdf-view-mode-hook
+            #'(lambda()
+                (linum-mode -1)))
   (pdf-tools-install))
 
 
