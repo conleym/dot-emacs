@@ -205,12 +205,12 @@
                                  'css-mode-hook))
 
 
-(req-package emr
+;;(req-package emr
   ;; https://github.com/chrisbarrett/emacs-refactor
   ;; Refactoring library
-  :init
-  (define-key prog-mode-map (kbd "M-RET") 'emr-show-refactor-menu)
-  (add-hook 'prog-mode-hook #'emr-initialize))
+;;  :init
+;;  (define-key prog-mode-map (kbd "M-RET") 'emr-show-refactor-menu)
+;;  (add-hook 'prog-mode-hook #'emr-initialize))
 
 
 (req-package es-mode
