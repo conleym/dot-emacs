@@ -588,15 +588,6 @@
   (flycheck))
 
 
-(req-package syslog-mode
-  ;; https://github.com/vapniks/syslog-mode
-  ;; Fontifies system logs.
-  :defer t
-  :init
-  (add-to-list 'auto-mode-alist
-               '("/var/log/.*\\.log.*\\'" . syslog-mode)))
-
-
 (req-package tern
   ;; http://ternjs.net/doc/manual.html#emacs
   ;; Code completion and other useful things for javascript.
