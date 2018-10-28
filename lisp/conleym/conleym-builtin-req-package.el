@@ -4,6 +4,7 @@
 
 (use-package abbrev
   ;; Expands abbreviations from a dictionary.
+  :ensure nil
   :diminish ""
   :init
   ;; Global abbrev mode. Curiously not customizable.
@@ -53,12 +54,14 @@
 
 
 (use-package dired
+  :ensure nil
   :config
   (setq dired-auto-revert-buffer t))
 
 
 (use-package ede/base
   :defer t
+  :ensure nil
   :config
   (setq ede-project-placeholder-cache-file (conleym:persistence-dir-file "ede-projects.el")))
 
@@ -78,6 +81,7 @@
 
 (req-package files
   :require (exec-path-from-shell)
+  :ensure nil
   :config
   ;; Number of versions to keep. Just picked a relatively large
   ;; number. Default is 2.
@@ -158,6 +162,7 @@ isn't supported in this major mode."
 
 (req-package js-mode
   :require (key-chord)
+  :ensure nil
   :mode ".jsx$"
   :config
   (key-chord-define js-mode-map ";;" "\C-e;"))
@@ -166,6 +171,7 @@ isn't supported in this major mode."
 (use-package nxml-mode
   ;; Major mode for editing XML.
   :defer t
+  :ensure nil
   :init
   (push '("<\\?xml" . nxml-mode) magic-mode-alist)
   (push '("<![dD][oO][cC][tT][yY][pP][eE]" . nxml-mode) magic-mode-alist)
@@ -319,6 +325,7 @@ isn't supported in this major mode."
 
 
 (use-package vc-hooks
+  :ensure nil
   :config
   ;; Just because it's in version control doesn't mean I want no
   ;; local backups...
