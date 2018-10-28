@@ -11,10 +11,11 @@
     (package-install 'req-package)))
 
 (require 'req-package)
-
 (setq use-package-verbose t)
+(setq use-package-always-ensure t)
 
 (require 'conleym-builtin-req-package)
+
 (require 'conleym-req-package)
 (require 'conleym-darwin-req-package)
 
