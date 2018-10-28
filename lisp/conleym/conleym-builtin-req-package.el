@@ -53,7 +53,7 @@
   (conleym:maybe-mkdir desktop-dirname))
 
 
-(use-package dired
+(req-package dired
   :ensure nil
   :config
   (setq dired-auto-revert-buffer t))
