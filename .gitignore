@@ -11,10 +11,13 @@
 flycheck_*.el
 
 # the persistence directory
-persistence
+persistence/
 
 # tramp history
 tramp
+
+# transient data (history.el)
+transient/
 
 # eww cache
 url
