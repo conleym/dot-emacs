@@ -293,7 +293,7 @@
 
 (req-package flycheck-clojure
   :require
-  (flycheck)
+  (flycheck cider)
   :config
   (flycheck-clojure-setup))
 
