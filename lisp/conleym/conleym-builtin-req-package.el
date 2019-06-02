@@ -302,9 +302,9 @@ isn't supported in this major mode."
         speedbar-show-unknown-files t)
   ;; Turn line numbers off in the speedbar buffer. Counteracts
   ;; global-linum-mode for the speedbar.
-  (add-hook 'speedbar-mode-hook
-            #'(lambda()
-                (linum-mode -1))))
+  (conleym:add-functions-to-hook
+   'speedbar-mode-hook
+   #'conleym:disable-line-numbers))
 
 
 (use-package sql
