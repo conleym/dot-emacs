@@ -33,4 +33,14 @@
 (defun conleym:is-mac-app ()
   (memq window-system '(ns)))
 
+(defun conleym:disable-linum-mode ()
+  (linum-mode -1))
+
+(defun conleym:disable-display-line-numbers-mode ()
+  (display-line-numbers-mode -1))
+
+(defun conleym:disable-line-numbers ()
+  (conleym:disable-linum-mode)
+  (conleym:disable-display-line-numbers-mode))
+
 (provide 'conleym-init-utils)

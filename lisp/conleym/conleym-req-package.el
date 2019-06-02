@@ -471,9 +471,9 @@
   :config
   ;; Turn line numbers off in the pdf-view-mode.
   ;; See pdf-tools readme.
-  (add-hook 'pdf-view-mode-hook
-            #'(lambda()
-                (linum-mode -1)))
+  (conleym:add-functions-to-hook
+   'pdf-view-mode-hook
+   #'conleym:disable-line-numbers)
   (pdf-tools-install))
 
 
