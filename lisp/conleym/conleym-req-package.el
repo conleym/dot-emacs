@@ -659,19 +659,6 @@
         twittering-use-master-password t)) ;; Store oauth token.
 
 
-(req-package undo-tree
-  ;; http://www.dr-qubit.org/emacs.php#undo-tree
-  ;; Minor mode that makes undo and redo easier to understand, use, and visualize.
-  :diminish ""
-  :config
-  (setq undo-tree-history-directory-alist
-        `(( ".*" . ,(conleym:persistence-dir-file "undo/")))
-        undo-tree-auto-save-history t
-        undo-tree-visualizer-diff t
-        undo-tree-visualizer-timestamps t)
-  (global-undo-tree-mode))
-
-
 (req-package unicode-troll-stopper
   ;; https://github.com/camsaul/emacs-unicode-troll-stopper
   ;; Highlight homoglpyhs.
