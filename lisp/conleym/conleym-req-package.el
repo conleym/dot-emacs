@@ -189,7 +189,6 @@
 
 (req-package elpy
   :require (exec-path-from-shell)
-  :pin elpy
   :init
   (elpy-enable))
 
