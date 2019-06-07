@@ -14,6 +14,9 @@
 (setq use-package-verbose t)
 (setq use-package-always-ensure t)
 
+;; Used to implement :delight keyword, so load here first.
+(use-package delight)
+
 (require 'conleym-builtin-req-package)
 
 (require 'conleym-req-package)

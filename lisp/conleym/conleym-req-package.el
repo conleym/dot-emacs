@@ -36,7 +36,7 @@
 (req-package all-the-icons-dired
   ;; Add icons to dired-mode
   :require (all-the-icons dired)
-  :diminish ""
+  :delight
   :config
   (add-to-list 'all-the-icons-icon-alist
                '("\\.dtx$" all-the-icons-fileicon "tex" :face all-the-icons-lblue))
@@ -54,7 +54,7 @@
 (req-package anzu
   ;; https://github.com/syohex/emacs-anzu
   ;; Shows number of matches and the number of the current match when searching.
-  :diminish ""
+  :delight
   :init (global-anzu-mode))
 
 
@@ -168,7 +168,7 @@
 (req-package editorconfig
   ;; https://github.com/editorconfig/editorconfig-emacs
   ;; editorconfig support for emacs.
-  :diminish ""
+  :delight
   :config
   (editorconfig-mode 1))
 
@@ -197,7 +197,7 @@
   ;; https://github.com/smihica/emmet-mode
   ;; emmet.io stuff (web editing shortcuts) for emacs.
   :defer t
-  :diminish ""
+  :delight
   :init
   (conleym:add-function-to-hooks #'emmet-mode
                                  'sgml-mode-hook
@@ -282,7 +282,7 @@
   ;; Most checkers call external programs. Need $PATH to find them.
   :require
   (exec-path-from-shell flycheck-pos-tip)
-  :diminish ""
+  :delight
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)) ;; Checkdoc just annoys me.
   (setq-default flycheck-emacs-lisp-load-path 'inherit)
@@ -353,7 +353,7 @@
 (req-package hungry-delete
   ;; https://github.com/nflath/hungry-delete
   ;; Deletes all the whitespace at once.
-  :diminish ""
+  :delight
   :config
   (global-hungry-delete-mode))
 
@@ -491,7 +491,7 @@
 (req-package rainbow-mode
   ;; https://julien.danjou.info/projects/emacs-packages#rainbow-mode
   ;; Show strings representing colors in the color they represent.
-  :diminish rainbow-mode
+  :delight rainbow-mode
   :defer t
   :config
   ;; Automatically start rainbow-mode in any mode that it supports.
@@ -543,7 +543,7 @@
   :ensure smartparens
   ;; https://github.com/Fuco1/smartparens
   ;; Pair completion.
-  :diminish 'smartparens-mode
+  :delight smartparens-mode
   :config
   (smartparens-global-mode 1))
 
@@ -560,7 +560,7 @@
 
 
 (req-package smooth-scroll
-  :diminish ""
+  :delight
   :config
   (smooth-scroll-mode 1)
   (setq smooth-scroll/vscroll-step-size 3
@@ -733,7 +733,7 @@
 
 
 (req-package yasnippet
-  :diminish yas-minor-mode
+  :delight yas-minor-mode
   :config
   (let ((user-yas-snippets-dir (conleym:dot-dir-file "snippets/")))
     (setq yas-snippet-dirs
