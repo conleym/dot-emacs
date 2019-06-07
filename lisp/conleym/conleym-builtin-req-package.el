@@ -5,7 +5,7 @@
 (use-package abbrev
   ;; Expands abbreviations from a dictionary.
   :ensure nil
-  :diminish ""
+  :delight
   :init
   ;; Global abbrev mode. Curiously not customizable.
   (setq-default abbrev-mode t)
@@ -19,7 +19,7 @@
 
 
 (use-package autorevert
-  :diminish auto-revert-mode
+  :delight auto-revert-mode
   :config
   ;; Default (5 seconds) is too long to wait.
   (setq auto-revert-interval 1)
@@ -68,7 +68,7 @@
 
 (use-package eldoc
   ;; Shows lisp docstrings in the minibuffer.
-  :diminish ""
+  :delight
   :init
   (global-eldoc-mode))
 
@@ -319,7 +319,7 @@ isn't supported in this major mode."
 
 
 (use-package subword
-  :diminish ""
+  :delight
   :config
   (global-subword-mode t))
 
