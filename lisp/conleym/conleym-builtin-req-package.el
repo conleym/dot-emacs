@@ -40,6 +40,18 @@
       (setq browse-url-browser-function #'browse-url-default-macosx-browser)))
 
 
+(use-package cperl-mode
+  ;; Replace perl-mode with cperl-mode.
+  :config
+  (dolist (x auto-mode-alist)
+    (if (eq 'perl-mode (cdr x))
+        (setf (cdr x) 'cperl-mode)))
+  (dolist (x interpreter-mode-alist)
+    (if (eq 'perl-mode (cdr x))
+        (setf (cdr x) 'cperl-mode)))
+  :mode "\\.latexmkrc\\'")
+
+
 (use-package desktop
   :config
   (setq desktop-save t
@@ -163,7 +175,7 @@ isn't supported in this major mode."
 (req-package js-mode
   :require (key-chord)
   :ensure nil
-  :mode ".jsx$"
+  :mode "\\.js[mx]?\\'"
   :config
   (key-chord-define js-mode-map ";;" "\C-e;"))
 
@@ -282,8 +294,8 @@ isn't supported in this major mode."
   (defun conleym:zsh-mode()
     (sh-mode)
     (sh-set-shell "zsh"))
-  :mode ("\\.zsh$" . conleym:zsh-mode)
-        ("^\\.zshenv$" . conleym:zsh-mode))
+  :mode ("\\.zsh\\'" . conleym:zsh-mode)
+        ("^\\.zshenv\\'" . conleym:zsh-mode))
 
 
 (req-package shell

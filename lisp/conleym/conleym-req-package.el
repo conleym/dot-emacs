@@ -681,9 +681,9 @@
 (req-package web-mode
   ;; http://web-mode.org
   ;; Major mode for various web template languages.
-  :mode (("\\.erb$" . web-mode) ;; ruby templates used by puppet
+  :mode (
          ;; handlebars.js templates
-         ("\\.hbs$" . web-mode)))
+         ("\\.hbs\\'" . web-mode)))
 
 
 (req-package xkcd
