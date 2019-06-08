@@ -17,7 +17,7 @@
 (req-package adoc-mode
   ;; https://github.com/sensorflo/adoc-mode
   ;; asciidoc mode
-  :mode "\\.adoc$")
+  :mode "\\.adoc\\'")
 
 
 (req-package ag
@@ -39,7 +39,7 @@
   :delight
   :config
   (add-to-list 'all-the-icons-icon-alist
-               '("\\.dtx$" all-the-icons-fileicon "tex" :face all-the-icons-lblue))
+               '("\\.dtx\\'" all-the-icons-fileicon "tex" :face all-the-icons-lblue))
   :init
   (add-hook 'dired-mode-hook
             #'all-the-icons-dired-mode))
@@ -61,7 +61,7 @@
 (req-package apples-mode
   ;; https://github.com/tequilasunset/apples-mode
   ;; Major mode for applescript.
-  :mode "\\.applescript$")
+  :mode "\\.applescript\\'")
 
 
 (req-package auctex-latexmk
@@ -336,7 +336,7 @@
   ;; .gitignore major mode.
   :mode
   ;; My global settings.
-  "\\.gitignore_global$")
+  "\\.gitignore_global\\'")
 
 
 (req-package graphviz-dot-mode
@@ -371,7 +371,7 @@
   ;; Major mode for editing JSON.
   :mode
   ;; HTTP archives
-  "\\.har$")
+  "\\.har\\'")
 
 
 (req-package key-chord
