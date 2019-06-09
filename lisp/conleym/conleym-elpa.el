@@ -6,6 +6,7 @@
 ;; customizable, but I want this to be set up even if we’re starting from scratch
 ;; with no customizations at all.
 (setq package-user-dir (conleym:dot-dir-file "lisp/elpa/"))
+(setq package-gnupghome-dir (conleym:persistence-dir-file "elpa/gnupg/"))
 
 (mapc (lambda(x) (add-to-list 'package-archives x))
       '(("melpa" . "https://melpa.org/packages/")
