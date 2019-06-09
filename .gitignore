@@ -16,7 +16,7 @@ persistence/
 # tramp history
 tramp
 
-# transient data (history.el)
+# magit transient data
 transient/
 
 # eww cache

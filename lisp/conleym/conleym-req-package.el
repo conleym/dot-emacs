@@ -152,7 +152,9 @@
   (add-to-list 'company-backends #'company-tern))
 
 
-(req-package crux)
+(req-package crux
+  ;; https://github.com/bbatsov/crux
+)
 
 
 (req-package define-word)
@@ -204,12 +206,12 @@
                                  'css-mode-hook))
 
 
-;;(req-package emr
+(req-package emr
   ;; https://github.com/chrisbarrett/emacs-refactor
   ;; Refactoring library
-;;  :init
-;;  (define-key prog-mode-map (kbd "M-RET") 'emr-show-refactor-menu)
-;;  (add-hook 'prog-mode-hook #'emr-initialize))
+  :init
+  (define-key prog-mode-map (kbd "M-RET") 'emr-show-refactor-menu)
+  (add-hook 'prog-mode-hook #'emr-initialize))
 
 
 (req-package es-mode
@@ -250,12 +252,6 @@
     (fci-mode 1))
   (conleym:add-function-to-hooks #'conleym:fci-80-mode
                                  'python-mode-hook))
-
-
-(req-package floobits
-  ;; https://github.com/Floobits/floobits-emacs
-  ;; Floobits integration.
-  :defer t)
 
 
 (req-package format-sql
