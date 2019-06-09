@@ -41,3 +41,6 @@ image-dired
 
 # auto-update-package poop
 .last-package-update-day
+
+# macOS poop
+.DS_Store
