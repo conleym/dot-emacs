@@ -7,8 +7,8 @@
 (setq package-user-dir (conleym:dot-dir-file "lisp/elpa/"))
 
 (mapc (lambda(x) (add-to-list 'package-archives x))
-      '(("melpa" . "http://melpa.org/packages/")
-        ("org" . "http://orgmode.org/elpa/")))
+      '(("melpa" . "https://melpa.org/packages/")
+        ("org" . "https://orgmode.org/elpa/")))
 
 (package-initialize)
 
