@@ -139,8 +139,7 @@
   (global-company-mode))
 
 
-(req-package company-auctex
-  :defer t)
+(req-package company-auctex)
 
 
 (req-package company-tern
@@ -602,6 +601,7 @@
   (exec-path-from-shell auctex-latexmk reftex company-auctex)
   :init
   (auctex-latexmk-setup)
+  (company-auctex-init)
   (conleym:add-functions-to-hook 'TeX-mode-hook
                                  #'TeX-source-correlate-mode
                                  (lambda()
@@ -616,7 +616,6 @@
   ;; suggestion from pdf-tools readme.
   (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
   :config
-  (company-auctex-init)
   (setq-default TeX-master nil)
   (setq LaTeX-math-menu-unicode t
         preview-auto-cache-preamble t
