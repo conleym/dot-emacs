@@ -135,7 +135,7 @@
 (req-package company
   ;; https://github.com/company-mode/company-mode
   ;; Autocompletion
-  :init
+  :config
   (global-company-mode))
 
 
@@ -312,7 +312,7 @@
   ;; https://github.com/magit/git-modes
   ;; .gitconfig major mode.
   :defer t
-  :config
+  :init
   ;; I don't want to indent with tabs. Tabs are stupid.
   (add-hook 'gitconfig-mode-hook (lambda()
                                    (setq indent-tabs-mode nil))))
@@ -357,7 +357,7 @@
   ;; https://github.com/DarwinAwardWinner/ido-ubiquitous
   ;; Even more ido.
   :require (ido)
-  :init
+  :config
   (ido-ubiquitous-mode t))
 
 
