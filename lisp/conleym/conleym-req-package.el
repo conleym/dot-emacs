@@ -392,7 +392,7 @@
   ;; http://jblevins.org/projects/markdown-mode/
   ;; Major mode for editing markdown. Includes gfm-mode for github-flavored
   ;;   markdown. An external markdown program must be installed for preview
-  ;;   functionality. I've installed `multimarkdown` with homebrew.
+  ;;   functionality. I've installed `multimarkdown` with macports.
   ;;
   ;; It's possible to specify the whole path to the markdown command,
   ;; but I prefer not to. Instead, use $PATH.
