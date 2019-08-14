@@ -141,6 +141,10 @@
 
 (req-package company-auctex)
 
+(req-package company-restclient
+  :require (company restclient)
+  :init
+  (add-to-list 'company-backends #'company-restclient))
 
 (req-package company-tern
   ;; https://github.com/proofit404/company-tern
@@ -517,6 +521,7 @@
     (dolist (hook rainbow-mode-hooks)
       (add-hook hook #'rainbow-mode))))
 
+(req-package restclient)
 
 (req-package sass-mode
   ;; https://github.com/nex3/sass-mode
@@ -632,7 +637,8 @@
         ;; Don't ask me if I want to save. Just save.
         TeX-save-query nil
         TeX-source-correlate-start-server t
-        TeX-view-program-list '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b"))
+        TeX-view-program-list '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")
+                                (("pdf-tools" "TeX-pdf-tools-sync-view")))
         TeX-view-program-selection '((output-pdf "Skim")
                                      (output-dvi "Skim")
                                      (output-html "open"))))
