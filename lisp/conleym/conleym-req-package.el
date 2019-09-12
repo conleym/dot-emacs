@@ -482,6 +482,19 @@
   :defer t)
 
 
+(req-package prettier-js
+  ;; https://github.com/prettier/prettier-emacs
+  ;; use prettier to format javascript code.
+  :init
+  (setq prettier-js-args
+        '("--bracket-spacing" "false"
+          "--single-quote" "true"
+          "--print-width" "80"
+          "--jsx-bracket-same-line"))
+  :config
+  (add-hook #'js-mode-hook #'prettier-js-mode))
+
+
 (req-package pydoc
   ;; https://github.com/statmobile/pydoc
   ;; Nicely formatted, linkable buffer display of pydoc.
@@ -522,9 +535,11 @@
     (dolist (hook rainbow-mode-hooks)
       (add-hook hook #'rainbow-mode))))
 
+
 (req-package restclient
   ;; https://github.com/pashky/restclient.el
-  )
+)
+
 
 (req-package sass-mode
   ;; https://github.com/nex3/sass-mode
