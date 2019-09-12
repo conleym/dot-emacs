@@ -48,9 +48,9 @@
 (req-package ansible-doc
   ;; https://github.com/lunaryorn/ansible-doc.el
   ;; Ansible documentation lookup with C-c ?
-  :defer t)
+)
 
-
+1
 (req-package anzu
   ;; https://github.com/syohex/emacs-anzu
   ;; Shows number of matches and the number of the current match when searching.
@@ -728,7 +728,6 @@
 (req-package yaml-mode
   ;; https://github.com/yoshiki/yaml-mode
   ;; Major mode for editing YAML.
-  :defer t
   :require (ansible-doc)
   :mode "\\.ya?ml\\'"
   :init
