@@ -142,6 +142,7 @@
 (req-package company-auctex)
 
 (req-package company-restclient
+  ;; https://github.com/iquiw/company-restclient
   :require (company restclient)
   :init
   (add-to-list 'company-backends #'company-restclient))
@@ -521,7 +522,9 @@
     (dolist (hook rainbow-mode-hooks)
       (add-hook hook #'rainbow-mode))))
 
-(req-package restclient)
+(req-package restclient
+  ;; https://github.com/pashky/restclient.el
+  )
 
 (req-package sass-mode
   ;; https://github.com/nex3/sass-mode
