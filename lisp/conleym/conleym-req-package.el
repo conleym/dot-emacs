@@ -727,6 +727,7 @@
   ;; Major mode for editing YAML.
   :defer t
   :require (ansible-doc)
+  :mode "\\.ya?ml\\'"
   :init
   (add-hook 'yaml-mode-hook #'ansible-doc-mode)
   :config
