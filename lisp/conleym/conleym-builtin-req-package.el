@@ -123,6 +123,13 @@
         (setq insert-directory-program gls)))))
 
 
+(use-package gamegrid
+  :config
+  (setq gamegrid-user-score-file-directory
+        (conleym:persistence-dir-file "games/"))
+  (conleym:maybe-mkdir gamegrid-user-score-file-directory))
+
+
 (use-package ido
   ;; Search recently opened files, not just currently open ones
   ;; and use flex matching.
