@@ -393,7 +393,7 @@
   ;; https://github.com/purcell/less-css-mode
   ;; Major mode for less css preprocessor language.
   ;;
-  :ensure-system-package (less . "npm install -g less")
+  :ensure-system-package (lessc . "npm install -g less")
   :defer t)
 
 
