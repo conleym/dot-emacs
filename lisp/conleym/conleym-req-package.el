@@ -269,6 +269,7 @@
 (req-package format-sql
   ;; https://github.com/paetzke/format-sql.el
   ;; Format SQL embedded in python source code.
+  :require (exec-path-from-shell)
   :ensure-system-package (format-sql . "pip install --user format-sql")
   :defer t)
 
