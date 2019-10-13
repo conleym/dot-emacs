@@ -184,6 +184,7 @@
   ;; http://mph-emacs-pkgs.alioth.debian.org/EimpEl.html
   ;; Image manipulation using ImageMagick, which must be installed and available
   ;;   in the $PATH.
+  :ensure-system-package (mogrify . ImageMagick)
   :require
   ;; Need $PATH to find ImageMagick tools.
   (exec-path-from-shell)
@@ -195,7 +196,13 @@
 
 
 (req-package elpy
-  :require (exec-path-from-shell)
+  ;; https://github.com/jorgenschaefer/elpy
+  ;; Python development env
+  :require (exec-path-from-shell flycheck)
+  :config
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook #'flycheck-mode)
+  (setq elpy-rpc-virtualenv-path (conleym:persistence-dir-file "elpy"))
   :init
   (elpy-enable))
 
@@ -261,7 +268,8 @@
 
 (req-package format-sql
   ;; https://github.com/paetzke/format-sql.el
-  ;; Format SQL embedded in python source code. Must `pip install format-sql --user`
+  ;; Format SQL embedded in python source code.
+  :ensure-system-package (format-sql . "pip install --user format-sql")
   :defer t)
 
 
@@ -556,7 +564,7 @@
   ;; https://github.com/antonj/scss-mode
   ;; Major mode for SASS with the SCSS syntax.
   ;;
-  :ensure-system-package (sass . "gem install --user sass")
+  :ensure-system-package (scss . "gem install --user sass")
   :defer t)
 
 
