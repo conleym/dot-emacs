@@ -24,6 +24,7 @@
   ;; https://github.com/Wilfred/ag.el
   ;; Silver searcher front end.
   :require (exec-path-from-shell)
+  :ensure-system-package (ag . the_silver_searcher)
   :commands (ag ag-files ag-regexp ag-project ag-project-files ag-project-regexp))
 
 
@@ -383,7 +384,7 @@
   ;; https://github.com/purcell/less-css-mode
   ;; Major mode for less css preprocessor language.
   ;;
-  ;; `npm install -g less` to use compilation and flycheck support.
+  :ensure-system-package (less . "npm install -g less")
   :defer t)
 
 
@@ -403,6 +404,7 @@
   ;; but I prefer not to. Instead, use $PATH.
   :require
   (exec-path-from-shell)
+  :ensure-system-package multimarkdown
   :defer t
   :config
   (setq markdown-command "multimarkdown"))
@@ -485,6 +487,7 @@
 (req-package prettier-js
   ;; https://github.com/prettier/prettier-emacs
   ;; use prettier to format javascript code.
+  :ensure-system-package (prettier . "npm install -g prettier")
   :init
   (setq prettier-js-args
         '("--bracket-spacing" "false"
@@ -545,7 +548,7 @@
   ;; https://github.com/nex3/sass-mode
   ;; Major mode for SASS with the SASS syntax.
   ;;
-  ;; `gem install --user sass` to make it go.
+  :ensure-system-package (sass . "gem install --user sass")
   :defer t)
 
 
@@ -553,7 +556,7 @@
   ;; https://github.com/antonj/scss-mode
   ;; Major mode for SASS with the SCSS syntax.
   ;;
-  ;; `gem install --user sass` to make it go.
+  :ensure-system-package (sass . "gem install --user sass")
   :defer t)
 
 
@@ -609,7 +612,7 @@
   ;; http://ternjs.net/doc/manual.html#emacs
   ;; Code completion and other useful things for javascript.
   ;;
-  ;; Install tern with `npm install -g tern`
+  :ensure-system-package (tern . "npm i -g tern")
   :init
   (add-hook #'js-mode-hook (lambda() (tern-mode t))))
 

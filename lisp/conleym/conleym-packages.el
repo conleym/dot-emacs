@@ -14,8 +14,14 @@
 (setq use-package-verbose t)
 (setq use-package-always-ensure t)
 
-;; Used to implement :delight keyword, so load here first.
+;; Used to implement :delight keyword
 (use-package delight)
+;; Used to implement :ensure-system-package. Mac only for now.
+(if (conleym:is-darwin)
+    (use-package use-package-ensure-system-package
+      :config
+      (setq system-packages-use-sudo t)
+      (setq system-packages-package-manager 'port)))
 
 (require 'conleym-builtin-req-package)
 
