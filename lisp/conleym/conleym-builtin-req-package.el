@@ -282,9 +282,10 @@ isn't supported in this major mode."
 
 (use-package saveplace
   :config
-  (setq-default save-place t)
   (setq save-place-version-control t
-        save-place-file (conleym:persistence-dir-file "saved-places")))
+        save-place-file (conleym:persistence-dir-file "saved-places"))
+  :init
+  (save-place-mode +1))
 
 
 (use-package semantic
