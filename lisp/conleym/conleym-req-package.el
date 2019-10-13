@@ -54,7 +54,7 @@
   ;; Ansible documentation lookup with C-c ?
 )
 
-1
+
 (req-package anzu
   ;; https://github.com/syohex/emacs-anzu
   ;; Shows number of matches and the number of the current match when searching.
@@ -672,6 +672,15 @@
                                      (output-html "open"))))
 
 
+(req-package tide
+  :require (typescript-mode)
+  :init
+  (add-hook 'typescript-mode-hook
+            (lambda()
+              (eldoc-mode +1)
+              (tide-hl-identifier-mode +1))))
+
+
 (req-package tumblesocks
   :require (oauth)
   :config
@@ -686,6 +695,10 @@
         twittering-icon-storage-file (conleym:persistence-dir-file "twittering-mode-icons.gz")
         twittering-use-icon-storage t
         twittering-use-master-password t)) ;; Store oauth token.
+
+
+(req-package typescript-mode
+  )
 
 
 (req-package unicode-troll-stopper
@@ -712,7 +725,9 @@
   ;; Major mode for various web template languages.
   :mode (
          ;; handlebars.js templates
-         ("\\.hbs\\'" . web-mode)))
+         ("\\.hbs\\'" . web-mode))
+  :config
+  (setq web-mode-enable-current-element-highlight t))
 
 
 (req-package xkcd
