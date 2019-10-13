@@ -11,17 +11,27 @@
     (package-install 'req-package)))
 
 (require 'req-package)
+
+;; use-package configuration
+
 (setq use-package-verbose t)
 (setq use-package-always-ensure t)
 
-;; Used to implement :delight keyword
+;; implements the :delight keyword
 (use-package delight)
-;; Used to implement :ensure-system-package. Mac only for now.
+
+;; implements the :ensure-system-package. Mac only for now.
 (if (conleym:is-darwin)
     (use-package use-package-ensure-system-package
       :config
       (setq system-packages-use-sudo t)
       (setq system-packages-package-manager 'port)))
+
+;; implements the :chord keyword
+(use-package use-package-chords
+  :ensure t
+  :config (key-chord-mode 1))
+
 
 (require 'conleym-builtin-req-package)
 

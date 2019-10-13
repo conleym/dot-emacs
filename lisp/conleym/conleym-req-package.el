@@ -384,11 +384,6 @@
   "\\.har\\'")
 
 
-(req-package key-chord
-  :config
-  (key-chord-mode 1))
-
-
 (req-package less-css-mode
   ;; https://github.com/purcell/less-css-mode
   ;; Major mode for less css preprocessor language.
