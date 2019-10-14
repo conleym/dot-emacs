@@ -31,7 +31,10 @@
 (req-package all-the-icons
   ;; https://github.com/domtronn/all-the-icons.el
   ;; Fonts containing icons
-  )
+  :init
+  ;; https://github.com/domtronn/all-the-icons.el/issues/120#issuecomment-480342779
+  (unless (member "all-the-icons" (font-family-list))
+    (all-the-icons-install-fonts t)))
 
 
 (req-package all-the-icons-dired
