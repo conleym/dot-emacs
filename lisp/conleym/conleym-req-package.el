@@ -673,12 +673,22 @@
 
 
 (req-package tide
-  :require (typescript-mode)
+  ;; https://github.com/ananthakumaran/tide/
+  ;; typescript support
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save))
   :init
-  (add-hook 'typescript-mode-hook
-            (lambda()
-              (eldoc-mode +1)
-              (tide-hl-identifier-mode +1))))
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+  :config
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when (string-equal "tsx" (file-name-extension buffer-file-name))
+                (tide-setup))))
+  (flycheck-add-mode 'typescript-tslint 'web-mode)
+  (conleym:add-functions-to-hook 'typescript-mode-hook
+                                 #'tide-setup
+                                 (lambda() (eldoc-mode +1))))
 
 
 (req-package tumblesocks
@@ -698,7 +708,7 @@
 
 
 (req-package typescript-mode
-  )
+)
 
 
 (req-package unicode-troll-stopper
