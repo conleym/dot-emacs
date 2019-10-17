@@ -54,7 +54,7 @@
   ;; Ansible documentation lookup with C-c ?
 )
 
-1
+
 (req-package anzu
   ;; https://github.com/syohex/emacs-anzu
   ;; Shows number of matches and the number of the current match when searching.
@@ -672,6 +672,25 @@
                                      (output-html "open"))))
 
 
+(req-package tide
+  ;; https://github.com/ananthakumaran/tide/
+  ;; typescript support
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save))
+  :init
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+  :config
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when (string-equal "tsx" (file-name-extension buffer-file-name))
+                (tide-setup))))
+  (flycheck-add-mode 'typescript-tslint 'web-mode)
+  (conleym:add-functions-to-hook 'typescript-mode-hook
+                                 #'tide-setup
+                                 (lambda() (eldoc-mode +1))))
+
+
 (req-package tumblesocks
   :require (oauth)
   :config
@@ -686,6 +705,10 @@
         twittering-icon-storage-file (conleym:persistence-dir-file "twittering-mode-icons.gz")
         twittering-use-icon-storage t
         twittering-use-master-password t)) ;; Store oauth token.
+
+
+(req-package typescript-mode
+)
 
 
 (req-package unicode-troll-stopper
@@ -712,7 +735,9 @@
   ;; Major mode for various web template languages.
   :mode (
          ;; handlebars.js templates
-         ("\\.hbs\\'" . web-mode)))
+         ("\\.hbs\\'" . web-mode))
+  :config
+  (setq web-mode-enable-current-element-highlight t))
 
 
 (req-package xkcd
