@@ -435,6 +435,10 @@
     "Prevent annoying \"Active processes exist\" query when you quit Emacs."
     (noflet ((process-list ())) ad-do-it)))
 
+(req-package nov
+  :mode ("\\.epub\\'" . nov-mode)
+  :config
+  (custom-set-variables '(nov-save-place-file (conleym:persistence-dir-file "nov-places"))))
 
 (req-package nyan-mode
   ;; http://nyan-mode.buildsomethingamazing.com
