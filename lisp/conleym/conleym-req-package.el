@@ -172,7 +172,14 @@
   ;; https://github.com/DamienCassou/dired-imenu
   ;; Fill imenu with the list of files in the current directory when in dired
   ;;   mode.
-)
+  )
+
+(req-package dockerfile-mode
+  ;;
+  ;; Edit Dockerfiles.
+  :mode "Dockerfile[a-zA-Z.-]*\\'"
+  :config
+  (put 'dockerfile-image-name 'safe-local-variable #'stringp))
 
 
 (req-package editorconfig
