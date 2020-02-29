@@ -31,8 +31,6 @@
  '(mouse-yank-at-point t)
  '(ns-pop-up-frames nil nil nil "Documents opened via Mac's open command show up in the current frame, not a new one.")
  '(package-enable-at-startup nil)
- '(package-selected-packages
-   '(manage-minor-mode 2048-game reveal-in-osx-finder ns-auto-titlebar exec-path-from-shell use-package-chords use-package-ensure-system-package delight use-package))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-bar-mode nil)

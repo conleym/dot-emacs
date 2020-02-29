@@ -1,14 +1,12 @@
 ;; Builtin package configuration.
 ;;
-;; All packages here come with emacs. Use :ensure nil to avoid installing over
-;; them.
-
+;; All packages here come with emacs.
 (require 'conleym-init-utils)
+
 
 
 ;; Expands abbreviations from a dictionary.
 (use-package abbrev
-  :ensure nil
   :delight
   :init
   ;; Global abbrev mode. Curiously not customizable.
@@ -23,7 +21,6 @@
 
 
 (use-package autorevert
-  :ensure nil
   :delight auto-revert-mode
   :config
   ;; Default (5 seconds) is too long to wait.
@@ -33,7 +30,6 @@
 
 
 (use-package bookmark
-  :ensure nil
   :config
   (setq bookmark-default-file (conleym:persistence-dir-file "bookmarks")
         ;; Save every time the bookmarks are changed.
@@ -41,14 +37,24 @@
 
 
 (use-package browse-url
-  :ensure nil
   :config
   (if (conleym:is-darwin)
       (setq browse-url-browser-function #'browse-url-default-macosx-browser)))
 
 
+(use-package cperl-mode
+  ;; Replace perl-mode with cperl-mode.
+  :config
+  (dolist (x auto-mode-alist)
+    (if (eq 'perl-mode (cdr x))
+        (setf (cdr x) 'cperl-mode)))
+  (dolist (x interpreter-mode-alist)
+    (if (eq 'perl-mode (cdr x))
+        (setf (cdr x) 'cperl-mode)))
+  :mode "\\.latexmkrc\\'")
+
+
 (use-package desktop
-  :ensure nil
   :config
   (setq desktop-save t
         desktop-save-mode t
@@ -62,39 +68,33 @@
 
 
 (use-package dired
-  :ensure nil
   :config
   (setq dired-auto-revert-buffer t))
 
 
 (use-package display-line-numbers
-  :ensure nil
   :config
   (global-display-line-numbers-mode))
 
 
 (use-package ede/base
   :defer t
-  :ensure nil
   :config
   (setq ede-project-placeholder-cache-file (conleym:persistence-dir-file "ede-projects.el")))
 
 
 ;; Shows lisp docstrings in the minibuffer.
 (use-package eldoc
-  :ensure nil
   :delight
   :init
   (global-eldoc-mode))
 
 
 (use-package elide-head
-  :ensure nil
   :hook prog-mode)
 
 
 (use-package files
-  :ensure nil
   :config
   ;; Number of versions to keep. Just picked a relatively large
   ;; number. Default is 2.
@@ -122,6 +122,48 @@
         ;; available.
         (when-let ((gls (executable-find "gls")))
           (setq insert-directory-program gls)))))
+
+
+(use-package gamegrid
+  :defer t
+  :config
+  (setq gamegrid-user-score-file-directory
+        (conleym:persistence-dir-file "games/"))
+  (conleym:maybe-mkdir gamegrid-user-score-file-directory))
+
+
+(use-package ido
+  ;; Search recently opened files, not just currently open ones
+  ;; and use flex matching.
+  :config
+  (setq ido-enable-flex-matching t
+        ido-max-prospects 10
+        ido-save-directory-list-file (conleym:persistence-dir-file "ido.last")
+        ido-use-virtual-buffers t)
+  (ido-mode t)
+  (ido-everywhere t))
+
+
+(use-package image-dired
+  :config
+  (setq image-dired-dir (conleym:persistence-dir-file "image-dired")))
+
+
+(use-package ispell
+  :config
+  ;; Prefer hunspell if available.
+  (when (executable-find "hunspell")
+    (setq-default ispell-program-name "hunspell")
+    (setq-default ispell-dictionary "en_US")
+    (add-to-list 'ispell-local-dictionary-alist
+                 '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "'" t ("-d en_US") "~tex" utf-8)))))
+
+
+(use-package js-mode
+  :mode "\\.js[mx]?\\'"
+  :chords ((";;" . "\C-e;"))
+)
+
 
 
 (provide 'conleym-builtin-use-package)

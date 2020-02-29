@@ -1,8 +1,9 @@
 ;; Set up package, repositories, and use-package.
 ;; Then load all the packages, installing or upgrading as needed.
-
 (require 'conleym-elpa)
 (require 'package)
+
+
 
 ;; Ensure package archive contents are current to avoid 404s from
 ;; repositories due to rapidly-changing packages.
@@ -32,7 +33,6 @@
 
 ;; implements the :chord keyword
 (use-package use-package-chords
-  :ensure t
   :config (key-chord-mode 1))
 
 
@@ -52,7 +52,11 @@
   (exec-path-from-shell-initialize))
 
 
-(require 'conleym-builtin-use-package)
+(let (use-package-always-ensure f)
+  ;; Don't try to install anything over built in packages.
+  (require 'conleym-builtin-use-package))
 (require 'conleym-use-package)
+
+
 
 (provide 'conleym-packages)
