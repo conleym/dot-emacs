@@ -65,6 +65,13 @@
 ;; same as plain delete.
 (global-set-key [delete] #'delete-char)
 
+;; c-backspace is backwards-kill-line
+;; https://emacsredux.com/blog/2013/04/08/kill-line-backward/
+(global-set-key (kbd "C-<backspace>") (lambda ()
+                                        (interactive)
+                                        (kill-line 0)
+                                        (indent-according-to-mode)))
+
 (defun conleym:untabify-buffer ()
   "Unconditionally convert tab to space in the current buffer."
   (interactive)
