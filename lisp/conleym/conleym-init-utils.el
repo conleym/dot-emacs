@@ -73,6 +73,15 @@
   (unless indent-tabs-mode
     (conleym:untabify-buffer)))
 
+(defun conleym:safe-imenu()
+    "Try to add imenu index to the menubar, ignoring errors if imenu
+isn't supported in this major mode."
+    (interactive)
+    (require 'imenu)
+    (ignore-errors
+      (progn
+        (imenu-add-menubar-index))))
+
 
 
 (provide 'conleym-init-utils)
