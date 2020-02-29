@@ -6,11 +6,11 @@
 (package-refresh-contents)
 
 ;; Ensure req-package and its dependencies are installed.
-(unless (require 'req-package "req-package" t)
+(unless (require 'use-package "use-package" t)
   (progn
-    (package-install 'req-package)))
+    (package-install 'use-package)))
 
-(require 'req-package)
+(require 'use-package)
 
 ;; use-package configuration
 
@@ -20,7 +20,7 @@
 ;; implements the :delight keyword
 (use-package delight)
 
-;; implements the :ensure-system-package. Mac only for now.
+;; implements the :ensure-system-package keyword. Mac only for now.
 (if (conleym:is-darwin)
     (use-package use-package-ensure-system-package
       :config
@@ -33,12 +33,9 @@
   :config (key-chord-mode 1))
 
 
-(require 'conleym-builtin-req-package)
+(require 'conleym-builtin-use-package)
 
-(require 'conleym-req-package)
-(require 'conleym-darwin-req-package)
-
-;; Load packages, installing any that are missing.
-(req-package-finish)
+;; (require 'conleym-req-package)
+;; (require 'conleym-darwin-req-package)
 
 (provide 'conleym-packages)
