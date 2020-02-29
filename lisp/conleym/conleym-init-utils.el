@@ -56,8 +56,8 @@
   (define-key ido-completion-map [up] 'previous-history-element)
   (define-key ido-completion-map [down] 'next-history-element))
 
-
 (defun conleym:zsh-mode()
+  "Shell mode with zsh syntax."
   (interactive)
   (sh-mode)
   (sh-set-shell "zsh"))

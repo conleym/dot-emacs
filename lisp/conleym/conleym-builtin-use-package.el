@@ -184,6 +184,47 @@
   (setq nsm-settings-file (conleym:persistence-dir-file "network-security.data")))
 
 
+(use-package rcirc
+  :defer t
+  :config
+  (rcirc-track-minor-mode)
+  (setq rcirc-log-flag t
+        rcirc-default-full-name user-full-name
+        rcirc-log-directory (conleym:persistence-dir-file "rcirc-logs/")
+        rcirc-time-format "%Y-%m-%d %H:%M ")
+  (defun-rcirc-command j (arg)
+    "Shorthand for /join."
+    (interactive "M")
+    (rcirc-cmd-join arg))
+  (defun-rcirc-command p (arg)
+    "Shorthand for /part."
+    (interactive "i")
+    (rcirc-cmd-part arg))
+  ;; From the rcirc manual. Defines /reconnect.
+  (defun-rcirc-command reconnect (arg)
+    "Reconnect the server process."
+    (interactive "i")
+    (unless process
+      (error "There's no process for this target"))
+    (let* ((server (car (process-contact process)))
+           (port (process-contact process :service))
+           (nick (rcirc-nick process))
+           channels query-buffers)
+      (dolist (buf (buffer-list))
+        (with-current-buffer buf
+          (when (eq process (rcirc-buffer-process))
+            (remove-hook 'change-major-mode-hook
+                         'rcirc-change-major-mode-hook)
+            (if (rcirc-channel-p rcirc-target)
+                (setq channels (cons rcirc-target channels))
+              (setq query-buffers (cons buf query-buffers))))))
+      (delete-process process)
+      (rcirc-connect server port nick
+                     rcirc-default-user-name
+                     rcirc-default-full-name
+                     channels))))
+
+
 (use-package recentf
   :bind ("C-x C-r" . conleym:recentf-ido-find-file)
   :config
@@ -196,6 +237,12 @@
   :init
   ;; always on.
   (recentf-mode))
+
+
+(use-package reftex
+  :hook (LaTeX-mode . turn-on-reftex)
+  :config
+  (setq reftex-plug-into-AUCTeX t))
 
 
 (use-package ruby-mode
