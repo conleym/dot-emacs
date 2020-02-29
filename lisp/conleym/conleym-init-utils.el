@@ -52,4 +52,19 @@
   (conleym:disable-linum-mode)
   (conleym:disable-display-line-numbers-mode))
 
+(defun conleym:recentf-ido-find-file ()
+  "Find a recent file using ido."
+  (interactive)
+  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
+    (when file
+      (find-file file))))
+
+(defun conleym:setup-ido-with-recentf ()
+  ""
+  (define-key ido-completion-map [up] 'previous-history-element)
+  (define-key ido-completion-map [down] 'next-history-element))
+
+
+
+
 (provide 'conleym-init-utils)
