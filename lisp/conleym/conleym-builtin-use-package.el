@@ -95,7 +95,7 @@
 
 
 (use-package files
-             ;; Remove trailing whitespace (always) and convert tabs to spaces (usually) before saving.
+  ;; Remove trailing whitespace (always) and convert tabs to spaces (usually) before saving.
   :hook (before-save . (delete-trailing-whitespace conleym:maybe-untabify-buffer))
   :config
   ;; Number of versions to keep. Just picked a relatively large
@@ -152,7 +152,7 @@
 
 
 (use-package imenu
-  ;; Show definitions from current file in a menu.
+  ;; enable auto rescan, and sort by name.
   :config
    (setq imenu-auto-rescan t
          imenu-sort-function #'imenu--sort-by-name))
@@ -170,8 +170,7 @@
 
 (use-package js-mode
   :mode "\\.js[mx]?\\'"
-  :chords ((";;" . "\C-e;"))
-)
+  :chords ((";;" . "\C-e;")))
 
 
 (use-package nxml-mode
