@@ -24,22 +24,31 @@
   (mapcar (lambda (x) (add-hook x function)) hooks))
 
 (defun conleym:maybe-mkdir (dir)
+  "Create DIR unless it already exists."
   (unless (file-exists-p dir)
     (mkdir dir t)))
 
 (defun conleym:is-darwin ()
+  "Is this emacs running on a darwin-based system?"
   (eq system-type 'darwin))
 
 (defun conleym:is-mac-app ()
+  "Is this emacs a macOS app?"
   (memq window-system '(ns)))
 
 (defun conleym:disable-linum-mode ()
+  "Disable linum-mode."
+  (interactive)
   (linum-mode -1))
 
 (defun conleym:disable-display-line-numbers-mode ()
+  "Disable display-line-numbers-mode."
+  (interactive)
   (display-line-numbers-mode -1))
 
 (defun conleym:disable-line-numbers ()
+  "Disable both linum-mode and display-line-numbers-mode."
+  (interactive)
   (conleym:disable-linum-mode)
   (conleym:disable-display-line-numbers-mode))
 

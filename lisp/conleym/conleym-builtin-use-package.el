@@ -67,6 +67,12 @@
   (setq dired-auto-revert-buffer t))
 
 
+(use-package display-line-numbers
+  :ensure nil
+  :config
+  (global-display-line-numbers-mode))
+
+
 (use-package ede/base
   :defer t
   :ensure nil

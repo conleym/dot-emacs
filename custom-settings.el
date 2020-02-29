@@ -13,7 +13,6 @@
    '("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" default))
  '(delete-by-moving-to-trash t)
  '(delete-old-versions t nil nil "We're keeping a lot of backups. No need to ask about getting rid of older ones.")
- '(display-line-numbers t)
  '(eimp-ignore-read-only-modes
    '(gnus-article-mode puzzle-mode tumme-display-image-mode tumme-thumbnail-mode w3m-mode xkcd-mode))
  '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)
@@ -33,7 +32,7 @@
  '(ns-pop-up-frames nil nil nil "Documents opened via Mac's open command show up in the current frame, not a new one.")
  '(package-enable-at-startup nil)
  '(package-selected-packages
-   '(reveal-in-osx-finder ns-auto-titlebar exec-path-from-shell use-package-chords use-package-ensure-system-package delight use-package))
+   '(manage-minor-mode 2048-game reveal-in-osx-finder ns-auto-titlebar exec-path-from-shell use-package-chords use-package-ensure-system-package delight use-package))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-bar-mode nil)
