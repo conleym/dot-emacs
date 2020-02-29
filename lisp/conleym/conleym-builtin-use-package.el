@@ -151,6 +151,13 @@
   (setq image-dired-dir (conleym:persistence-dir-file "image-dired")))
 
 
+(use-package imenu
+  ;; Show definitions from current file in a menu.
+  :config
+   (setq imenu-auto-rescan t
+         imenu-sort-function #'imenu--sort-by-name))
+
+
 (use-package ispell
   :config
   ;; Prefer hunspell if available.
