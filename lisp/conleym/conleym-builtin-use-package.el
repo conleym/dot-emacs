@@ -165,5 +165,35 @@
 )
 
 
+(use-package nxml-mode
+  ;; Major mode for editing XML.
+  :defer t
+  :magic  (("<\\?xml" . nxml-mode)
+           ("<![dD][oO][cC][tT][yY][pP][eE]" . nxml-mode))
+  :config
+  (setq nxml-attribute-indent tab-width
+        nxml-child-indent tab-width
+        nxml-slash-auto-complete-flag t))
+
+
+(use-package nsm
+  :defer t
+  :config
+  (setq nsm-settings-file (conleym:persistence-dir-file "network-security.data")))
+
+
+(use-package recentf
+  :bind ("C-x C-r" . conleym:recentf-ido-find-file)
+  :config
+  (setq recentf-save-file (conleym:persistence-dir-file "recentf")
+        recentf-max-menu-items 25
+        recentf-max-saved-items 400)
+  ;; Up arrow will go to previously opened files in this session if you
+  ;; hit up in the minibuffer.
+  :hook (ido-setup . conleym:setup-ido-with-recentf)
+  :init
+  ;; always on.
+  (recentf-mode))
+
 
 (provide 'conleym-builtin-use-package)
