@@ -31,6 +31,8 @@
  '(mouse-yank-at-point t)
  '(ns-pop-up-frames nil nil nil "Documents opened via Mac's open command show up in the current frame, not a new one.")
  '(package-enable-at-startup nil)
+ '(package-selected-packages
+   '(auto-package-update auto-compile auctex-latexmk apples-mode all-the-icons-dired all-the-icons ag use-package-ensure-system-package use-package-chords reveal-in-osx-finder ns-auto-titlebar manage-minor-mode exec-path-from-shell delight 2048-game))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-bar-mode nil)
