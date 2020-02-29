@@ -15,14 +15,6 @@
   "Return the path to FILE in the directory where Emacs's persistent data should be stored."
   (concat (conleym:dot-dir-file "persistence/") file))
 
-(defun conleym:add-functions-to-hook (hook &rest functions)
-  "Add multiple FUNCTIONS to a single HOOK."
-  (mapcar (lambda (x) (add-hook hook x)) functions))
-
-(defun conleym:add-function-to-hooks (function &rest hooks)
-  "Add a single FUNCTION to multiple HOOKS."
-  (mapcar (lambda (x) (add-hook x function)) hooks))
-
 (defun conleym:maybe-mkdir (dir)
   "Create DIR unless it already exists."
   (unless (file-exists-p dir)
@@ -60,10 +52,26 @@
       (find-file file))))
 
 (defun conleym:setup-ido-with-recentf ()
-  ""
+  "Bind up and down arrows to history navigation in ido."
   (define-key ido-completion-map [up] 'previous-history-element)
   (define-key ido-completion-map [down] 'next-history-element))
 
+
+(defun conleym:zsh-mode()
+  (interactive)
+  (sh-mode)
+  (sh-set-shell "zsh"))
+
+(defun conleym:untabify-buffer ()
+  "Unconditionally convert tab to space in the current buffer."
+  (interactive)
+  (untabify (point-min) (point-max)))
+
+(defun conleym:maybe-untabify-buffer ()
+  "Convert tabs to spaces in the current buffer unless `indent-tabs-mode' is active."
+  (interactive)
+  (unless indent-tabs-mode
+    (conleym:untabify-buffer)))
 
 
 
