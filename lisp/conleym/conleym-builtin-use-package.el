@@ -95,6 +95,8 @@
 
 
 (use-package files
+             ;; Remove trailing whitespace (always) and convert tabs to spaces (usually) before saving.
+  :hook (before-save . (delete-trailing-whitespace conleym:maybe-untabify-buffer))
   :config
   ;; Number of versions to keep. Just picked a relatively large
   ;; number. Default is 2.
@@ -194,6 +196,73 @@
   :init
   ;; always on.
   (recentf-mode))
+
+
+(use-package ruby-mode
+  :mode ("Vagrantfile\\'" . ruby-mode))
+
+
+(use-package saveplace
+  :config
+  (setq save-place-version-control t
+        save-place-file (conleym:persistence-dir-file "saved-places"))
+  :init
+  (save-place-mode +1))
+
+
+(use-package semantic
+  :defer t
+  :defines (semanticdb-default-save-directory)
+  :config
+  (setq semanticdb-default-save-directory
+        (conleym:persistence-dir-file "semanticdb/")))
+
+
+(use-package sh-script
+  ;; Configure sh-mode for better zsh support.
+  :config
+  :mode ("\\.zsh\\'" . conleym:zsh-mode)
+        ("^\\.zshenv\\'" . conleym:zsh-mode))
+
+
+(use-package shell
+  :config
+  ;; Use zsh if available.
+  (let ((zsh (executable-find "zsh")))
+    (when zsh
+      (setq explicit-shell-file-name "zsh")
+      (setenv "SHELL" zsh))))
+
+
+(use-package speedbar
+  :config
+  (setq speedbar-default-position 'left
+        speedbar-show-unknown-files t)
+  ;; Turn line numbers off in the speedbar buffer.
+  :hook (speedbar-mode . conleym:disable-display-line-numbers-mode))
+
+
+(use-package subword
+  :delight
+  :config
+  (global-subword-mode t))
+
+
+(use-package vc-hooks
+  :config
+  ;; Just because it's in version control doesn't mean I want no
+  ;; local backups...
+  (setq vc-make-backup-files t))
+
+
+(use-package wdired
+  :config
+  (setq wdired-allow-to-change-permissions t))
+
+
+(use-package which-func
+  :config
+  (which-function-mode t))
 
 
 (provide 'conleym-builtin-use-package)
