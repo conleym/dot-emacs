@@ -1,3 +1,6 @@
+;; Set up package, repositories, and use-package.
+;; Then load all the packages, installing or upgrading as needed.
+
 (require 'conleym-elpa)
 (require 'package)
 
@@ -33,9 +36,23 @@
   :config (key-chord-mode 1))
 
 
-(require 'conleym-builtin-use-package)
+;; Make sure we load this before trying to configure anything that might need
+;; to find executables.
+(use-package exec-path-from-shell
+  ;; https://github.com/purcell/exec-path-from-shell
+  ;; Get environment variables from a login shell. Necessary for a reasonable
+  ;;   Emacs.app setup on Mac.
+  :if (conleym:is-mac-app)
+  :config
+  ;;  (setq exec-path-from-shell-debug t)
+  (setq exec-path-from-shell-arguments '("-l"))
+  (setq exec-path-from-shell-variables
+        '("AWS_ACCESS_KEY_ID" "AWS_DEFAULT_PROFILE" "AWS_PROFILE" "AWS_SECRET_ACCESS_KEY"
+          "MANPATH" "PATH" "PKG_CONFIG_PATH" "PYTHONPATH" "WORKON_HOME"))
+  (exec-path-from-shell-initialize))
 
-;; (require 'conleym-req-package)
-;; (require 'conleym-darwin-req-package)
+
+(require 'conleym-builtin-use-package)
+(require 'conleym-use-package)
 
 (provide 'conleym-packages)
