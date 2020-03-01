@@ -402,6 +402,15 @@
   :if (conleym:is-mac-app))
 
 
+(use-package smartparens-config
+  :ensure smartparens
+  ;; https://github.com/Fuco1/smartparens
+  ;; Pair completion.
+  :delight smartparens-mode
+  :config
+  (smartparens-global-mode 1))
+
+
 (use-package smex
   ;; https://github.com/nonsequitur/smex
   ;; Better M-x, built on ido.
