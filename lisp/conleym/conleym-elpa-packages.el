@@ -255,6 +255,12 @@
   "\\.har\\'")
 
 
+(use-package lastpass
+  :config
+  ;; Enable lastpass custom auth-source
+  (lastpass-auth-source-enable))
+
+ 
 (use-package manage-minor-mode
   ;; https://github.com/ShingoFukuyama/manage-minor-mode
   ;; List, activate and deactivate minor modes easily.
