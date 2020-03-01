@@ -191,6 +191,12 @@
   (setq markdown-command "multimarkdown"))
 
 
+(use-package minesweeper
+  ;; https://bitbucket.org/zck/minesweeper.el/src/default/
+  :defer t
+  :hook (minesweeper-mode . conleym:disable-display-line-numbers-mode))
+
+
 (use-package ns-auto-titlebar
   ;; https://github.com/purcell/ns-auto-titlebar
   :if (conleym:is-darwin)
