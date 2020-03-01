@@ -297,6 +297,22 @@
   (nyan-start-animation))
 
 
+(use-package paradox
+  ;; https://github.com/Malabarba/paradox
+  ;; Better package management, with asynchrony.
+  :config
+  (setq paradox-automatically-star nil
+        paradox-column-width-package 36
+        paradox-column-width-version 16
+        paradox-column-width-download 8
+        paradox-display-download-count t
+        paradox-execute-asynchronously t
+        paradox-lines-per-entry 2)
+  ;; paradox-enable makes package-list-packages use the paradox-menu,
+  ;; but it doesn't fetch star counts...
+  (paradox-enable))
+
+
 (use-package pdf-tools
   :magic ("%PDF" . pdf-view-mode)
   ;; Disable line numbers. I don't want them. Also make sure linum mode is off,
