@@ -32,7 +32,7 @@
  '(ns-pop-up-frames nil nil nil "Documents opened via Mac's open command show up in the current frame, not a new one.")
  '(package-enable-at-startup nil)
  '(package-selected-packages
-   '(reveal-in-osx-finder pdf-tools ns-auto-titlebar manage-minor-mode company-tern company-auctex company auto-package-update auto-compile auctex-latexmk apples-mode all-the-icons-dired all-the-icons ag 2048-game exec-path-from-shell use-package-chords use-package-ensure-system-package delight use-package))
+   '(prettier-js flycheck-pos-tip flycheck smooth-scroll reveal-in-osx-finder pdf-tools ns-auto-titlebar manage-minor-mode company-tern company-auctex company auto-package-update auto-compile auctex-latexmk apples-mode all-the-icons-dired all-the-icons ag 2048-game exec-path-from-shell use-package-chords use-package-ensure-system-package delight use-package))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-bar-mode nil)
