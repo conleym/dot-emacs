@@ -95,6 +95,12 @@
   (add-to-list 'company-backends #'company-tern))
 
 
+;; TODO use this or get rid of it.
+(use-package crux
+  ;; https://github.com/bbatsov/crux
+)
+
+
 (use-package dockerfile-mode
   ;; https://github.com/spotify/dockerfile-mode
   :mode "Dockerfile[a-zA-Z.-]*\\'"
@@ -169,6 +175,11 @@
   (setq-default flycheck-display-errors-delay 1)
   (global-flycheck-mode))
 
+
+(use-package git-timemachine
+  ;; https://gitlab.com/pidu/git-timemachine/
+  ;; go forward and backward in git history with "n" and "p", etc.
+  :defer t)
 
 (use-package gitconfig-mode
   ;; https://github.com/magit/git-modes
