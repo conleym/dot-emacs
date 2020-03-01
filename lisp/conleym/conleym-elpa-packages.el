@@ -119,12 +119,28 @@
   (setq eimp-enable-undo t))
 
 
-(use-package ido-completing-read+
-  ;; https://github.com/DarwinAwardWinner/ido-ubiquitous
-  ;; Even more ido.
-  :after (ido)
+(use-package elpy
+  ;; https://github.com/jorgenschaefer/elpy
+  ;; Python development env
+  :hook (elpy-mode . flycheck-mode)
   :config
-  (ido-ubiquitous-mode t))
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (setq elpy-rpc-virtualenv-path (conleym:persistence-dir-file "elpy"))
+  :init
+  (elpy-enable))
+
+
+(defun conleym:fci-80-mode ()
+  (interactive)
+  (setq fci-rule-column 80) ;; becomes local when set.
+  (fci-mode 1))
+
+  
+(use-package fill-column-indicator
+  ;; https://github.com/alpaker/Fill-Column-Indicator
+  ;; Draw a line at a given column.
+  :defer t
+  :hook (python-mode . conleym:fci-80-mode))
 
 
 (use-package flx-ido
@@ -152,12 +168,27 @@
   (global-flycheck-mode))
 
 
+(use-package ido-completing-read+
+  ;; https://github.com/DarwinAwardWinner/ido-ubiquitous
+  ;; Even more ido.
+  :after (ido)
+  :config
+  (ido-ubiquitous-mode t))
+
+
 (use-package json-mode
   ;; https://github.com/joshwnj/json-mode
   ;; Major mode for editing JSON.
   :mode
   ;; HTTP archives
   "\\.har\\'")
+
+
+(use-package format-sql
+  ;; https://github.com/paetzke/format-sql.el
+  ;; Format SQL embedded in python source code.
+  :ensure-system-package (format-sql . "pip3 install --user format-sql")
+  :defer t)
 
 
 (use-package gitconfig-mode
@@ -346,6 +377,7 @@
         TeX-view-program-selection '((output-pdf "Skim")
                                      (output-dvi "Skim")
                                      (output-html "open"))))
+
 
 (defun conleym:setup-tide-mode ()
   (interactive)
