@@ -177,22 +177,6 @@
   (global-flycheck-mode))
 
 
-(use-package ido-completing-read+
-  ;; https://github.com/DarwinAwardWinner/ido-ubiquitous
-  ;; Even more ido.
-  :after (ido)
-  :config
-  (ido-ubiquitous-mode t))
-
-
-(use-package json-mode
-  ;; https://github.com/joshwnj/json-mode
-  ;; Major mode for editing JSON.
-  :mode
-  ;; HTTP archives
-  "\\.har\\'")
-
-
 (use-package gitconfig-mode
   ;; https://github.com/magit/git-modes
   ;; .gitconfig major mode.
@@ -207,6 +191,31 @@
   :mode
   ;; My global settings.
   "\\.gitignore_global\\'")
+
+
+(use-package hungry-delete
+  ;; https://github.com/nflath/hungry-delete
+  ;; Deletes all the whitespace at once.
+  :delight
+  :config
+  (global-hungry-delete-mode))
+
+
+
+(use-package ido-completing-read+
+  ;; https://github.com/DarwinAwardWinner/ido-ubiquitous
+  ;; Even more ido.
+  :after (ido)
+  :config
+  (ido-ubiquitous-mode t))
+
+
+(use-package json-mode
+  ;; https://github.com/joshwnj/json-mode
+  ;; Major mode for editing JSON.
+  :mode
+  ;; HTTP archives
+  "\\.har\\'")
 
 
 (use-package manage-minor-mode
