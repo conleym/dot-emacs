@@ -137,13 +137,6 @@
   :bind (:map prog-mode-map
               ("M-RET" . #'emr-show-refactor-menu)))
 
-
-(defun conleym:fci-80-mode ()
-  "Draw the fill column indicator in column 80."
-  (interactive)
-  (setq fci-rule-column 80) ;; becomes local when set.
-  (fci-mode 1))
-
   
 (use-package fill-column-indicator
   ;; https://github.com/alpaker/Fill-Column-Indicator
@@ -396,15 +389,6 @@
         TeX-view-program-selection '((output-pdf "Skim")
                                      (output-dvi "Skim")
                                      (output-html "open"))))
-
-
-(defun conleym:setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  ;; slight difference from readme version because
-  ;; company, flycheck, and eldoc are all globally enabled.
-  (tide-hl-identifier-mode +1))
 
 
 (use-package tide
