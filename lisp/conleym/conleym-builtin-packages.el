@@ -281,6 +281,12 @@
         (conleym:persistence-dir-file "semanticdb/")))
 
 
+(use-package server
+  :config 
+  (unless (or (daemonp) (server-running-p))
+    (server-start)))
+
+
 (use-package sh-script
   ;; Configure sh-mode for better zsh support.
   :config

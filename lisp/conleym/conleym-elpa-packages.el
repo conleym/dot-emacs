@@ -302,6 +302,14 @@
   (nyan-start-animation))
 
 
+(use-package oauth
+  :config
+  ;; Require sasl so that oauth will use it to generate nonces.
+  (require 'sasl)
+  ;; oauth tries and fails to figure this out when compiling.
+  (setq oauth-nonce-function #'sasl-unique-id))
+
+
 (use-package paradox
   ;; https://github.com/Malabarba/paradox
   ;; Better package management, with asynchrony.
@@ -492,7 +500,13 @@
   ;; typescript support
   :hook ((typescript-mode . conleym:setup-tide-mode)
          (before-save . tide-format-before-save)))
- 
+
+
+(use-package tumblesocks
+  :after (oauth)
+  :config
+  (setq tumblesocks-token-file (conleym:persistence-dir-file "tumblr-oauth-token")))
+
 
 (use-package web-mode
   ;; http://web-mode.org
