@@ -504,7 +504,9 @@
 
 (use-package tumblesocks
   :after (oauth)
-  :config
+  :hook (tumblesocks-view-mode . conleym:disable-display-line-numbers-mode)
+  :init
+  ;; doesn't work with :config and :hook for some reason...
   (setq tumblesocks-token-file (conleym:persistence-dir-file "tumblr-oauth-token")))
 
 
