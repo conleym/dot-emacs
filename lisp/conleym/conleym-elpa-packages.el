@@ -377,6 +377,16 @@
       (add-hook hook #'rainbow-mode))))
 
 
+(use-package restclient
+  ;; https://github.com/pashky/restclient.el
+  :config
+  (use-package company-restclient
+    ;; https://github.com/iquiw/company-restclient
+    :after (company restclient)
+    :init
+    (add-to-list 'company-backends #'company-restclient)))
+
+
 (use-package reveal-in-osx-finder
   ;; https://github.com/kaz-yos/reveal-in-osx-finder
   :if (conleym:is-mac-app))
