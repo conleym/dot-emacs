@@ -92,6 +92,11 @@
 )
 
 
+(use-package define-word
+  ;; https://github.com/abo-abo/define-word
+)
+
+
 (use-package dockerfile-mode
   ;; https://github.com/spotify/dockerfile-mode
   :mode "Dockerfile[a-zA-Z.-]*\\'"
