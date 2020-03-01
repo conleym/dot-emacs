@@ -32,7 +32,7 @@
  '(ns-pop-up-frames nil nil nil "Documents opened via Mac's open command show up in the current frame, not a new one.")
  '(package-enable-at-startup nil)
  '(package-selected-packages
-   '(xkcd zone-nyan yaml-mode web-mode tide smex rainbow-mode nov nyan-mode markdown-mode json-mode ido-completing-read+ gitignore-mode gitconfig-mode flx-ido eimp editorconfig use-package-ensure-system-package use-package-chords smooth-scroll reveal-in-osx-finder prettier-js pdf-tools ns-auto-titlebar manage-minor-mode flycheck-pos-tip exec-path-from-shell dired-imenu delight company-tern company-auctex auto-package-update auto-compile auctex-latexmk apples-mode all-the-icons-dired ag 2048-game))
+   '(dockerfile-mode xkcd zone-nyan yaml-mode web-mode tide smex rainbow-mode nov nyan-mode markdown-mode json-mode ido-completing-read+ gitignore-mode gitconfig-mode flx-ido eimp editorconfig use-package-ensure-system-package use-package-chords smooth-scroll reveal-in-osx-finder prettier-js pdf-tools ns-auto-titlebar manage-minor-mode flycheck-pos-tip exec-path-from-shell dired-imenu delight company-tern company-auctex auto-package-update auto-compile auctex-latexmk apples-mode all-the-icons-dired ag 2048-game))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-bar-mode nil)
