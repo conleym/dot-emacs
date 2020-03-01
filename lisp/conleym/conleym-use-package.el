@@ -95,6 +95,34 @@
   (add-to-list 'company-backends #'company-tern))
 
 
+(use-package editorconfig
+  ;; https://github.com/editorconfig/editorconfig-emacs
+  ;; editorconfig support for emacs.
+  :delight
+  :config
+  (editorconfig-mode 1))
+
+
+(use-package eimp
+  ;; http://mph-emacs-pkgs.alioth.debian.org/EimpEl.html
+  ;; Image manipulation using ImageMagick, which must be installed and available
+  ;;   in the $PATH.
+  :hook (image-mode . eimp-mode)
+  :config
+  (setq eimp-enable-undo t))
+
+
+(use-package flx-ido
+  ;; https://github.com/lewang/flx
+  ;; Fuzzy matching for ido-mode.
+  :after (ido)
+  :config
+  ;; disable ido's faces so we can see flx's highlighting instead
+  (setq ido-use-faces nil
+        flx-ido-threshold 10000)
+  (flx-ido-mode t))
+
+
 (use-package flycheck
   ;; http://flycheck.readthedocs.org/en/latest/
   ;; On the fly syntax checking. Easier to configure and use than flymake.
@@ -107,6 +135,22 @@
   (setq-default flycheck-emacs-lisp-load-path 'inherit)
   (setq-default flycheck-display-errors-delay 1)
   (global-flycheck-mode))
+
+
+(use-package gitconfig-mode
+  ;; https://github.com/magit/git-modes
+  ;; .gitconfig major mode.
+  :hook (gitconfig-mode . (lambda()
+                            ;; I don't want to indent with tabs. Tabs are stupid.
+                            (setq indent-tabs-mode nil))))
+
+
+(use-package gitignore-mode
+  ;; https://github.com/magit/git-modes
+  ;; .gitignore major mode.
+  :mode
+  ;; My global settings.
+  "\\.gitignore_global\\'")
 
 
 (use-package manage-minor-mode
