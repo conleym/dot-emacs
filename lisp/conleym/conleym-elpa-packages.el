@@ -271,6 +271,14 @@
   :config (ns-auto-titlebar-mode))
 
 
+(use-package noflet
+  :config
+  ;; Eliminate prompt when exiting emacs when processes are running.
+  (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
+    "Prevent annoying \"Active processes exist\" query when you quit Emacs."
+    (noflet ((process-list ())) ad-do-it)))
+
+
 (use-package nov
   :mode ("\\.epub\\'" . nov-mode)
   :config

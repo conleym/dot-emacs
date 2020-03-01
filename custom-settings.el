@@ -32,7 +32,7 @@
  '(ns-pop-up-frames nil nil nil "Documents opened via Mac's open command show up in the current frame, not a new one.")
  '(package-enable-at-startup nil)
  '(package-selected-packages
-   '(es-mode emmet-mode gitattributes-mode git-timemachine crux github-browse-file hungry-delete emr zone-nyan yaml-mode xkcd web-mode tide smooth-scroll smex reveal-in-osx-finder rainbow-mode prettier-js pdf-tools nyan-mode nov ns-auto-titlebar markdown-mode manage-minor-mode gitignore-mode gitconfig-mode json-mode ido-completing-read+ flycheck-pos-tip flycheck flx-ido fill-column-indicator elpy eimp editorconfig dockerfile-mode company-tern company-auctex company auto-package-update auto-compile auctex-latexmk apples-mode all-the-icons-dired all-the-icons ag 2048-game exec-path-from-shell use-package-chords use-package-ensure-system-package delight use-package))
+   '(noflet es-mode emmet-mode gitattributes-mode git-timemachine crux github-browse-file hungry-delete emr zone-nyan yaml-mode xkcd web-mode tide smooth-scroll smex reveal-in-osx-finder rainbow-mode prettier-js pdf-tools nyan-mode nov ns-auto-titlebar markdown-mode manage-minor-mode gitignore-mode gitconfig-mode json-mode ido-completing-read+ flycheck-pos-tip flycheck flx-ido fill-column-indicator elpy eimp editorconfig dockerfile-mode company-tern company-auctex company auto-package-update auto-compile auctex-latexmk apples-mode all-the-icons-dired all-the-icons ag 2048-game exec-path-from-shell use-package-chords use-package-ensure-system-package delight use-package))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-bar-mode nil)
