@@ -151,7 +151,13 @@
   :bind (:map prog-mode-map
               ("M-RET" . #'emr-show-refactor-menu)))
 
-  
+
+(use-package es-mode
+  ;; https://github.com/dakrone/es-mode
+  ;; Elasticsearch stuff.
+  :defer t)
+
+
 (use-package fill-column-indicator
   ;; https://github.com/alpaker/Fill-Column-Indicator
   ;; Draw a line at a given column.
