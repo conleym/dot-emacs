@@ -86,15 +86,6 @@
   :after (company))
 
 
-(use-package company-tern
-  ;; https://github.com/proofit404/company-tern
-  ;; Company mode backend for tern (javascript completion).
-  :after (company tern)
-  :defer t
-  :init
-  (add-to-list 'company-backends #'company-tern))
-
-
 ;; TODO use this or get rid of it.
 (use-package crux
   ;; https://github.com/bbatsov/crux
@@ -332,6 +323,7 @@
 (use-package prettier-js
   ;; https://github.com/prettier/prettier-emacs
   ;; use prettier to format javascript code.
+  :delight
   :ensure-system-package (prettier . "npm install -g prettier")
   :hook (js-mode . prettier-js-mode)
   :init
@@ -415,10 +407,16 @@
   ;; http://ternjs.net/doc/manual.html#emacs
   ;; Code completion and other useful things for javascript.
   ;;
-  :after (js-mode)
   :delight
   :ensure-system-package (tern . "npm i -g tern")
-  :hook (js-mode . (lambda() (tern-mode t))))
+  :hook (js-mode . (lambda() (tern-mode t)))
+  :config
+  (use-package company-tern
+    ;; https://github.com/proofit404/company-tern
+    ;; Company mode backend for tern (javascript completion).
+    :defer t
+    :init
+    (add-to-list 'company-backends #'company-tern)))
 
 
 (use-package tex-site
