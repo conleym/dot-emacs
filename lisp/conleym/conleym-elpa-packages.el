@@ -95,6 +95,13 @@
   (add-to-list 'company-backends #'company-tern))
 
 
+(use-package dockerfile-mode
+  ;; https://github.com/spotify/dockerfile-mode
+  :mode "Dockerfile[a-zA-Z.-]*\\'"
+  :config
+  (put 'dockerfile-image-name 'safe-local-variable #'stringp))
+
+
 (use-package editorconfig
   ;; https://github.com/editorconfig/editorconfig-emacs
   ;; editorconfig support for emacs.
