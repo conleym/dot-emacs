@@ -1,16 +1,20 @@
+;; Set up package, repositories, and use-package.
+;; Then load all the packages, installing or upgrading as needed.
 (require 'conleym-elpa)
 (require 'package)
+
+
 
 ;; Ensure package archive contents are current to avoid 404s from
 ;; repositories due to rapidly-changing packages.
 (package-refresh-contents)
 
 ;; Ensure req-package and its dependencies are installed.
-(unless (require 'req-package "req-package" t)
+(unless (require 'use-package "use-package" t)
   (progn
-    (package-install 'req-package)))
+    (package-install 'use-package)))
 
-(require 'req-package)
+(require 'use-package)
 
 ;; use-package configuration
 
@@ -20,7 +24,7 @@
 ;; implements the :delight keyword
 (use-package delight)
 
-;; implements the :ensure-system-package. Mac only for now.
+;; implements the :ensure-system-package keyword. Mac only for now.
 (if (conleym:is-darwin)
     (use-package use-package-ensure-system-package
       :config
@@ -29,16 +33,31 @@
 
 ;; implements the :chord keyword
 (use-package use-package-chords
-  :ensure t
   :config (key-chord-mode 1))
 
 
-(require 'conleym-builtin-req-package)
+;; Make sure we load this before trying to configure anything that might need
+;; to find executables.
+(use-package exec-path-from-shell
+  ;; https://github.com/purcell/exec-path-from-shell
+  ;; Get environment variables from a login shell. Necessary for a reasonable
+  ;;   Emacs.app setup on Mac.
+  :if (conleym:is-mac-app)
+  :config
+  ;;  (setq exec-path-from-shell-debug t)
+  (setq exec-path-from-shell-arguments '("-l"))
+  (setq exec-path-from-shell-variables
+        '("AWS_ACCESS_KEY_ID" "AWS_DEFAULT_PROFILE" "AWS_PROFILE" "AWS_SECRET_ACCESS_KEY"
+          "MANPATH" "PATH" "PKG_CONFIG_PATH" "PYTHONPATH" "WORKON_HOME"))
+  (exec-path-from-shell-initialize))
 
-(require 'conleym-req-package)
-(require 'conleym-darwin-req-package)
 
-;; Load packages, installing any that are missing.
-(req-package-finish)
+(let (use-package-always-ensure f)
+  ;; Don't try to install anything over built in packages.
+  (require 'conleym-builtin-packages))
+
+(require 'conleym-elpa-packages)
+
+
 
 (provide 'conleym-packages)

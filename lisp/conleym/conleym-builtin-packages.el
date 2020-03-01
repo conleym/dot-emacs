@@ -1,10 +1,12 @@
-(require 'req-package)
+;; Builtin package configuration.
+;;
+;; All packages here come with emacs.
 (require 'conleym-init-utils)
 
 
+
+;; Expands abbreviations from a dictionary.
 (use-package abbrev
-  ;; Expands abbreviations from a dictionary.
-  :ensure nil
   :delight
   :init
   ;; Global abbrev mode. Curiously not customizable.
@@ -20,10 +22,11 @@
 
 (use-package autorevert
   :delight auto-revert-mode
+  :after (dired)
+  :hook (dired-mode . auto-revert-mode)
   :config
   ;; Default (5 seconds) is too long to wait.
   (setq auto-revert-interval 1)
-  (add-hook 'dired-mode-hook #'auto-revert-mode)
   (global-auto-revert-mode))
 
 
@@ -65,35 +68,36 @@
   (conleym:maybe-mkdir desktop-dirname))
 
 
-(req-package dired
-  :ensure nil
+(use-package dired
   :config
   (setq dired-auto-revert-buffer t))
 
 
+(use-package display-line-numbers
+  :config
+  (global-display-line-numbers-mode))
+
+
 (use-package ede/base
   :defer t
-  :ensure nil
   :config
   (setq ede-project-placeholder-cache-file (conleym:persistence-dir-file "ede-projects.el")))
 
 
+;; Shows lisp docstrings in the minibuffer.
 (use-package eldoc
-  ;; Shows lisp docstrings in the minibuffer.
   :delight
   :init
   (global-eldoc-mode))
 
 
 (use-package elide-head
-  :defer t
-  :init
-  (add-hook 'prog-mode-hook #'elide-head))
+  :hook prog-mode)
 
 
-(req-package files
-  :require (exec-path-from-shell)
-  :ensure nil
+(use-package files
+  ;; Remove trailing whitespace (always) and convert tabs to spaces (usually) before saving.
+  :hook (before-save . (delete-trailing-whitespace conleym:maybe-untabify-buffer))
   :config
   ;; Number of versions to keep. Just picked a relatively large
   ;; number. Default is 2.
@@ -112,22 +116,29 @@
     (setq auto-save-file-name-transforms
           `((".*" ,auto-save-dir)))
     (setq backup-directory-alist
-      `(( ".*" . ,backup-dir))))
+          `(( ".*" . ,backup-dir))))
   (if (conleym:is-darwin)
-    (progn
-      ;; Delete using Mac trash rather than freedesktop.org trash.
-      (setq trash-directory "~/.Trash")
-      ;; OS X ls doesn't suport --dired. Try to use GNU ls instead, if
-      ;; available.
-      (when-let ((gls (executable-find "gls")))
-        (setq insert-directory-program gls)))))
+      (progn
+        ;; Delete using Mac trash rather than freedesktop.org trash.
+        (setq trash-directory "~/.Trash")
+        ;; OS X ls doesn't suport --dired. Try to use GNU ls instead, if
+        ;; available.
+        (when-let ((gls (executable-find "gls")))
+          (setq insert-directory-program gls)))))
 
 
 (use-package gamegrid
+  :defer t
   :config
   (setq gamegrid-user-score-file-directory
         (conleym:persistence-dir-file "games/"))
   (conleym:maybe-mkdir gamegrid-user-score-file-directory))
+
+
+(use-package hl-line
+  :config
+  (set-face-background hl-line-face "gray13")
+  (global-hl-line-mode))
 
 
 (use-package ido
@@ -142,34 +153,19 @@
   (ido-everywhere t))
 
 
-(use-package ielm
-  :defer t)
-
-
 (use-package image-dired
-  :defer t
   :config
   (setq image-dired-dir (conleym:persistence-dir-file "image-dired")))
 
 
 (use-package imenu
-  ;; Show definitions from current file in a menu.
+  ;; enable auto rescan, and sort by name.
   :config
-  (defun conleym:safe-imenu()
-    "Try to add imenu index to the menubar, ignoring errors if imenu
-isn't supported in this major mode."
-    (interactive)
-    (require 'imenu)
-    (ignore-errors
-      (progn
-        (imenu-add-menubar-index))))
-  (add-hook 'after-change-major-mode-hook #'conleym:safe-imenu)
-  (setq imenu-auto-rescan t
-        imenu-sort-function #'imenu--sort-by-name))
+   (setq imenu-auto-rescan t
+         imenu-sort-function #'imenu--sort-by-name))
 
 
-(req-package ispell
-  :require (exec-path-from-shell) ;; ispell uses {a,i,hun}spell. Need $PATH.
+(use-package ispell
   :config
   ;; Prefer hunspell if available.
   (when (executable-find "hunspell")
@@ -179,21 +175,19 @@ isn't supported in this major mode."
                  '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "'" t ("-d en_US") "~tex" utf-8)))))
 
 
-(req-package js-mode
-  :require (key-chord)
-  :ensure nil
+(use-package js-mode
   :mode "\\.js[mx]?\\'"
   :config
+  ;; Can't use chord, because it doesn't yet support local keymaps.
+  ;; See https://github.com/jwiegley/use-package/pull/778/files
   (key-chord-define js-mode-map ";;" "\C-e;"))
 
 
 (use-package nxml-mode
   ;; Major mode for editing XML.
   :defer t
-  :ensure nil
-  :init
-  (push '("<\\?xml" . nxml-mode) magic-mode-alist)
-  (push '("<![dD][oO][cC][tT][yY][pP][eE]" . nxml-mode) magic-mode-alist)
+  :magic  (("<\\?xml" . nxml-mode)
+           ("<![dD][oO][cC][tT][yY][pP][eE]" . nxml-mode))
   :config
   (setq nxml-attribute-indent tab-width
         nxml-child-indent tab-width
@@ -247,32 +241,23 @@ isn't supported in this major mode."
                      channels))))
 
 
-(req-package recentf
-  :require (ido)
+(use-package recentf
   :bind ("C-x C-r" . conleym:recentf-ido-find-file)
   :config
   (setq recentf-save-file (conleym:persistence-dir-file "recentf")
         recentf-max-menu-items 25
         recentf-max-saved-items 400)
-  (defun conleym:recentf-ido-find-file ()
-    "Find a recent file using ido."
-    (interactive)
-    (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
-      (when file
-        (find-file file))))
   ;; Up arrow will go to previously opened files in this session if you
   ;; hit up in the minibuffer.
-  (add-hook 'ido-setup-hook
-            #'(lambda ()
-                (define-key ido-completion-map [up] 'previous-history-element)))
+  :hook (ido-setup . conleym:setup-ido-with-recentf)
   :init
   ;; always on.
   (recentf-mode))
 
 
-(req-package reftex
+(use-package reftex
+  :hook (LaTeX-mode . turn-on-reftex)
   :config
-  (add-hook 'LaTeX-mode-hook #'turn-on-reftex)
   (setq reftex-plug-into-AUCTeX t))
 
 
@@ -296,18 +281,20 @@ isn't supported in this major mode."
         (conleym:persistence-dir-file "semanticdb/")))
 
 
-(req-package sh-script
+(use-package server
+  :config 
+  (unless (or (daemonp) (server-running-p))
+    (server-start)))
+
+
+(use-package sh-script
   ;; Configure sh-mode for better zsh support.
   :config
-  (defun conleym:zsh-mode()
-    (sh-mode)
-    (sh-set-shell "zsh"))
   :mode ("\\.zsh\\'" . conleym:zsh-mode)
         ("^\\.zshenv\\'" . conleym:zsh-mode))
 
 
-(req-package shell
-  :require (exec-path-from-shell)
+(use-package shell
   :config
   ;; Use zsh if available.
   (let ((zsh (executable-find "zsh")))
@@ -320,22 +307,8 @@ isn't supported in this major mode."
   :config
   (setq speedbar-default-position 'left
         speedbar-show-unknown-files t)
-  ;; Turn line numbers off in the speedbar buffer. Counteracts
-  ;; global-linum-mode for the speedbar.
-  (conleym:add-functions-to-hook
-   'speedbar-mode-hook
-   #'conleym:disable-line-numbers))
-
-
-(use-package sql
-  :defer t
-  :config
-  (setq sql-postgres-login-params
-        '((user :default "postgres")
-          (port :default 5432)
-          (server :default "localhost")
-          (database :default "postgres")
-          (password :default "postgres"))))
+  ;; Turn line numbers off in the speedbar buffer.
+  :hook (speedbar-mode . conleym:disable-display-line-numbers-mode))
 
 
 (use-package subword
@@ -345,7 +318,6 @@ isn't supported in this major mode."
 
 
 (use-package vc-hooks
-  :ensure nil
   :config
   ;; Just because it's in version control doesn't mean I want no
   ;; local backups...
@@ -362,5 +334,4 @@ isn't supported in this major mode."
   (which-function-mode t))
 
 
-
-(provide 'conleym-builtin-req-package)
+(provide 'conleym-builtin-packages)
