@@ -135,6 +135,12 @@
   (conleym:maybe-mkdir gamegrid-user-score-file-directory))
 
 
+(use-package hl-line
+  :config
+  (set-face-background hl-line-face "gray13")
+  (global-hl-line-mode))
+
+
 (use-package ido
   ;; Search recently opened files, not just currently open ones
   ;; and use flex matching.
