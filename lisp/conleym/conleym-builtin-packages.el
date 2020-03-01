@@ -22,10 +22,11 @@
 
 (use-package autorevert
   :delight auto-revert-mode
+  :after (dired)
+  :hook (dired-mode . auto-revert-mode)
   :config
   ;; Default (5 seconds) is too long to wait.
   (setq auto-revert-interval 1)
-  (add-hook 'dired-mode-hook #'auto-revert-mode)
   (global-auto-revert-mode))
 
 
@@ -321,4 +322,4 @@
   (which-function-mode t))
 
 
-(provide 'conleym-builtin-use-package)
+(provide 'conleym-builtin-packages)

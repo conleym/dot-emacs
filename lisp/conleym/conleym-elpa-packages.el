@@ -403,4 +403,4 @@
   (add-to-list 'zone-programs #'zone-nyan))
 
 
-(provide 'conleym-use-package)
+(provide 'conleym-elpa-packages)
