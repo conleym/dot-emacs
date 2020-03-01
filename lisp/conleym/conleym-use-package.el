@@ -112,6 +112,14 @@
   (setq eimp-enable-undo t))
 
 
+(use-package ido-completing-read+
+  ;; https://github.com/DarwinAwardWinner/ido-ubiquitous
+  ;; Even more ido.
+  :after (ido)
+  :config
+  (ido-ubiquitous-mode t))
+
+
 (use-package flx-ido
   ;; https://github.com/lewang/flx
   ;; Fuzzy matching for ido-mode.
@@ -137,6 +145,14 @@
   (global-flycheck-mode))
 
 
+(use-package json-mode
+  ;; https://github.com/joshwnj/json-mode
+  ;; Major mode for editing JSON.
+  :mode
+  ;; HTTP archives
+  "\\.har\\'")
+
+
 (use-package gitconfig-mode
   ;; https://github.com/magit/git-modes
   ;; .gitconfig major mode.
@@ -159,10 +175,37 @@
 )
 
 
+(use-package markdown-mode
+  ;; http://jblevins.org/projects/markdown-mode/
+  ;; Major mode for editing markdown. Includes gfm-mode for github-flavored
+  ;;   markdown. An external markdown program must be installed for preview
+  ;;   functionality. I've installed `multimarkdown` with macports.
+  :config
+  (setq markdown-command "multimarkdown"))
+
+
 (use-package ns-auto-titlebar
   ;; https://github.com/purcell/ns-auto-titlebar
   :if (conleym:is-darwin)
   :config (ns-auto-titlebar-mode))
+
+
+(use-package nov
+  :mode ("\\.epub\\'" . nov-mode)
+  :config
+  (custom-set-variables '(nov-save-place-file (conleym:persistence-dir-file "nov-places"))))
+
+
+(use-package nyan-mode
+  ;; http://nyan-mode.buildsomethingamazing.com
+  ;; The most useful thing ever.
+  :config
+  (setq nyan-animation-frame-interval 0.1
+        nyan-wavy-trail t)
+  (nyan-mode)
+  ;; Customizing nyan-animate-nyancat calls this, but I don't want
+  ;; to use customize for packages.
+  (nyan-start-animation))
 
 
 (use-package pdf-tools
@@ -188,9 +231,55 @@
           "--jsx-bracket-same-line")))
 
 
+(use-package rainbow-mode
+  ;; https://julien.danjou.info/projects/emacs-packages#rainbow-mode
+  ;; Show strings representing colors in the color they represent.
+  :delight rainbow-mode
+  :defer t
+  :config
+  ;; Automatically start rainbow-mode in any mode that it supports.
+  ;;
+  ;; Overwrought, overcomplicated, and simultaneously over-and-
+  ;; underthought. Probably not necessary or desirable, it goes in
+  ;; anyhow.
+  (let* (
+         ;; Generate a list, each element of which is the (list) value of
+         ;; one of the rainbow-*-colors-major-mode-list variables. These
+         ;; variables are customized
+         (rainbow-modes
+          (mapcar #'(lambda(color-type)
+                      (eval
+                       (intern-soft
+                        (concat "rainbow-"
+                                color-type
+                                "-colors-major-mode-list"))))
+                  '("ansi" "html" "latex" "r" "x")))
+         ;; Flatten it.
+         (rainbow-modes-flat (apply #'append rainbow-modes))
+         ;; Get the hook for each mode in previous line.
+         (rainbow-mode-hooks
+          (mapcar #'(lambda(mode)
+                      (intern (concat (symbol-name mode) "-hook")))
+                  rainbow-modes-flat)))
+    ;; Add rainbow-mode to each supported hook.
+    (dolist (hook rainbow-mode-hooks)
+      (add-hook hook #'rainbow-mode))))
+
+
 (use-package reveal-in-osx-finder
   ;; https://github.com/kaz-yos/reveal-in-osx-finder
   :if (conleym:is-mac-app))
+
+
+(use-package smex
+  ;; https://github.com/nonsequitur/smex
+  ;; Better M-x, built on ido.
+  :bind (("M-x" . smex)
+         ("M-X" . smex-major-mode-commands))
+  :config
+  (setq smex-history-length 200
+        smex-save-file (conleym:persistence-dir-file "smex-items"))
+  (smex-initialize))
 
 
 (use-package smooth-scroll
@@ -252,7 +341,66 @@
                                      (output-html "open"))))
 
 
+(use-package tide
+  ;; https://github.com/ananthakumaran/tide/
+  ;; typescript support
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save))
+  :init
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+  :config
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when (string-equal "tsx" (file-name-extension buffer-file-name))
+                (tide-setup))))
+  (add-hook 'typescript-mode-hook (lambda() (eldoc-mode +1)))
+  (flycheck-add-mode 'typescript-tslint 'web-mode))
 
+
+(use-package web-mode
+  ;; http://web-mode.org
+  ;; Major mode for various web template languages.
+  :mode (
+         ;; handlebars.js templates
+         ("\\.hbs\\'" . web-mode))
+  :config
+  (setq web-mode-enable-current-element-highlight t))
+
+
+(use-package xkcd
+  ;; https://github.com/vibhavp/emacs-xkcd
+  ;; Read XKCD in Emacs.
+
+  ;; I want to be able to resize the images. Note that xkcd-mode must be
+  ;; added to eimp-ignore-readonly-modes for that to work (it's
+  ;; customized).
+  :hook (xkcd-mode . eimp-mode)
+  ;; Rebind keys, since eimp uses the arrows.
+  :bind (:map xkcd-mode-map
+              ("n" . #'xkcd-next)
+              ("p" . #'xkcd-prev))
+  :config
+  (setq xkcd-cache-dir
+        (conleym:persistence-dir-file "xkcd/"))
+  ;; Avoid stupid mkdir-RET-RET message when directory doesn't exist.
+  (conleym:maybe-mkdir xkcd-cache-dir)
+  (setq xkcd-cache-latest (concat xkcd-cache-dir "latest")))
+
+
+(use-package yaml-mode
+  ;; https://github.com/yoshiki/yaml-mode
+  ;; Major mode for editing YAML.
+  :mode "\\.ya?ml\\'"
+  :config
+  (setq yaml-indent-offset tab-width))
+
+
+(use-package zone-nyan
+  :after (zone)
+  :defer t
+  :config
+  (add-to-list 'zone-programs #'zone-nyan))
 
 
 (provide 'conleym-use-package)
