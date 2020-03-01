@@ -24,17 +24,26 @@
   :init
   ;; https://github.com/domtronn/all-the-icons.el/issues/120#issuecomment-480342779
   (unless (member "all-the-icons" (font-family-list))
-    (all-the-icons-install-fonts t)))
+    (all-the-icons-install-fonts t))
+  :config
+    (add-to-list 'all-the-icons-icon-alist
+               '("\\.dtx\\'" all-the-icons-fileicon "tex" :face all-the-icons-lblue)))
 
 
 (use-package all-the-icons-dired
+  ;; https://github.com/jtbm37/all-the-icons-dired
   ;; Add icons to dired-mode
   :after (all-the-icons dired)
   :hook (dired-mode . all-the-icons-dired-mode)
-  :delight
+  :delight)
+
+
+(use-package all-the-icons-ibuffer
+  ;; https://github.com/seagle0128/all-the-icons-ibuffer
+  ;; Add icons to ibuffer.
   :config
-  (add-to-list 'all-the-icons-icon-alist
-               '("\\.dtx\\'" all-the-icons-fileicon "tex" :face all-the-icons-lblue)))
+  (setq  all-the-icons-ibuffer-human-readable-size t)
+  :init (all-the-icons-ibuffer-mode 1))
 
 
 (use-package apples-mode
