@@ -181,6 +181,13 @@
   ;; go forward and backward in git history with "n" and "p", etc.
   :defer t)
 
+
+(use-package gitattributes-mode
+  ;; https://github.com/magit/git-modes
+  ;; .gitattributes major mode.
+  :defer t)
+
+
 (use-package gitconfig-mode
   ;; https://github.com/magit/git-modes
   ;; .gitconfig major mode.
