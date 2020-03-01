@@ -8,10 +8,6 @@
 (load "~/.emacs.d/lisp/conleym/conleym-init-utils")
 (require 'conleym-init-utils)
 
-(require 'server)
-(unless (server-running-p)
-  (server-start))
-
 ;; Tell Emacs to look in the directory where I keep most of my stuff.
 (conleym:add-lisp-dir "lisp/conleym")
 
@@ -67,41 +63,26 @@
 
 ;; c-backspace is backwards-kill-line
 ;; https://emacsredux.com/blog/2013/04/08/kill-line-backward/
-(global-set-key (kbd "C-<backspace>") (lambda ()
-                                        (interactive)
-                                        (kill-line 0)
-                                        (indent-according-to-mode)))
+(defun backward-kill-line
+    (interactive)
+  (kill-line 0)
+  (indent-according-to-mode))
 
-(defun conleym:untabify-buffer ()
-  "Unconditionally convert tab to space in the current buffer."
-  (interactive)
-  (untabify (point-min) (point-max)))
-
-(defun conleym:maybe-untabify-buffer ()
-  "Convert tabs to spaces in the current buffer unless `indent-tabs-mode' is active."
-  (interactive)
-  (unless indent-tabs-mode
-    (conleym:untabify-buffer)))
-
-;; Remove trailing whitespace (always) and convert tabs to spaces (usually) before saving.
-(conleym:add-functions-to-hook 'before-save-hook
-                               #'delete-trailing-whitespace
-                               #'conleym:maybe-untabify-buffer)
+(global-set-key (kbd "C-<backspace>") #'backward-kill-line)
 
 
 ;; A variation on this using nadvice
 ;; https://lists.gnu.org/archive/html/emacs-devel/2010-07/msg01410.html
-(defun conleym:advise-debug-on-error (old-function &rest arguments)
-  (condition-case err
-      (apply old-function arguments)
-    ;; Let the debugger run
-    ((debug error) (signal (car err) (cdr err)))))
+;; (defun conleym:advise-debug-on-error (old-function &rest arguments)
+;;   (condition-case err
+;;       (apply old-function arguments)
+;;     ;; Let the debugger run
+;;     ((debug error) (signal (car err) (cdr err)))))
 
-(defun conleym:advise-debug-on-error-nosignal (old-function &rest arguments)
-  (condition-case nil
-    (apply old-function arguments)
-    ((debug error) nil)))
-
+;; (defun conleym:advise-debug-on-error-nosignal (old-function &rest arguments)
+;;   (condition-case nil
+;;     (apply old-function arguments)
+;;     ((debug error) nil)))
 
 
 (require 'conleym-packages)

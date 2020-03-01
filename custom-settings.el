@@ -13,7 +13,6 @@
    '("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" default))
  '(delete-by-moving-to-trash t)
  '(delete-old-versions t nil nil "We're keeping a lot of backups. No need to ask about getting rid of older ones.")
- '(display-line-numbers t)
  '(eimp-ignore-read-only-modes
    '(gnus-article-mode puzzle-mode tumme-display-image-mode tumme-thumbnail-mode w3m-mode xkcd-mode))
  '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)
@@ -33,7 +32,7 @@
  '(ns-pop-up-frames nil nil nil "Documents opened via Mac's open command show up in the current frame, not a new one.")
  '(package-enable-at-startup nil)
  '(package-selected-packages
-   '(nov dockerfile-mode tide typescript typescript-mode use-package-chords use-package-ensure-system-package prettier-js prettier prettier-mode restclient rest-client company-restclient cperl delight ns-auto-titlebar ns-auto-titlebar-mode el-get tern js-mode files vc-hooks nxml-mode ede/base dired abbrev ido-completing-read+ all-the-icons-dired all-the-icons crux adoc-mode auto-package-update oauth markdown-mode flycheck company cider zone-nyan yaml-mode yagist xkcd which-key web-mode vagrant-tramp vagrant unicode-troll-stopper twittering-mode tumblesocks syslog-mode swift-mode sr-speedbar sourcemap smooth-scroll smex smartparens scss-mode sass-mode reveal-in-osx-finder req-package rainbow-mode pydoc puppet-mode pip-requirements pdf-tools paradox nyan-mode noflet minesweeper manage-minor-mode less-css-mode key-chord json-mode ido-ubiquitous hungry-delete graphviz-dot-mode gitignore-mode github-browse-file gitconfig-mode gitattributes-mode git-timemachine format-sql flycheck-pos-tip flycheck-clojure flx-ido floobits fill-column-indicator exec-path-from-shell ess es-mode emr emmet-mode elpy eimp editorconfig dired-imenu define-word dash-at-point company-tern company-auctex clj-refactor bug-hunter auto-compile auctex-latexmk async apples-mode anzu ansible-doc ag ace-jump-mode 2048-game))
+   '(yagist unicode-troll-stopper vagrant-tramp vagrant twittering-mode tumblesocks oauth smartparens all-the-icons-ibuffer rainbow-delimiters define-word zone-nyan yaml-mode xkcd web-mode use-package-ensure-system-package use-package-chords tide smooth-scroll smex reveal-in-osx-finder rainbow-mode prettier-js pip-requirements pdf-tools paradox nyan-mode ns-auto-titlebar nov noflet markdown-mode manage-minor-mode json-mode ido-completing-read+ hungry-delete gitignore-mode github-browse-file gitconfig-mode gitattributes-mode git-timemachine flycheck-pos-tip flx-ido fill-column-indicator exec-path-from-shell es-mode emr emmet-mode elpy eimp editorconfig dockerfile-mode delight crux company-tern company-restclient company-auctex auto-package-update auto-compile auctex-latexmk apples-mode all-the-icons-dired ag 2048-game))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-bar-mode nil)
