@@ -185,6 +185,14 @@
                             (setq indent-tabs-mode nil))))
 
 
+(use-package github-browse-file
+  ;; https://github.com/osener/github-browse-file
+  ;; View files on github.com
+  :defer t
+  :config
+  (setq github-browse-file-show-line-at-point t))
+
+
 (use-package gitignore-mode
   ;; https://github.com/magit/git-modes
   ;; .gitignore major mode.
