@@ -170,7 +170,10 @@
 
 (use-package js-mode
   :mode "\\.js[mx]?\\'"
-  :chords ((";;" . "\C-e;")))
+  :config
+  ;; Can't use chord, because it doesn't yet support local keymaps.
+  ;; See https://github.com/jwiegley/use-package/pull/778/files
+  (key-chord-define js-mode-map ";;" "\C-e;"))
 
 
 (use-package nxml-mode
