@@ -511,6 +511,8 @@
 (use-package twittering-mode
   :defer t
   :config
+  ;; https://github.com/hayamiz/twittering-mode/issues/154
+  (defalias #'epa--decode-coding-string #'decode-coding-string)
   (setq twittering-display-remaining t   ;; Show # of remaining API calls.
         twittering-icon-mode t           ;; Show icons
         twittering-icon-storage-file (conleym:persistence-dir-file "twittering-mode-icons.gz")
