@@ -518,6 +518,13 @@
         twittering-use-master-password t)) ;; Store oauth token.
 
 
+(use-package unicode-troll-stopper
+  ;; https://github.com/camsaul/emacs-unicode-troll-stopper
+  ;; Highlight homoglpyhs.
+  ;; TODO turn on global mode when available. See issue #2.
+)
+
+
 (use-package vagrant
   ;; https://github.com/ottbot/vagrant.el
   ;; Manage vagrant boxes from emacs.
