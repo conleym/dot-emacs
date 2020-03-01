@@ -75,7 +75,7 @@
 (use-package company
   ;; https://github.com/company-mode/company-mode
   ;; Autocompletion
-  :after (tern) ;; company-tern needs tern, so load that first.
+  :delight
   :config
   (global-company-mode))
 
@@ -340,32 +340,37 @@
                                      (output-dvi "Skim")
                                      (output-html "open"))))
 
+(defun conleym:setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  ;; slight difference from readme version because
+  ;; company, flycheck, and eldoc are all globally enabled.
+  (tide-hl-identifier-mode +1))
+
 
 (use-package tide
   ;; https://github.com/ananthakumaran/tide/
   ;; typescript support
-  :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode)
-         (before-save . tide-format-before-save))
-  :init
-  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-  :config
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (when (string-equal "tsx" (file-name-extension buffer-file-name))
-                (tide-setup))))
-  (add-hook 'typescript-mode-hook (lambda() (eldoc-mode +1)))
-  (flycheck-add-mode 'typescript-tslint 'web-mode))
+  :hook ((typescript-mode . conleym:setup-tide-mode)
+         (before-save . tide-format-before-save)))
+ 
 
 
 (use-package web-mode
   ;; http://web-mode.org
   ;; Major mode for various web template languages.
-  :mode (
-         ;; handlebars.js templates
-         ("\\.hbs\\'" . web-mode))
+  :after (flycheck tide)
+  :mode (("\\.hbs\\'" . web-mode) ;; handlebars.js templates
+         ("\\.tsx\\'" . web-mode)) ;; typescript react/jsx.
+  :init
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when (string-equal "tsx" (file-name-extension buffer-file-name))
+                (conleym:setup-tide-mode))))
   :config
-  (setq web-mode-enable-current-element-highlight t))
+  (setq web-mode-enable-current-element-highlight t)
+  (flycheck-add-mode 'typescript-tslint 'web-mode))
 
 
 (use-package xkcd
