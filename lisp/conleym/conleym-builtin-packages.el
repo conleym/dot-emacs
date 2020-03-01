@@ -267,8 +267,8 @@
 
 (use-package savehist
   :config
-  (setq savehist-file (conleym:persistence-dir-file "savehist")
-        savehist-additional-variables '(kill-ring search-ring regexp-search-ring)))
+  ;; I don't use this, but in case it ever gets turned on, save data in the proper place.
+  (setq savehist-file (conleym:persistence-dir-file "savehist")))
 
 
 (use-package saveplace
