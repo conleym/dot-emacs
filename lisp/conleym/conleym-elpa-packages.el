@@ -374,6 +374,10 @@
       (add-hook hook #'rainbow-mode))))
 
 
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+
 (use-package restclient
   ;; https://github.com/pashky/restclient.el
   :config
