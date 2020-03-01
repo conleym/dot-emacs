@@ -184,13 +184,6 @@
   "\\.har\\'")
 
 
-(use-package format-sql
-  ;; https://github.com/paetzke/format-sql.el
-  ;; Format SQL embedded in python source code.
-  :ensure-system-package (format-sql . "pip3 install --user format-sql")
-  :defer t)
-
-
 (use-package gitconfig-mode
   ;; https://github.com/magit/git-modes
   ;; .gitconfig major mode.
@@ -394,7 +387,6 @@
   :hook ((typescript-mode . conleym:setup-tide-mode)
          (before-save . tide-format-before-save)))
  
-
 
 (use-package web-mode
   ;; http://web-mode.org
