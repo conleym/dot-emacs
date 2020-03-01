@@ -573,6 +573,12 @@
   (setq xkcd-cache-latest (concat xkcd-cache-dir "latest")))
 
 
+(use-package yagist
+  ;; https://github.com/mhayashi1120/yagist.el
+  ;; Create and manage gists on github.
+  :defer t)
+
+
 (use-package yaml-mode
   ;; https://github.com/yoshiki/yaml-mode
   ;; Major mode for editing YAML.
