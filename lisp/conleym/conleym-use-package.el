@@ -72,6 +72,29 @@
   (auto-package-update-maybe))
 
 
+(use-package company
+  ;; https://github.com/company-mode/company-mode
+  ;; Autocompletion
+  :after (tern) ;; company-tern needs tern, so load that first.
+  :config
+  (global-company-mode))
+
+
+(use-package company-auctex
+  ;; https://github.com/alexeyr/company-auctex
+  ;; auctex completion
+  :after (company))
+
+
+(use-package company-tern
+  ;; https://github.com/proofit404/company-tern
+  ;; Company mode backend for tern (javascript completion).
+  :after (company tern)
+  :defer t
+  :init
+  (add-to-list 'company-backends #'company-tern))
+
+
 
 (use-package manage-minor-mode
   ;; https://github.com/ShingoFukuyama/manage-minor-mode
@@ -85,9 +108,73 @@
   :config (ns-auto-titlebar-mode))
 
 
+(use-package pdf-tools
+  :magic ("%PDF" . pdf-view-mode)
+  ;; Disable line numbers. I don't want them. Also make sure linum mode is off,
+  ;; because it can break this mode:
+  ;; https://github.com/politza/pdf-tools#linum-mode
+  :hook (pdf-view-mode . conleym:disable-line-numbers)
+  :config
+  (pdf-tools-install :no-query))
+
+
 (use-package reveal-in-osx-finder
   ;; https://github.com/kaz-yos/reveal-in-osx-finder
   :if (conleym:is-mac-app))
+
+
+(use-package tern
+  ;; http://ternjs.net/doc/manual.html#emacs
+  ;; Code completion and other useful things for javascript.
+  ;;
+  :after (js-mode)
+  :delight
+  :ensure-system-package (tern . "npm i -g tern")
+  :hook (js-mode . (lambda() (tern-mode t))))
+
+
+(use-package tex-site
+  :ensure auctex
+  :after (auctex-latexmk reftex company-auctex)
+  :hook ((TeX-mode . TeX-source-correlate-mode)
+         (LaTeX-mode . LaTeX-math-mode))
+  :bind (:map TeX-mode-map
+              ;; cmd-shift-click = TeX-view
+              ("<S-s-mouse-1>" . TeX-view))
+  :init
+  (auctex-latexmk-setup)
+  (company-auctex-init)
+  ;; Suggestion from pdf-tools readme:
+  ;; https://github.com/politza/pdf-tools#auto-revert
+  (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
+  ;; I can't figure out how to shoehorn these into :hook keyword above.
+  (add-hook 'TeX-mode-hook (lambda() (TeX-fold-mode t)))
+  (add-hook 'LaTeX-mode-hook (lambda() (setq TeX-command-default "LatexMk")))
+  :config
+  (setq-default TeX-master nil)
+  (setq LaTeX-math-menu-unicode t
+        preview-auto-cache-preamble t
+        TeX-auto-save t
+        TeX-auto-untabify t
+        ;; Don't ask if I want to clean. Of course I want to clean.
+        TeX-clean-confirm nil
+        TeX-complete-expert-commands t
+        ;; Don't ask me if I want to see the errors. Of course I want to see the errors.
+        TeX-error-overview-open-after-TeX-run t
+        ;; Don't automatically insert braces when inserting macros.
+        TeX-insert-braces nil
+        TeX-parse-self t
+        ;; Don't ask me if I want to save. Just save.
+        TeX-save-query nil
+        TeX-source-correlate-start-server t
+        TeX-view-program-list '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")
+                                (("pdf-tools" "TeX-pdf-tools-sync-view")))
+        TeX-view-program-selection '((output-pdf "Skim")
+                                     (output-dvi "Skim")
+                                     (output-html "open"))))
+
+
+
 
 
 (provide 'conleym-use-package)
