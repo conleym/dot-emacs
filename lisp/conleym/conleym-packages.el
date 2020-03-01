@@ -54,8 +54,9 @@
 
 (let (use-package-always-ensure f)
   ;; Don't try to install anything over built in packages.
-  (require 'conleym-builtin-use-package))
-(require 'conleym-use-package)
+  (require 'conleym-builtin-packages))
+
+(require 'conleym-elpa-packages)
 
 
 
