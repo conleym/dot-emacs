@@ -518,6 +518,18 @@
         twittering-use-master-password t)) ;; Store oauth token.
 
 
+(use-package vagrant
+  ;; https://github.com/ottbot/vagrant.el
+  ;; Manage vagrant boxes from emacs.
+  :defer t)
+
+
+(use-package vagrant-tramp
+  ;; https://github.com/dougm/vagrant-tramp
+  ;; vagrant-ssh for tramp.
+  :defer t)
+
+
 (use-package web-mode
   ;; http://web-mode.org
   ;; Major mode for various web template languages.
