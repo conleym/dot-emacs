@@ -508,6 +508,16 @@
   (setq tumblesocks-token-file (conleym:persistence-dir-file "tumblr-oauth-token")))
 
 
+(use-package twittering-mode
+  :defer t
+  :config
+  (setq twittering-display-remaining t   ;; Show # of remaining API calls.
+        twittering-icon-mode t           ;; Show icons
+        twittering-icon-storage-file (conleym:persistence-dir-file "twittering-mode-icons.gz")
+        twittering-use-icon-storage t
+        twittering-use-master-password t)) ;; Store oauth token.
+
+
 (use-package web-mode
   ;; http://web-mode.org
   ;; Major mode for various web template languages.
