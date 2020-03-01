@@ -265,6 +265,12 @@
   :mode ("Vagrantfile\\'" . ruby-mode))
 
 
+(use-package savehist
+  :config
+  (setq savehist-file (conleym:persistence-dir-file "savehist")
+        savehist-additional-variables '(kill-ring search-ring regexp-search-ring)))
+
+
 (use-package saveplace
   :config
   (setq save-place-version-control t
