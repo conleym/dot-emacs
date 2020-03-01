@@ -95,6 +95,19 @@
   (add-to-list 'company-backends #'company-tern))
 
 
+(use-package flycheck
+  ;; http://flycheck.readthedocs.org/en/latest/
+  ;; On the fly syntax checking. Easier to configure and use than flymake.
+  ;;  
+  :delight
+  :config
+  (use-package flycheck-pos-tip
+    :config (flycheck-pos-tip-mode))
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)) ;; Checkdoc just annoys me.
+  (setq-default flycheck-emacs-lisp-load-path 'inherit)
+  (setq-default flycheck-display-errors-delay 1)
+  (global-flycheck-mode))
+
 
 (use-package manage-minor-mode
   ;; https://github.com/ShingoFukuyama/manage-minor-mode
@@ -118,9 +131,30 @@
   (pdf-tools-install :no-query))
 
 
+(use-package prettier-js
+  ;; https://github.com/prettier/prettier-emacs
+  ;; use prettier to format javascript code.
+  :ensure-system-package (prettier . "npm install -g prettier")
+  :hook (js-mode . prettier-js-mode)
+  :init
+  (setq prettier-js-args
+        '("--bracket-spacing" "false"
+          "--single-quote" "true"
+          "--print-width" "80"
+          "--jsx-bracket-same-line")))
+
+
 (use-package reveal-in-osx-finder
   ;; https://github.com/kaz-yos/reveal-in-osx-finder
   :if (conleym:is-mac-app))
+
+
+(use-package smooth-scroll
+  :delight
+  :config
+  (smooth-scroll-mode 1)
+  (setq smooth-scroll/vscroll-step-size 3
+        smooth-scroll/hscroll-step-size 1))
 
 
 (use-package tern
