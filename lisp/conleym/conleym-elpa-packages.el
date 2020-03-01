@@ -510,6 +510,7 @@
 
 (use-package twittering-mode
   :defer t
+  :hook (twittering-mode . conleym:disable-display-line-numbers-mode)
   :config
   ;; https://github.com/hayamiz/twittering-mode/issues/154
   (defalias #'epa--decode-coding-string #'decode-coding-string)
