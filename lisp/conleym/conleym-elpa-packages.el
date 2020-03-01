@@ -323,6 +323,12 @@
   (pdf-tools-install :no-query))
 
 
+(use-package pip-requirements
+  ;; https://github.com/Wilfred/pip-requirements.el
+  ;; requirements.txt highlighting and autocompletion.
+  :defer t)
+
+
 (use-package prettier-js
   ;; https://github.com/prettier/prettier-emacs
   ;; use prettier to format javascript code.
