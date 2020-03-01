@@ -130,7 +130,16 @@
   (elpy-enable))
 
 
+(use-package emr
+  ;; https://github.com/chrisbarrett/emacs-refactor
+  ;; Refactoring library
+  :hook (prog-mode . emr-initialize)
+  :bind (:map prog-mode-map
+              ("M-RET" . #'emr-show-refactor-menu)))
+
+
 (defun conleym:fci-80-mode ()
+  "Draw the fill column indicator in column 80."
   (interactive)
   (setq fci-rule-column 80) ;; becomes local when set.
   (fci-mode 1))
