@@ -478,12 +478,11 @@
   (add-hook 'TeX-mode-hook (lambda() (TeX-fold-mode t)))
   (add-hook 'LaTeX-mode-hook (lambda() (setq TeX-command-default "LatexMk")))
   :config
+  (use-package preview
+    :config
+    (setq preview-auto-cache-preamble t))
   (setq-default TeX-master nil)
   (setq LaTeX-math-menu-unicode t
-        preview-auto-cache-preamble t
-        TeX-auto-save t
-        TeX-auto-untabify t
-        ;; Don't ask if I want to clean. Of course I want to clean.
         TeX-clean-confirm nil
         TeX-complete-expert-commands t
         ;; Don't ask me if I want to see the errors. Of course I want to see the errors.
@@ -601,6 +600,7 @@
 (use-package zone-nyan
   :after (zone)
   :defer t
+  :defines zone-programs
   :config
   (add-to-list 'zone-programs #'zone-nyan))
 
