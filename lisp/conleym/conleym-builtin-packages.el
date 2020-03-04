@@ -161,8 +161,8 @@
 (use-package imenu
   ;; enable auto rescan, and sort by name.
   :config
-   (setq imenu-auto-rescan t
-         imenu-sort-function #'imenu--sort-by-name))
+  (setq imenu-auto-rescan t
+        imenu-sort-function #'imenu--sort-by-name))
 
 
 (use-package ispell
@@ -177,6 +177,7 @@
 
 (use-package js-mode
   :mode "\\.js[mx]?\\'"
+  :defines js-mode-map
   :config
   ;; Can't use chord, because it doesn't yet support local keymaps.
   ;; See https://github.com/jwiegley/use-package/pull/778/files
