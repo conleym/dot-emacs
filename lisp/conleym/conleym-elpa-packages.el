@@ -479,6 +479,7 @@
   (add-hook 'LaTeX-mode-hook (lambda() (setq TeX-command-default "LatexMk")))
   :config
   (use-package preview
+    :ensure nil ;; included with auctex
     :config
     (setq preview-auto-cache-preamble t))
   (setq-default TeX-master nil)
