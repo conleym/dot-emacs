@@ -297,8 +297,9 @@
 (use-package sh-script
   ;; Configure sh-mode for better zsh support.
   :config
-  :mode ("\\.zsh\\'" . conleym:zsh-mode)
-        ("^\\.zshenv\\'" . conleym:zsh-mode))
+  :mode (("\\.zsh\\'" . conleym:zsh-mode)
+         ("^\\.zshenv\\'" . conleym:zsh-mode)
+         ("^\\.zprofile\\'" . conleym:zsh-mode)))
 
 
 (use-package shell
