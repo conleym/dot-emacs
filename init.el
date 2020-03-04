@@ -1,6 +1,3 @@
-;; Emacs will add a call to package-initialize unless we have this here.
-;; (package-initialize)
-
 (setq load-prefer-newer t)
 (prefer-coding-system 'utf-8)
 
