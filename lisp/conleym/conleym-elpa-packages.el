@@ -167,6 +167,12 @@
   ;; https://github.com/alpaker/Fill-Column-Indicator
   ;; Draw a line at a given column.
   :defer t
+  :config
+  (defun conleym:fci-80-mode ()
+    "Draw the fill column indicator in column 80."
+    (interactive)
+    (setq fci-rule-column 80) ;; becomes local when set.
+    (fci-mode 1))  
   :hook (python-mode . conleym:fci-80-mode))
 
 
@@ -314,6 +320,21 @@
   (require 'sasl)
   ;; oauth tries and fails to figure this out when compiling.
   (setq oauth-nonce-function #'sasl-unique-id))
+
+
+(use-package osx-location
+  ;; https://github.com/purcell/osx-location
+  ;; Location services for emacs.
+  :if (conleym:is-darwin)
+  :config
+  (use-package solar
+    :ensure nil)
+  ;; using a named function here seems to cause the package to break.
+  :hook (osx-location-changed . (lambda () 
+                                  (setq calendar-latitude osx-location-latitude
+                                        calendar-longitude osx-location-longitude
+                                        calendar-location-name
+                                        (format "%s, %s" osx-location-latitude osx-location-longitude)))))
 
 
 (use-package paradox
@@ -504,6 +525,14 @@
 (use-package tide
   ;; https://github.com/ananthakumaran/tide/
   ;; typescript support
+  :config
+  (defun conleym:setup-tide-mode ()
+    (interactive)
+    (tide-setup)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    ;; slight difference from readme version because
+    ;; company, flycheck, and eldoc are all globally enabled.
+    (tide-hl-identifier-mode +1))
   :hook ((typescript-mode . conleym:setup-tide-mode)
          (before-save . tide-format-before-save)))
 

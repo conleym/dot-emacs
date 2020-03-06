@@ -161,6 +161,14 @@
 (use-package imenu
   ;; enable auto rescan, and sort by name.
   :config
+  
+  (defun conleym:safe-imenu()
+    "Try to add imenu index to the menubar, ignoring errors if imenu isn't supported in this major mode."
+    (interactive)
+    (require 'imenu)
+    (ignore-errors
+      (progn
+        (imenu-add-menubar-index))))
   (setq imenu-auto-rescan t
         imenu-sort-function #'imenu--sort-by-name))
 
