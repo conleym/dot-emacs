@@ -73,29 +73,5 @@
   (unless indent-tabs-mode
     (conleym:untabify-buffer)))
 
-(defun conleym:safe-imenu()
-    "Try to add imenu index to the menubar, ignoring errors if imenu
-isn't supported in this major mode."
-    (interactive)
-    (require 'imenu)
-    (ignore-errors
-      (progn
-        (imenu-add-menubar-index))))
-
-
-(defun conleym:setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  ;; slight difference from readme version because
-  ;; company, flycheck, and eldoc are all globally enabled.
-  (tide-hl-identifier-mode +1))
-
-(defun conleym:fci-80-mode ()
-  "Draw the fill column indicator in column 80."
-  (interactive)
-  (setq fci-rule-column 80) ;; becomes local when set.
-  (fci-mode 1))
-
 
 (provide 'conleym-init-utils)
