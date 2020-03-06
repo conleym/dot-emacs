@@ -201,6 +201,14 @@
   (global-flycheck-mode))
 
 
+;; (use-package flycheck-relint
+;;   ;; https://github.com/purcell/flycheck-relint
+;;   ;; flycheck for elisp regexes.
+;;   :after (flycheck relint)
+;;   :init
+;;   (flycheck-relint-setup))
+
+
 (use-package git-timemachine
   ;; https://gitlab.com/pidu/git-timemachine/
   ;; go forward and backward in git history with "n" and "p", etc.
@@ -420,6 +428,9 @@
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
+
+
+(use-package relint)
 
 
 (use-package restclient
