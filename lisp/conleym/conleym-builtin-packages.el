@@ -159,16 +159,20 @@
 
 
 (use-package imenu
-  ;; enable auto rescan, and sort by name.
+  :hook (after-change-major-mode . conleym:safe-imenu)
   :config
-  
   (defun conleym:safe-imenu()
     "Try to add imenu index to the menubar, ignoring errors if imenu isn't supported in this major mode."
     (interactive)
     (require 'imenu)
-    (ignore-errors
-      (progn
-        (imenu-add-menubar-index))))
+    (unless (active-minibuffer-window)
+      (condition-case err
+          (imenu-add-menubar-index)
+        (imenu-unavailable
+         ;; Don't show it in the echo area. Just plop it into *Messages*.
+         (let ((inhibit-message t))
+           (message "%s" (error-message-string err)))))))
+  ;; enable auto rescan, and sort by name.
   (setq imenu-auto-rescan t
         imenu-sort-function #'imenu--sort-by-name))
 
