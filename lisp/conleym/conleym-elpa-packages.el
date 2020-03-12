@@ -261,6 +261,12 @@
   (ido-ubiquitous-mode t))
 
 
+(use-package imenu-list
+  ;; https://github.com/bmag/imenu-list
+  :after (imenu)
+  :hook (imenu-list-major-mode . conleym:disable-display-line-numbers-mode))
+
+
 (use-package json-mode
   ;; https://github.com/joshwnj/json-mode
   ;; Major mode for editing JSON.
