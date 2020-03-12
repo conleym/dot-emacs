@@ -42,7 +42,8 @@
  '(tab-width 4 nil nil "Who the hell uses a tab width of 8 (the default)?")
  '(tool-bar-mode nil)
  '(tramp-syntax 'default nil (tramp))
- '(use-dialog-box nil nil nil "The dialog box is annoying and, in some situations, works incorrectly on Mac."))
+ '(use-dialog-box nil nil nil "The dialog box is annoying and, in some situations, works incorrectly on Mac.")
+ '(use-package-enable-imenu-support t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
