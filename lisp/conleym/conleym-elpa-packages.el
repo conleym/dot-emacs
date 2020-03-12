@@ -106,6 +106,10 @@
 )
 
 
+(use-package dired-imenu
+  :after (dired imenu))
+
+
 (use-package dockerfile-mode
   ;; https://github.com/spotify/dockerfile-mode
   :mode "Dockerfile[a-zA-Z.-]*\\'"
