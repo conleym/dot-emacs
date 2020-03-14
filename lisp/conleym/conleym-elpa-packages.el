@@ -158,7 +158,24 @@
   :hook ((sgml-mode . emmet-mode)
          (css-mode . emmet-mode)))
 
-         
+
+(use-package emojify
+  ;; https://github.com/iqbalansari/emacs-emojify
+  ;; Convert some sequences of characters to emojis.
+  :config
+  (setq emojify-emojis-dir (conleym:persistence-dir-file "emojis/")
+        ;; download w/o asking 
+        emojify-download-emojis-p t
+        ;; show only github emojis. emoticons are too common in documents, and
+        ;; unicode characters are already handled by fonts.
+        emojify-emoji-styles '(github)
+        ;; TODO be more sophisticated about this: is a suitable font available?
+        ;; use unicode fonts, not images.
+        emojify-display-style 'unicode)
+  :init
+  (global-emojify-mode))
+
+
 (use-package emr
   ;; https://github.com/chrisbarrett/emacs-refactor
   ;; Refactoring library
