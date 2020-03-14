@@ -328,8 +328,10 @@
 
 (use-package ns-auto-titlebar
   ;; https://github.com/purcell/ns-auto-titlebar
-  :if (conleym:is-darwin)
-  :config (ns-auto-titlebar-mode))
+  :if
+  (conleym:is-darwin)
+  :config
+  (ns-auto-titlebar-mode))
 
 
 (use-package noflet
@@ -342,16 +344,17 @@
 
 (use-package nov
   :mode ("\\.epub\\'" . nov-mode)
-  :config
-  (custom-set-variables '(nov-save-place-file (conleym:persistence-dir-file "nov-places"))))
+  :custom
+  (nov-save-place-file (conleym:persistence-dir-file "nov-places") "Keep saved places in persistence dir."))
 
 
 (use-package nyan-mode
   ;; http://nyan-mode.buildsomethingamazing.com
   ;; The most useful thing ever.
+  :custom
+  (nyan-animation-frame-interval 0.1 "Set reasonable frame interval for nyan.")
+  (nyan-wavy-trail t "Make nyan's trail wavy.")
   :config
-  (setq nyan-animation-frame-interval 0.1
-        nyan-wavy-trail t)
   (nyan-mode)
   ;; Customizing nyan-animate-nyancat calls this, but I don't want
   ;; to use customize for packages.
