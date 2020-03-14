@@ -95,6 +95,12 @@
   :after (company))
 
 
+(use-package company-emoji
+  :after (company)
+  :init
+  (add-to-list 'company-backends #'company-emoji))
+
+
 ;; TODO use this or get rid of it.
 (use-package crux
   ;; https://github.com/bbatsov/crux
