@@ -331,6 +331,13 @@
   :hook (speedbar-mode . conleym:disable-display-line-numbers-mode))
 
 
+(use-package sql
+  :after (abbrev)
+  :config
+  ;; I find these abbrevs unhelpful.
+  (clear-abbrev-table sql-mode-abbrev-table))
+
+
 (use-package subword
   :delight
   :config
