@@ -116,6 +116,9 @@
   :after (dired imenu))
 
 
+(use-package docker-tramp)
+
+
 (use-package dockerfile-mode
   ;; https://github.com/spotify/dockerfile-mode
   :mode "Dockerfile[a-zA-Z.-]*\\'"
