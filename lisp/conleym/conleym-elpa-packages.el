@@ -294,6 +294,11 @@
   :hook (imenu-list-major-mode . conleym:disable-display-line-numbers-mode))
 
 
+(use-package jq-mode
+  ;; https://github.com/ljos/jq-mode
+)
+
+
 (use-package json-mode
   ;; https://github.com/joshwnj/json-mode
   ;; Major mode for editing JSON.
