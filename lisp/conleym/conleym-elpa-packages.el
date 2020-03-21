@@ -551,7 +551,7 @@
   :config
   (use-package preview
     :ensure nil ;; included with auctex
-    :config
+    :custom
     (setq preview-auto-cache-preamble t))
   (setq-default TeX-master nil)
   (setq LaTeX-math-menu-unicode t

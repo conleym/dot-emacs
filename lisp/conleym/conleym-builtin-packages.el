@@ -132,9 +132,8 @@
 
 (use-package gamegrid
   :defer t
-  :config
-  (setq gamegrid-user-score-file-directory
-        (conleym:persistence-dir-file "games/"))
+  :custom
+  (gamegrid-user-score-file-directory (conleym:persistence-dir-file "games/"))
   (conleym:maybe-mkdir gamegrid-user-score-file-directory))
 
 
@@ -147,18 +146,18 @@
 (use-package ido
   ;; Search recently opened files, not just currently open ones
   ;; and use flex matching.
-  :config
-  (setq ido-enable-flex-matching t
-        ido-max-prospects 10
-        ido-save-directory-list-file (conleym:persistence-dir-file "ido.last")
-        ido-use-virtual-buffers t)
+  :custom
+  (ido-enable-flex-matching t)
+  (ido-max-prospects 10)
+  (ido-save-directory-list-file (conleym:persistence-dir-file "ido.last"))
+  (ido-use-virtual-buffers t)
   (ido-mode t)
   (ido-everywhere t))
 
 
 (use-package image-dired
-  :config
-  (setq image-dired-dir (conleym:persistence-dir-file "image-dired")))
+  :custom
+  (image-dired-dir (conleym:persistence-dir-file "image-dired") "Keep thumbnails in the persistence directory."))
 
 
 (use-package imenu
@@ -204,10 +203,10 @@
   :defer t
   :magic  (("<\\?xml" . nxml-mode)
            ("<![dD][oO][cC][tT][yY][pP][eE]" . nxml-mode))
-  :config
-  (setq nxml-attribute-indent tab-width
-        nxml-child-indent tab-width
-        nxml-slash-auto-complete-flag t))
+  :custom
+  (nxml-attribute-indent tab-width)
+  (nxml-child-indent tab-width)
+  (nxml-slash-auto-complete-flag t))
 
 
 (use-package nsm
@@ -259,10 +258,10 @@
 
 (use-package recentf
   :bind ("C-x C-r" . conleym:recentf-ido-find-file)
-  :config
-  (setq recentf-save-file (conleym:persistence-dir-file "recentf")
-        recentf-max-menu-items 25
-        recentf-max-saved-items 400)
+  :custom
+  (recentf-save-file (conleym:persistence-dir-file "recentf"))
+  (recentf-max-menu-items 25)
+  (recentf-max-saved-items 400)
   ;; Up arrow will go to previously opened files in this session if you
   ;; hit up in the minibuffer.
   :hook (ido-setup . conleym:setup-ido-with-recentf)
@@ -273,8 +272,8 @@
 
 (use-package reftex
   :hook (LaTeX-mode . turn-on-reftex)
-  :config
-  (setq reftex-plug-into-AUCTeX t))
+  :custom
+  (reftex-plug-into-AUCTeX t))
 
 
 (use-package ruby-mode
@@ -282,25 +281,23 @@
 
 
 (use-package savehist
-  :config
+  :custom
   ;; I don't use this, but in case it ever gets turned on, save data in the proper place.
-  (setq savehist-file (conleym:persistence-dir-file "savehist")))
+  (savehist-file (conleym:persistence-dir-file "savehist")))
 
 
 (use-package saveplace
-  :config
-  (setq save-place-version-control t
-        save-place-file (conleym:persistence-dir-file "saved-places"))
+  :custom
+  (save-place-version-control t)
+  (save-place-file (conleym:persistence-dir-file "saved-places"))
   :init
   (save-place-mode +1))
 
 
 (use-package semantic
   :defer t
-  :defines (semanticdb-default-save-directory)
-  :config
-  (setq semanticdb-default-save-directory
-        (conleym:persistence-dir-file "semanticdb/")))
+  :custom
+  (semanticdb-default-save-directory (conleym:persistence-dir-file "semanticdb/")))
 
 
 (use-package server
@@ -311,7 +308,6 @@
 
 (use-package sh-script
   ;; Configure sh-mode for better zsh support.
-  :config
   :mode (("\\.zsh\\'" . conleym:zsh-mode)
          ("^\\.zshenv\\'" . conleym:zsh-mode)
          ("^\\.zprofile\\'" . conleym:zsh-mode)))
@@ -327,9 +323,9 @@
 
 
 (use-package speedbar
-  :config
-  (setq speedbar-default-position 'left
-        speedbar-show-unknown-files t)
+  :custom
+  (speedbar-default-position 'left)
+  (speedbar-show-unknown-files t)
   ;; Turn line numbers off in the speedbar buffer.
   :hook (speedbar-mode . conleym:disable-display-line-numbers-mode))
 
@@ -353,10 +349,8 @@
 
 
 (use-package vc-hooks
-  :config
-  ;; Just because it's in version control doesn't mean I want no
-  ;; local backups...
-  (setq vc-make-backup-files t))
+  :custom
+  (vc-make-backup-files t " Just because it's in version control doesn't mean I don't want local backups."))
 
 
 (use-package wdired
