@@ -81,6 +81,11 @@
   (auto-package-update-maybe))
 
 
+(use-package browse-at-remote
+  :custom
+  (browse-at-runtime-prefer-symbolic nil "Use commit hashes for longer-lived links."))
+
+
 (use-package company
   ;; https://github.com/company-mode/company-mode
   ;; Autocompletion
@@ -254,14 +259,6 @@
   :hook (gitconfig-mode . (lambda()
                             ;; I don't want to indent with tabs. Tabs are stupid.
                             (setq indent-tabs-mode nil))))
-
-
-(use-package github-browse-file
-  ;; https://github.com/osener/github-browse-file
-  ;; View files on github.com
-  :defer t
-  :custom
-  (github-browse-file-show-line-at-point t "Link to current line or active region."))
 
 
 (use-package gitignore-mode
