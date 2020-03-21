@@ -207,10 +207,10 @@
   ;; https://github.com/lewang/flx
   ;; Fuzzy matching for ido-mode.
   :after (ido)
+  :custom
+  (ido-use-faces nil "Disable ido's faces so we can see flx's highlighting instead.")
+  (flx-ido-threshold 10000)
   :config
-  ;; disable ido's faces so we can see flx's highlighting instead
-  (setq ido-use-faces nil
-        flx-ido-threshold 10000)
   (flx-ido-mode t))
 
 
@@ -319,8 +319,8 @@
   ;; Major mode for editing markdown. Includes gfm-mode for github-flavored
   ;;   markdown. An external markdown program must be installed for preview
   ;;   functionality. I've installed `multimarkdown` with macports.
-  :config
-  (setq markdown-command "multimarkdown"))
+  :custom
+  (markdown-command "multimarkdown"))
 
 
 (use-package ns-auto-titlebar
@@ -635,15 +635,16 @@
             (lambda ()
               (when (string-equal "tsx" (file-name-extension buffer-file-name))
                 (conleym:setup-tide-mode))))
+  :custom
+  (web-mode-enable-current-element-highlight t)
   :config
-  (setq web-mode-enable-current-element-highlight t)
   (flycheck-add-mode 'typescript-tslint 'web-mode))
 
 
 (use-package xkcd
   ;; https://github.com/vibhavp/emacs-xkcd
   ;; Read XKCD in Emacs.
-
+  ;;
   ;; I want to be able to resize the images. Note that xkcd-mode must be
   ;; added to eimp-ignore-readonly-modes for that to work (it's
   ;; customized).
@@ -652,12 +653,13 @@
   :bind (:map xkcd-mode-map
               ("n" . #'xkcd-next)
               ("p" . #'xkcd-prev))
+  :custom
+  (xkcd-cache-dir (conleym:persistence-dir-file "xkcd/")  "Keep xkcd files in the persistence directory.")
+  (xkcd-cache-latest (concat xkcd-cache-dir "latest")  "Keep xkcd files in the persistence directory.")
   :config
-  (setq xkcd-cache-dir
-        (conleym:persistence-dir-file "xkcd/"))
-  ;; Avoid stupid mkdir-RET-RET message when directory doesn't exist.
-  (conleym:maybe-mkdir xkcd-cache-dir)
-  (setq xkcd-cache-latest (concat xkcd-cache-dir "latest")))
+  ;; Avoid stupid mkdir-RET-RET message, plus failure to load, when directory doesn't exist.
+  (conleym:maybe-mkdir xkcd-cache-dir))
+  
 
 
 (use-package yagist
@@ -670,8 +672,8 @@
   ;; https://github.com/yoshiki/yaml-mode
   ;; Major mode for editing YAML.
   :mode "\\.ya?ml\\'"
-  :config
-  (setq yaml-indent-offset tab-width))
+  :custom
+  (yaml-indent-offset tab-width))
 
 
 (use-package zone-nyan
