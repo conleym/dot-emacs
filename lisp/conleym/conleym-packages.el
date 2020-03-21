@@ -20,6 +20,7 @@
 
 (setq use-package-verbose t)
 (setq use-package-always-ensure t)
+(setq use-package-compute-statistics t)
 
 ;; implements the :delight keyword
 (use-package delight)
