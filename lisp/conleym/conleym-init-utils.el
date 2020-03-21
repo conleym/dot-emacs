@@ -16,9 +16,8 @@
   (concat (conleym:dot-dir-file "persistence/") file))
 
 (defun conleym:maybe-mkdir (dir)
-  "Create DIR unless it already exists."
-  (unless (file-exists-p dir)
-    (mkdir dir t)))
+  "Create DIR and parents, as needed."
+  (mkdir dir t))
 
 (defun conleym:is-darwin ()
   "Is this emacs running on a darwin-based system?"
