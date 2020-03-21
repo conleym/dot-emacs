@@ -597,15 +597,17 @@
 
 (use-package twittering-mode
   :defer t
-  :hook (twittering-mode . conleym:disable-display-line-numbers-mode)
+  :hook (twittering-mode . (lambda()
+                             (conleym:disable-display-line-numbers-mode)
+                             (twittering-icon-mode)))
   :config
   ;; https://github.com/hayamiz/twittering-mode/issues/154
   (defalias #'epa--decode-coding-string #'decode-coding-string)
-  (setq twittering-display-remaining t   ;; Show # of remaining API calls.
-        twittering-icon-mode t           ;; Show icons
-        twittering-icon-storage-file (conleym:persistence-dir-file "twittering-mode-icons.gz")
-        twittering-use-icon-storage t
-        twittering-use-master-password t)) ;; Store oauth token.
+  :custom
+  (twittering-display-remaining t "Show number of remaining API calls in the modeline.")
+  (twittering-icon-storage-file (conleym:persistence-dir-file "twittering-mode-icons.gz") "Keep twitter icons in the persistence directory.")
+  (twittering-use-icon-storage t)
+  (twittering-use-master-password t "Store the oauth token."))
 
 
 (use-package unicode-troll-stopper
