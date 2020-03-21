@@ -315,6 +315,11 @@
 
 (use-package shell
   :config
+  (defun conleym:zsh-mode()
+    "Shell mode with zsh syntax."
+    (interactive)
+    (sh-mode)
+    (sh-set-shell "zsh"))
   ;; Use zsh if available.
   (let ((zsh (executable-find "zsh")))
     (when zsh
