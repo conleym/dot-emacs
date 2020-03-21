@@ -347,6 +347,11 @@
   (global-subword-mode t))
 
 
+(use-package tramp
+  :custom
+  (tramp-default-method "ssh" "Faster than scp."))
+
+
 (use-package vc-hooks
   :config
   ;; Just because it's in version control doesn't mean I want no
