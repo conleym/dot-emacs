@@ -384,14 +384,15 @@
 (use-package paradox
   ;; https://github.com/Malabarba/paradox
   ;; Better package management, with asynchrony.
-  :config
-  (setq paradox-automatically-star nil
-        paradox-column-width-package 36
-        paradox-column-width-version 16
-        paradox-column-width-download 8
-        paradox-display-download-count t
-        paradox-execute-asynchronously t
-        paradox-lines-per-entry 2)
+  :custom
+  (paradox-automatically-star nil)
+  (paradox-column-width-package 36)
+  (paradox-column-width-version 16)
+  (paradox-column-width-download 8)
+  (paradox-display-download-count t)
+  (paradox-execute-asynchronously t)
+  (paradox-lines-per-entry 2)
+  :custom
   ;; paradox-enable makes package-list-packages use the paradox-menu,
   ;; but it doesn't fetch star counts...
   (paradox-enable))
@@ -419,12 +420,12 @@
   :delight
   :ensure-system-package (prettier . "npm install -g prettier")
   :hook (js-mode . prettier-js-mode)
-  :init
-  (setq prettier-js-args
-        '("--bracket-spacing" "false"
-          "--single-quote" "true"
-          "--print-width" "80"
-          "--jsx-bracket-same-line")))
+  :custom
+  (prettier-js-args
+   '("--bracket-spacing" "false"
+     "--single-quote" "true"
+     "--print-width" "80"
+     "--jsx-bracket-same-line")))
 
 
 (use-package rainbow-mode
@@ -498,18 +499,20 @@
   ;; Better M-x, built on ido.
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands))
+  :custom
+  (smex-history-length 200)
+  (smex-save-file (conleym:persistence-dir-file "smex-items"))
   :config
-  (setq smex-history-length 200
-        smex-save-file (conleym:persistence-dir-file "smex-items"))
   (smex-initialize))
 
 
 (use-package smooth-scroll
   :delight
+  :custom
+  (smooth-scroll/vscroll-step-size 3)
+  (smooth-scroll/hscroll-step-size 1)
   :config
-  (smooth-scroll-mode 1)
-  (setq smooth-scroll/vscroll-step-size 3
-        smooth-scroll/hscroll-step-size 1))
+  (smooth-scroll-mode 1))
 
 
 (use-package tern
