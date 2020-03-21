@@ -304,7 +304,7 @@
   ;; Major mode for editing JSON.
   :mode
   ;; HTTP archives
-  "\\.har\\'")
+  ("\\.har\\'" "\\.json\\'"))
 
 
 (use-package lastpass
