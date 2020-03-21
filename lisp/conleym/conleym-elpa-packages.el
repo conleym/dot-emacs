@@ -10,11 +10,11 @@
 (use-package ag
   ;; https://github.com/Wilfred/ag.el
   ;; Silver searcher front end.
-  :config
-  (setq ag-highlight-search 't)
+  :custom
+  (ag-highlight-search 't)
   ;; TODO do I want this?
-  ;; (setq ag-reuse-window 't)
-  ;; (setq ag-reuse-buffers 't)
+  ;; (ag-reuse-window 't)
+  ;; (ag-reuse-buffers 't)
   )
 
 
@@ -41,8 +41,8 @@
 (use-package all-the-icons-ibuffer
   ;; https://github.com/seagle0128/all-the-icons-ibuffer
   ;; Add icons to ibuffer.
-  :config
-  (setq  all-the-icons-ibuffer-human-readable-size t)
+  :custom
+  (all-the-icons-ibuffer-human-readable-size t "Use human readable file sizes in ibuffer-mode.")
   :init (all-the-icons-ibuffer-mode 1))
 
 
@@ -55,29 +55,29 @@
 (use-package auctex-latexmk
   ;; https://github.com/tom-tan/auctex-latexmk
   ;; Sets auctex up to use the latexmk command.
-  :config
-  (setq auctex-latexmk-inherit-TeX-PDF-mode t))
+  :custom
+  (auctex-latexmk-inherit-TeX-PDF-mode t))
 
 
 (use-package auto-compile
   ;; https://github.com/tarsius/auto-compile
   ;; Automatically byte (re)compile elisp files.
   :hook (emacs-lisp-mode . auto-compile-mode)
-  :config
-  (setq auto-compile-display-buffer nil
-        auto-compile-mode-line-counter t
-        auto-compile-on-load-mode t
-        auto-compile-on-save-mode t
-        auto-compile-update-autoloads t))
+  :custom
+  (auto-compile-display-buffer nil "Don't bring up the compile log buffer.")
+  (auto-compile-mode-line-counter t "Show warnings on modeline.")
+  (auto-compile-update-autoloads t)
+  (auto-compile-on-load-mode t)
+  (auto-compile-on-save-mode t))
 
 
 (use-package auto-package-update
   ;; https://github.com/rranelli/auto-package-update.el
   ;; Automatically update installed packages
+  :custom
+  (auto-package-update-delete-old-versions t "Clean up old versions")
+  (auto-package-update-interval 1 "Update daily.")
   :init
-  ;; update daily. remove old versions.
-  (setq auto-package-update-delete-old-versions t
-        auto-package-update-interval 1)
   (auto-package-update-maybe))
 
 
@@ -92,11 +92,10 @@
 (use-package company-auctex
   ;; https://github.com/alexeyr/company-auctex
   ;; auctex completion
-  :after (company))
+)
 
 
 (use-package company-emoji
-  :after (company)
   :init
   (add-to-list 'company-backends #'company-emoji))
 
@@ -116,7 +115,8 @@
   :after (dired imenu))
 
 
-(use-package docker-tramp)
+(use-package docker-tramp
+  :after (tramp))
 
 
 (use-package dockerfile-mode
@@ -139,8 +139,8 @@
   ;; Image manipulation using ImageMagick, which must be installed and available
   ;;   in the $PATH.
   :hook (image-mode . eimp-mode)
-  :config
-  (setq eimp-enable-undo t))
+  :custom
+  (eimp-enable-undo t))
 
 
 (use-package elpy
@@ -149,7 +149,8 @@
   :hook (elpy-mode . flycheck-mode)
   :config
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-  (setq elpy-rpc-virtualenv-path (conleym:persistence-dir-file "elpy"))
+  :custom
+  (elpy-rpc-virtualenv-path (conleym:persistence-dir-file "elpy") "Keep the elpy venv in the persistence directory.")
   :init
   (elpy-enable))
 
@@ -165,16 +166,12 @@
 (use-package emojify
   ;; https://github.com/iqbalansari/emacs-emojify
   ;; Convert some sequences of characters to emojis.
-  :config
-  (setq emojify-emojis-dir (conleym:persistence-dir-file "emojis/")
-        ;; download w/o asking 
-        emojify-download-emojis-p t
-        ;; show only github emojis. emoticons are too common in documents, and
-        ;; unicode characters are already handled by fonts.
-        emojify-emoji-styles '(github)
-        ;; TODO be more sophisticated about this: is a suitable font available?
-        ;; use unicode fonts, not images.
-        emojify-display-style 'unicode)
+  :custom
+  (emojify-emojis-dir (conleym:persistence-dir-file "emojis/") "Keep the emoji images in the persistence directory.")
+  (emojify-download-emojis-p t "Download emoji images without asking. I hate prompts.")
+  (emojify-emoji-styles '(github) "Show only github emojis. Emoticons are too common in documents, and unicode chars are already handled by fonts.")
+  ;; TODO be more sophisticated about this: is a suitable font available?
+  (emojify-display-style 'unicode "Use unicode fonts, not the images.")
   :init
   (global-emojify-mode))
 
@@ -263,8 +260,8 @@
   ;; https://github.com/osener/github-browse-file
   ;; View files on github.com
   :defer t
-  :config
-  (setq github-browse-file-show-line-at-point t))
+  :custom
+  (github-browse-file-show-line-at-point t "Link to current line or active region."))
 
 
 (use-package gitignore-mode
@@ -624,7 +621,7 @@
 (use-package vagrant-tramp
   ;; https://github.com/dougm/vagrant-tramp
   ;; vagrant-ssh for tramp.
-  :defer t)
+  :after (tramp))
 
 
 (use-package web-mode
