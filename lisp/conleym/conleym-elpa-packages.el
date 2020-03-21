@@ -154,10 +154,12 @@
   ;; https://github.com/jorgenschaefer/elpy
   ;; Python development env
   :hook (elpy-mode . flycheck-mode)
-  :config
-  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   :custom
   (elpy-rpc-virtualenv-path (conleym:persistence-dir-file "elpy") "Keep the elpy venv in the persistence directory.")
+  :config
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  ;; Avoid confirmation prompt if virtualenv doesn't exist.
+  (conleym:maybe-mkdir elpy-rpc-virtualenv-path)
   :init
   (elpy-enable))
 
