@@ -82,6 +82,8 @@
 
 
 (use-package browse-at-remote
+  ;; https://github.com/rmuslimov/browse-at-remote
+  ;; Show the current file in the remote repository.
   :custom
   (browse-at-runtime-prefer-symbolic nil "Use commit hashes for longer-lived links."))
 

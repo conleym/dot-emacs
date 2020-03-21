@@ -73,6 +73,7 @@
 
 (use-package dired
   :custom
+  (dired-listing-switches "-alh" "Make file sizes human-readable.")
   (dired-auto-revert-buffer t "Always revert dired buffers."))
 
 
