@@ -10,11 +10,11 @@
 (use-package ag
   ;; https://github.com/Wilfred/ag.el
   ;; Silver searcher front end.
-  :config
-  (setq ag-highlight-search 't)
+  :custom
+  (ag-highlight-search 't)
   ;; TODO do I want this?
-  ;; (setq ag-reuse-window 't)
-  ;; (setq ag-reuse-buffers 't)
+  ;; (ag-reuse-window 't)
+  ;; (ag-reuse-buffers 't)
   )
 
 
@@ -41,8 +41,8 @@
 (use-package all-the-icons-ibuffer
   ;; https://github.com/seagle0128/all-the-icons-ibuffer
   ;; Add icons to ibuffer.
-  :config
-  (setq  all-the-icons-ibuffer-human-readable-size t)
+  :custom
+  (all-the-icons-ibuffer-human-readable-size t "Use human readable file sizes in ibuffer-mode.")
   :init (all-the-icons-ibuffer-mode 1))
 
 
@@ -55,29 +55,29 @@
 (use-package auctex-latexmk
   ;; https://github.com/tom-tan/auctex-latexmk
   ;; Sets auctex up to use the latexmk command.
-  :config
-  (setq auctex-latexmk-inherit-TeX-PDF-mode t))
+  :custom
+  (auctex-latexmk-inherit-TeX-PDF-mode t))
 
 
 (use-package auto-compile
   ;; https://github.com/tarsius/auto-compile
   ;; Automatically byte (re)compile elisp files.
   :hook (emacs-lisp-mode . auto-compile-mode)
-  :config
-  (setq auto-compile-display-buffer nil
-        auto-compile-mode-line-counter t
-        auto-compile-on-load-mode t
-        auto-compile-on-save-mode t
-        auto-compile-update-autoloads t))
+  :custom
+  (auto-compile-display-buffer nil "Don't bring up the compile log buffer.")
+  (auto-compile-mode-line-counter t "Show warnings on modeline.")
+  (auto-compile-update-autoloads t)
+  (auto-compile-on-load-mode t)
+  (auto-compile-on-save-mode t))
 
 
 (use-package auto-package-update
   ;; https://github.com/rranelli/auto-package-update.el
   ;; Automatically update installed packages
+  :custom
+  (auto-package-update-delete-old-versions t "Clean up old versions")
+  (auto-package-update-interval 1 "Update daily.")
   :init
-  ;; update daily. remove old versions.
-  (setq auto-package-update-delete-old-versions t
-        auto-package-update-interval 1)
   (auto-package-update-maybe))
 
 
@@ -92,11 +92,10 @@
 (use-package company-auctex
   ;; https://github.com/alexeyr/company-auctex
   ;; auctex completion
-  :after (company))
+)
 
 
 (use-package company-emoji
-  :after (company)
   :init
   (add-to-list 'company-backends #'company-emoji))
 
@@ -116,7 +115,8 @@
   :after (dired imenu))
 
 
-(use-package docker-tramp)
+(use-package docker-tramp
+  :after (tramp))
 
 
 (use-package dockerfile-mode
@@ -139,8 +139,8 @@
   ;; Image manipulation using ImageMagick, which must be installed and available
   ;;   in the $PATH.
   :hook (image-mode . eimp-mode)
-  :config
-  (setq eimp-enable-undo t))
+  :custom
+  (eimp-enable-undo t))
 
 
 (use-package elpy
@@ -149,7 +149,8 @@
   :hook (elpy-mode . flycheck-mode)
   :config
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-  (setq elpy-rpc-virtualenv-path (conleym:persistence-dir-file "elpy"))
+  :custom
+  (elpy-rpc-virtualenv-path (conleym:persistence-dir-file "elpy") "Keep the elpy venv in the persistence directory.")
   :init
   (elpy-enable))
 
@@ -165,16 +166,12 @@
 (use-package emojify
   ;; https://github.com/iqbalansari/emacs-emojify
   ;; Convert some sequences of characters to emojis.
-  :config
-  (setq emojify-emojis-dir (conleym:persistence-dir-file "emojis/")
-        ;; download w/o asking 
-        emojify-download-emojis-p t
-        ;; show only github emojis. emoticons are too common in documents, and
-        ;; unicode characters are already handled by fonts.
-        emojify-emoji-styles '(github)
-        ;; TODO be more sophisticated about this: is a suitable font available?
-        ;; use unicode fonts, not images.
-        emojify-display-style 'unicode)
+  :custom
+  (emojify-emojis-dir (conleym:persistence-dir-file "emojis/") "Keep the emoji images in the persistence directory.")
+  (emojify-download-emojis-p t "Download emoji images without asking. I hate prompts.")
+  (emojify-emoji-styles '(github) "Show only github emojis. Emoticons are too common in documents, and unicode chars are already handled by fonts.")
+  ;; TODO be more sophisticated about this: is a suitable font available?
+  (emojify-display-style 'unicode "Use unicode fonts, not the images.")
   :init
   (global-emojify-mode))
 
@@ -210,10 +207,10 @@
   ;; https://github.com/lewang/flx
   ;; Fuzzy matching for ido-mode.
   :after (ido)
+  :custom
+  (ido-use-faces nil "Disable ido's faces so we can see flx's highlighting instead.")
+  (flx-ido-threshold 10000)
   :config
-  ;; disable ido's faces so we can see flx's highlighting instead
-  (setq ido-use-faces nil
-        flx-ido-threshold 10000)
   (flx-ido-mode t))
 
 
@@ -263,8 +260,8 @@
   ;; https://github.com/osener/github-browse-file
   ;; View files on github.com
   :defer t
-  :config
-  (setq github-browse-file-show-line-at-point t))
+  :custom
+  (github-browse-file-show-line-at-point t "Link to current line or active region."))
 
 
 (use-package gitignore-mode
@@ -322,14 +319,16 @@
   ;; Major mode for editing markdown. Includes gfm-mode for github-flavored
   ;;   markdown. An external markdown program must be installed for preview
   ;;   functionality. I've installed `multimarkdown` with macports.
-  :config
-  (setq markdown-command "multimarkdown"))
+  :custom
+  (markdown-command "multimarkdown"))
 
 
 (use-package ns-auto-titlebar
   ;; https://github.com/purcell/ns-auto-titlebar
-  :if (conleym:is-darwin)
-  :config (ns-auto-titlebar-mode))
+  :if
+  (conleym:is-darwin)
+  :config
+  (ns-auto-titlebar-mode))
 
 
 (use-package noflet
@@ -342,16 +341,17 @@
 
 (use-package nov
   :mode ("\\.epub\\'" . nov-mode)
-  :config
-  (custom-set-variables '(nov-save-place-file (conleym:persistence-dir-file "nov-places"))))
+  :custom
+  (nov-save-place-file (conleym:persistence-dir-file "nov-places") "Keep saved places in persistence dir."))
 
 
 (use-package nyan-mode
   ;; http://nyan-mode.buildsomethingamazing.com
   ;; The most useful thing ever.
+  :custom
+  (nyan-animation-frame-interval 0.1 "Set reasonable frame interval for nyan.")
+  (nyan-wavy-trail t "Make nyan's trail wavy.")
   :config
-  (setq nyan-animation-frame-interval 0.1
-        nyan-wavy-trail t)
   (nyan-mode)
   ;; Customizing nyan-animate-nyancat calls this, but I don't want
   ;; to use customize for packages.
@@ -384,14 +384,15 @@
 (use-package paradox
   ;; https://github.com/Malabarba/paradox
   ;; Better package management, with asynchrony.
-  :config
-  (setq paradox-automatically-star nil
-        paradox-column-width-package 36
-        paradox-column-width-version 16
-        paradox-column-width-download 8
-        paradox-display-download-count t
-        paradox-execute-asynchronously t
-        paradox-lines-per-entry 2)
+  :custom
+  (paradox-automatically-star nil)
+  (paradox-column-width-package 36)
+  (paradox-column-width-version 16)
+  (paradox-column-width-download 8)
+  (paradox-display-download-count t)
+  (paradox-execute-asynchronously t)
+  (paradox-lines-per-entry 2)
+  :custom
   ;; paradox-enable makes package-list-packages use the paradox-menu,
   ;; but it doesn't fetch star counts...
   (paradox-enable))
@@ -419,12 +420,12 @@
   :delight
   :ensure-system-package (prettier . "npm install -g prettier")
   :hook (js-mode . prettier-js-mode)
-  :init
-  (setq prettier-js-args
-        '("--bracket-spacing" "false"
-          "--single-quote" "true"
-          "--print-width" "80"
-          "--jsx-bracket-same-line")))
+  :custom
+  (prettier-js-args
+   '("--bracket-spacing" "false"
+     "--single-quote" "true"
+     "--print-width" "80"
+     "--jsx-bracket-same-line")))
 
 
 (use-package rainbow-mode
@@ -498,18 +499,20 @@
   ;; Better M-x, built on ido.
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands))
+  :custom
+  (smex-history-length 200)
+  (smex-save-file (conleym:persistence-dir-file "smex-items"))
   :config
-  (setq smex-history-length 200
-        smex-save-file (conleym:persistence-dir-file "smex-items"))
   (smex-initialize))
 
 
 (use-package smooth-scroll
   :delight
+  :custom
+  (smooth-scroll/vscroll-step-size 3)
+  (smooth-scroll/hscroll-step-size 1)
   :config
-  (smooth-scroll-mode 1)
-  (setq smooth-scroll/vscroll-step-size 3
-        smooth-scroll/hscroll-step-size 1))
+  (smooth-scroll-mode 1))
 
 
 (use-package tern
@@ -621,7 +624,7 @@
 (use-package vagrant-tramp
   ;; https://github.com/dougm/vagrant-tramp
   ;; vagrant-ssh for tramp.
-  :defer t)
+  :after (tramp))
 
 
 (use-package web-mode
@@ -635,15 +638,16 @@
             (lambda ()
               (when (string-equal "tsx" (file-name-extension buffer-file-name))
                 (conleym:setup-tide-mode))))
+  :custom
+  (web-mode-enable-current-element-highlight t)
   :config
-  (setq web-mode-enable-current-element-highlight t)
   (flycheck-add-mode 'typescript-tslint 'web-mode))
 
 
 (use-package xkcd
   ;; https://github.com/vibhavp/emacs-xkcd
   ;; Read XKCD in Emacs.
-
+  ;;
   ;; I want to be able to resize the images. Note that xkcd-mode must be
   ;; added to eimp-ignore-readonly-modes for that to work (it's
   ;; customized).
@@ -652,12 +656,13 @@
   :bind (:map xkcd-mode-map
               ("n" . #'xkcd-next)
               ("p" . #'xkcd-prev))
+  :custom
+  (xkcd-cache-dir (conleym:persistence-dir-file "xkcd/")  "Keep xkcd files in the persistence directory.")
+  (xkcd-cache-latest (concat xkcd-cache-dir "latest")  "Keep xkcd files in the persistence directory.")
   :config
-  (setq xkcd-cache-dir
-        (conleym:persistence-dir-file "xkcd/"))
-  ;; Avoid stupid mkdir-RET-RET message when directory doesn't exist.
-  (conleym:maybe-mkdir xkcd-cache-dir)
-  (setq xkcd-cache-latest (concat xkcd-cache-dir "latest")))
+  ;; Avoid stupid mkdir-RET-RET message, plus failure to load, when directory doesn't exist.
+  (conleym:maybe-mkdir xkcd-cache-dir))
+  
 
 
 (use-package yagist
@@ -670,8 +675,8 @@
   ;; https://github.com/yoshiki/yaml-mode
   ;; Major mode for editing YAML.
   :mode "\\.ya?ml\\'"
-  :config
-  (setq yaml-indent-offset tab-width))
+  :custom
+  (yaml-indent-offset tab-width))
 
 
 (use-package zone-nyan

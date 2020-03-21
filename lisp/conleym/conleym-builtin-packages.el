@@ -11,10 +11,10 @@
   :init
   ;; Global abbrev mode. Curiously not customizable.
   (setq-default abbrev-mode t)
+  :custom
+  (save-abbrevs 'silently "Never ask me about saving. Just save.")
+  (abbrev-file-name (conleym:persistence-dir-file "abbrev_defs") "Keep abbrev file in persistence dir.")
   :config
-  (setq save-abbrevs 'silently)
-  (setq abbrev-file-name
-        (conleym:persistence-dir-file "abbrev_defs"))
   ;; Load the file if it exists, don't bother me if it doesn't.
   (if (file-exists-p abbrev-file-name)
       (quietly-read-abbrev-file)))
@@ -24,17 +24,16 @@
   :delight auto-revert-mode
   :after (dired)
   :hook (dired-mode . auto-revert-mode)
+  :custom
+  (auto-revert-interval 1 "Default (5 seconds) is too long to wait.")
   :config
-  ;; Default (5 seconds) is too long to wait.
-  (setq auto-revert-interval 1)
   (global-auto-revert-mode))
 
 
 (use-package bookmark
-  :config
-  (setq bookmark-default-file (conleym:persistence-dir-file "bookmarks")
-        ;; Save every time the bookmarks are changed.
-        bookmark-save-flag 1))
+  :custom
+  (bookmark-default-file (conleym:persistence-dir-file "bookmarks") "Keep bookmarks in persistence dir.")
+  (bookmark-save-flag 1 "Save every time the bookmarks are changed."))
 
 
 (use-package browse-url
@@ -56,21 +55,25 @@
 
 
 (use-package desktop
+  :preface
+  ;; keep desktop files in a persistence subdir. Curiously not customizable.
+  (setq
+   desktop-dirname (conleym:persistence-dir-file "desktop/"))
+  :custom
+  (desktop-save t "Always save. Never ask.")
+  (desktop-save-mode t "Enable desktop saving.")
+  (desktop-load-locked-desktop t "Just do it. Don't ask me.")
+  (desktop-not-loaded-hook 'desktop-save-mode-off)
+  (desktop-restore-eager t "Restore all the buffers immediately.")
+  (desktop-path (list desktop-dirname) "Keep desktop files in the persistence dir.")
   :config
-  (setq desktop-save t
-        desktop-save-mode t
-        desktop-load-locked-desktop t
-        desktop-not-loaded-hook 'desktop-save-mode-off
-        desktop-restore-eager t
-        desktop-dirname (conleym:persistence-dir-file "desktop/")
-        desktop-path (list desktop-dirname))
   ;; Avoid error if dir doesn't yet exist.
   (conleym:maybe-mkdir desktop-dirname))
 
 
 (use-package dired
-  :config
-  (setq dired-auto-revert-buffer t))
+  :custom
+  (dired-auto-revert-buffer t "Always revert dired buffers."))
 
 
 (use-package display-line-numbers
@@ -80,8 +83,8 @@
 
 (use-package ede/base
   :defer t
-  :config
-  (setq ede-project-placeholder-cache-file (conleym:persistence-dir-file "ede-projects.el")))
+  :custom
+  (ede-project-placeholder-cache-file (conleym:persistence-dir-file "ede-projects.el") "Keep ede cache in persistence dir."))
 
 
 ;; Shows lisp docstrings in the minibuffer.
@@ -342,6 +345,11 @@
   :delight
   :config
   (global-subword-mode t))
+
+
+(use-package tramp
+  :custom
+  (tramp-default-method "ssh" "Faster than scp."))
 
 
 (use-package vc-hooks
