@@ -282,7 +282,7 @@
 
 
 (use-package ido-completing-read+
-  ;; https://github.com/DarwinAwardWinner/ido-ubiquitous
+  ;; https://github.com/DarwinAwardWinner/ido-completing-read-plus
   ;; Even more ido.
   :after (ido)
   :config
