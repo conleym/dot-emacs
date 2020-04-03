@@ -611,7 +611,9 @@
   (defalias #'epa--decode-coding-string #'decode-coding-string)
   :custom
   (twittering-display-remaining t "Show number of remaining API calls in the modeline.")
-  (twittering-icon-storage-file (conleym:persistence-dir-file "twittering-mode-icons.gz") "Keep twitter icons in the persistence directory.")
+  (twittering-private-info-file (conleym:persistence-dir-file "twittering-mode/.twittering-mode.gpg"))
+  (twittering-user-id-db-file (conleym:persistence-dir-file "twittering-mode/.twittering-mode-user-info.gz"))
+  (twittering-icon-storage-file (conleym:persistence-dir-file "twittering-mode/twittering-mode-icons.gz") "Keep twitter icons in the persistence directory.")
   (twittering-use-icon-storage t)
   (twittering-use-master-password t "Store the oauth token."))
 
