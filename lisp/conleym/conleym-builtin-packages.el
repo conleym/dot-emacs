@@ -199,6 +199,11 @@
   (key-chord-define js-mode-map ";;" "\C-e;"))
 
 
+(use-package mb-depth
+  :config
+  (minibuffer-depth-indicate-mode 1))
+
+
 (use-package nxml-mode
   ;; Major mode for editing XML.
   :defer t

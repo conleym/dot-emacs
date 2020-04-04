@@ -15,6 +15,7 @@
  '(delete-old-versions t nil nil "We're keeping a lot of backups. No need to ask about getting rid of older ones.")
  '(eimp-ignore-read-only-modes
    '(gnus-article-mode puzzle-mode tumme-display-image-mode tumme-thumbnail-mode w3m-mode xkcd-mode))
+ '(enable-recursive-minibuffers t)
  '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)
  '(frame-background-mode 'dark)
  '(gc-cons-threshold 20000000 nil nil "Suggestion from flx-ido author on improving performance: GC every 20MB instead of every .76MB.")
