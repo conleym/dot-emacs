@@ -312,27 +312,6 @@
     (server-start)))
 
 
-(use-package sh-script
-  ;; Configure sh-mode for better zsh support.
-  :mode (("\\.zsh\\'" . conleym:zsh-mode)
-         ("^\\.zshenv\\'" . conleym:zsh-mode)
-         ("^\\.zprofile\\'" . conleym:zsh-mode)))
-
-
-(use-package shell
-  :config
-  (defun conleym:zsh-mode()
-    "Shell mode with zsh syntax."
-    (interactive)
-    (sh-mode)
-    (sh-set-shell "zsh"))
-  ;; Use zsh if available.
-  (let ((zsh (executable-find "zsh")))
-    (when zsh
-      (setq explicit-shell-file-name "zsh")
-      (setenv "SHELL" zsh))))
-
-
 (use-package speedbar
   :custom
   (speedbar-default-position 'left)
