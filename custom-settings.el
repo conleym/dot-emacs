@@ -25,6 +25,7 @@
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
  '(large-file-warning-threshold 200000000 nil nil "Default (10 MB) is way too small. Let's try 200 MB instead.")
+ '(mac-pseudo-daemon-mode t)
  '(midnight-mode t nil (midnight))
  '(minibuffer-prompt-properties
    '(read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt) nil nil "Make minbuffer prompt read only (default) and don't allow the cursor into it (not default).")
@@ -32,7 +33,7 @@
  '(ns-pop-up-frames nil nil nil "Documents opened via Mac's open command show up in the current frame, not a new one.")
  '(package-enable-at-startup nil)
  '(package-selected-packages
-   '(browse-at-remote jq-mode docker-tramp emojify company-emoji dired-imenu imenu-list zone-nyan yaml-mode yagist xkcd web-mode vagrant-tramp vagrant unicode-troll-stopper twittering-mode tumblesocks tide company-tern tern smooth-scroll smex smartparens reveal-in-osx-finder company-restclient restclient relint rainbow-delimiters rainbow-mode prettier-js pip-requirements pdf-tools paradox osx-location oauth nyan-mode nov noflet ns-auto-titlebar markdown-mode manage-minor-mode lastpass json-mode ido-completing-read+ hungry-delete gitignore-mode github-browse-file gitconfig-mode gitattributes-mode git-timemachine flycheck-pos-tip flycheck flx-ido fill-column-indicator es-mode emr emmet-mode elpy eimp editorconfig dockerfile-mode define-word crux company-auctex company auto-package-update auto-compile auctex-latexmk apples-mode all-the-icons-ibuffer all-the-icons-dired all-the-icons ag 2048-game exec-path-from-shell use-package-chords use-package-ensure-system-package delight use-package))
+   '(mac-pseudo-daemon browse-at-remote jq-mode docker-tramp emojify company-emoji dired-imenu imenu-list zone-nyan yaml-mode yagist xkcd web-mode vagrant-tramp vagrant unicode-troll-stopper twittering-mode tumblesocks tide company-tern tern smooth-scroll smex smartparens reveal-in-osx-finder company-restclient restclient relint rainbow-delimiters rainbow-mode prettier-js pip-requirements pdf-tools paradox osx-location oauth nyan-mode nov noflet ns-auto-titlebar markdown-mode manage-minor-mode lastpass json-mode ido-completing-read+ hungry-delete gitignore-mode github-browse-file gitconfig-mode gitattributes-mode git-timemachine flycheck-pos-tip flycheck flx-ido fill-column-indicator es-mode emr emmet-mode elpy eimp editorconfig dockerfile-mode define-word crux company-auctex company auto-package-update auto-compile auctex-latexmk apples-mode all-the-icons-ibuffer all-the-icons-dired all-the-icons ag 2048-game exec-path-from-shell use-package-chords use-package-ensure-system-package delight use-package))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-bar-mode nil)

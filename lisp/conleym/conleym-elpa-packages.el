@@ -23,8 +23,10 @@
   ;; Fonts containing icons
   :init
   ;; https://github.com/domtronn/all-the-icons.el/issues/120#issuecomment-480342779
-  (unless (member "all-the-icons" (font-family-list))
-    (all-the-icons-install-fonts t))
+  (let (font-families (font-family-list))
+    ;; font-family-list returns nil on terminal!
+    (unless (or (null font-families) (member "all-the-icons" font-families))
+      (all-the-icons-install-fonts t)))
   :config
     (add-to-list 'all-the-icons-icon-alist
                '("\\.dtx\\'" all-the-icons-fileicon "tex" :face all-the-icons-lblue)))
@@ -313,7 +315,13 @@
   ;; Enable lastpass custom auth-source
   (lastpass-auth-source-enable))
 
- 
+
+(use-package mac-pseudo-daemon
+  ;; https://github.com/DarwinAwardWinner/mac-pseudo-daemon
+  ;; fix the dock icon when running as a --daemon
+)
+
+
 (use-package manage-minor-mode
   ;; https://github.com/ShingoFukuyama/manage-minor-mode
   ;; List, activate and deactivate minor modes easily.
