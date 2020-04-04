@@ -13,9 +13,6 @@ flycheck_*.el
 # the persistence directory
 persistence/
 
-# tramp history
-tramp
-
 # magit transient data
 transient/
 
