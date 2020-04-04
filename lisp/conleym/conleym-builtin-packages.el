@@ -354,6 +354,11 @@
   (tramp-default-method "ssh" "Faster than scp."))
 
 
+(use-package tramp-cache
+  :custom
+  (tramp-persistency-file-name (conleym:persistence-dir-file "tramp")))
+
+
 (use-package vc-hooks
   :custom
   (vc-make-backup-files t " Just because it's in version control doesn't mean I don't want local backups."))
