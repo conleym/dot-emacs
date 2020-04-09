@@ -1,4 +1,4 @@
-;; Builtin package configuration.
+;; Builtin package configuration.  -*- lexical-binding: t -*-
 ;;
 ;; All packages here come with emacs.
 (require 'conleym-init-utils)

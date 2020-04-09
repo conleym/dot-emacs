@@ -1,4 +1,4 @@
-;;; conleym-init-utils.el --- Helpful functions used in init.
+;;; conleym-init-utils.el --- Helpful functions used in init.   -*- lexical-binding: t; -*-
 
 (defun conleym:dot-dir-file (file)
   "Return the path to FILE in the `user-emacs-directory'."

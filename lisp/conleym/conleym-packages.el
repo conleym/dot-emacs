@@ -1,4 +1,5 @@
-;; Set up package, repositories, and use-package.
+;; Set up package, repositories, and use-package.  -*- lexical-binding: t -*-
+;;
 ;; Then load all the packages, installing or upgrading as needed.
 (require 'conleym-elpa)
 (require 'package)
@@ -61,7 +62,8 @@
   (exec-path-from-shell-initialize))
 
 
-(let (use-package-always-ensure f)
+;; use-package-always-ensure is special, so this is still a dynamic binding, as desired.
+(let ((use-package-always-ensure nil))
   ;; Don't try to install anything over built in packages.
   (require 'conleym-builtin-packages))
 
