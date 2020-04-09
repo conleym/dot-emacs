@@ -1,4 +1,4 @@
-;;; Add more package archives, since the GNU archive's policy exludes many useful packages.
+;;; Add more package archives, since the GNU archive's policy exludes many useful packages.   -*- lexical-binding: t -*-
 (require 'conleym-init-utils)
 (require 'package)
 (require 'gnutls)
