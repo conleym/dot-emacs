@@ -102,13 +102,12 @@
 (use-package files
   ;; Remove trailing whitespace (always) and convert tabs to spaces (usually) before saving.
   :hook (before-save . (delete-trailing-whitespace conleym:maybe-untabify-buffer))
+  :custom
+  (version-control t)
+  (kept-versions 20)
+  (kept-new-versions 20)
+  (kept-old-versions 20)
   :config
-  ;; Number of versions to keep. Just picked a relatively large
-  ;; number. Default is 2.
-  (let ((kept-versions 20))
-    (setq version-control t
-          kept-old-versions kept-versions
-          kept-new-versions kept-versions))
   ;; autosave, backup, etc. files go in the persistence dir.
   (let ((auto-save-list-dir (conleym:persistence-dir-file "auto-save-list/"))
         (auto-save-dir (conleym:persistence-dir-file "auto-saves/"))
@@ -116,15 +115,15 @@
     (conleym:maybe-mkdir auto-save-list-dir)
     (conleym:maybe-mkdir auto-save-dir)
     (conleym:maybe-mkdir backup-dir)
-    (setq auto-save-list-file-prefix (concat auto-save-list-dir ".saves-"))
-    (setq auto-save-file-name-transforms
+    (customize-set-variable 'auto-save-list-file-prefix (concat auto-save-list-dir ".saves-"))
+    (customize-set-variable 'auto-save-file-name-transforms
           `((".*" ,auto-save-dir)))
-    (setq backup-directory-alist
+    (customize-set-variable 'backup-directory-alist
           `(( ".*" . ,backup-dir))))
   (if (conleym:is-darwin)
       (progn
         ;; Delete using Mac trash rather than freedesktop.org trash.
-        (setq trash-directory "~/.Trash")
+        (customize-set-value 'trash-directory "~/.Trash")
         ;; OS X ls doesn't suport --dired. Try to use GNU ls instead, if
         ;; available.
         (when-let ((gls (executable-find "gls")))
