@@ -7,7 +7,15 @@
 
 ;; Ensure package archive contents are current to avoid 404s from
 ;; repositories due to rapidly-changing packages.
-(package-refresh-contents)
+;;
+;; Small variation on this
+;; https://github.com/jwiegley/use-package/issues/256#issuecomment-263313693
+(defun conleym:package-install-refresh-contents (&rest args)
+  (package-refresh-contents)
+  (advice-remove #'package-install #'conleym:package-install-refresh-contents))
+
+(advice-add #'package-install :before #'conleym:package-install-refresh-contents)
+
 
 ;; Ensure req-package and its dependencies are installed.
 (unless (require 'use-package "use-package" t)
