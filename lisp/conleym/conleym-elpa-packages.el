@@ -1,3 +1,5 @@
+;; configure packages that aren't builtin.   -*- lexical-binding: t -*-
+
 (require 'conleym-init-utils)
 
 
@@ -23,7 +25,7 @@
   ;; Fonts containing icons
   :init
   ;; https://github.com/domtronn/all-the-icons.el/issues/120#issuecomment-480342779
-  (let (font-families (font-family-list))
+  (let ((font-families (font-family-list)))
     ;; font-family-list returns nil on terminal!
     (unless (or (null font-families) (member "all-the-icons" font-families))
       (all-the-icons-install-fonts t)))
