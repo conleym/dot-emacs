@@ -531,6 +531,14 @@
   (smooth-scroll-mode 1))
 
 
+(use-package sr-speedbar
+  ;;
+  ;; Speedbar without the separate frame.
+  :defer t
+  :custom
+  (sr-speedbar-right-side nil "Keep it on the left."))
+
+
 (use-package tern
   ;; http://ternjs.net/doc/manual.html#emacs
   ;; Code completion and other useful things for javascript.
