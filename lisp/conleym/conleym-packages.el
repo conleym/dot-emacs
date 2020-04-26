@@ -17,7 +17,6 @@
 
 (advice-add #'package-install :before #'conleym:package-install-refresh-contents)
 
-
 ;; Ensure req-package and its dependencies are installed.
 (unless (require 'use-package "use-package" t)
   (progn
@@ -62,11 +61,13 @@
   (exec-path-from-shell-initialize))
 
 
+;; Add my own site-lisp directory, then load packages.
+(conleym:add-lisp-dir "lisp/site-lisp")
 ;; use-package-always-ensure is special, so this is still a dynamic binding, as desired.
 (let ((use-package-always-ensure nil))
   ;; Don't try to install anything over built in packages.
   (require 'conleym-builtin-packages))
-
+;; Install and configure (M)ELPA packages.
 (require 'conleym-elpa-packages)
 
 
