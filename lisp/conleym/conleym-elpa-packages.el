@@ -551,6 +551,7 @@
     ;; https://github.com/proofit404/company-tern
     ;; Company mode backend for tern (javascript completion).
     :defer t
+    :ensure nil ;; disappeared from MELPA and github. Added to site-lisp.
     :init
     (add-to-list 'company-backends #'company-tern)))
 
