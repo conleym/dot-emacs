@@ -67,12 +67,12 @@
 
 (global-set-key (kbd "C-<backspace>") #'backward-kill-line)
 
-;; enable emojis on mac, based on
-;; https://github.com/dunn/company-emoji#emoji-font-support
-(let ((aapl "Apple Color Emoji"))
-  (when (member aapl (font-family-list))
-    (set-fontset-font t 'unicode aapl)))
-
+;; enable emojis.
+;; https://www.reddit.com/r/emacs/comments/ggd90c/color_emoji_in_emacs_27/fq0nvxc?utm_source=share&utm_medium=web2x
+(set-fontset-font "fontset-default" 'symbol "Apple Color Emoji")
+(set-fontset-font "fontset-default" 'symbol "Noto Color Emoji" nil 'append)
+(set-fontset-font "fontset-default" 'symbol "Segoe UI Emoji" nil 'append)
+(set-fontset-font "fontset-default" 'symbol "Symbola" nil 'append)
 
 ;; A variation on this using nadvice
 ;; https://lists.gnu.org/archive/html/emacs-devel/2010-07/msg01410.html
