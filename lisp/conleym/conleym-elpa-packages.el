@@ -367,11 +367,9 @@
   :custom
   (nyan-animation-frame-interval 0.1 "Set reasonable frame interval for nyan.")
   (nyan-wavy-trail t "Make nyan's trail wavy.")
+  (nyan-animate-nyancat t "Animate nyancat.")
   :config
-  (nyan-mode)
-  ;; Customizing nyan-animate-nyancat calls this, but I don't want
-  ;; to use customize for packages.
-  (nyan-start-animation))
+  (nyan-mode))
 
 
 (use-package oauth
