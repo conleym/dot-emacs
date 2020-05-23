@@ -550,7 +550,7 @@
     ;; Company mode backend for tern (javascript completion).
     :defer t
     :ensure nil ;; disappeared from MELPA and github. Added to site-lisp.
-    :init
+    :config
     (add-to-list 'company-backends #'company-tern)))
 
 
