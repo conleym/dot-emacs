@@ -537,23 +537,6 @@
   (sr-speedbar-right-side nil "Keep it on the left."))
 
 
-(use-package tern
-  ;; http://ternjs.net/doc/manual.html#emacs
-  ;; Code completion and other useful things for javascript.
-  ;;
-  :delight
-  :ensure-system-package (tern . "npm i -g tern")
-  :hook (js-mode . (lambda() (tern-mode t)))
-  :config
-  (use-package company-tern
-    ;; https://github.com/proofit404/company-tern
-    ;; Company mode backend for tern (javascript completion).
-    :defer t
-    :ensure nil ;; disappeared from MELPA and github. Added to site-lisp.
-    :config
-    (add-to-list 'company-backends #'company-tern)))
-
-
 (use-package tex-site
   :ensure auctex
   :after (auctex-latexmk reftex company-auctex)
