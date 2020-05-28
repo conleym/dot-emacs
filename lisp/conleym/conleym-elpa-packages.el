@@ -241,12 +241,12 @@
   (global-flycheck-mode))
 
 
-;; (use-package flycheck-relint
-;;   ;; https://github.com/purcell/flycheck-relint
-;;   ;; flycheck for elisp regexes.
-;;   :after (flycheck relint)
-;;   :init
-;;   (flycheck-relint-setup))
+(use-package flycheck-relint
+  ;; https://github.com/purcell/flycheck-relint
+  ;; flycheck for elisp regexes.
+  :after (flycheck relint)
+  :init
+  (flycheck-relint-setup))
 
 
 (use-package git-timemachine
