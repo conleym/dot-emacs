@@ -37,9 +37,9 @@
 (use-package all-the-icons-dired
   ;; https://github.com/jtbm37/all-the-icons-dired
   ;; Add icons to dired-mode
+  :delight
   :after (all-the-icons dired)
-  :hook (dired-mode . all-the-icons-dired-mode)
-  :delight)
+  :hook (dired-mode . all-the-icons-dired-mode))
 
 
 (use-package all-the-icons-ibuffer
@@ -165,7 +165,7 @@
   ;; Avoid confirmation prompt if virtualenv doesn't exist.
   (conleym:maybe-mkdir elpy-rpc-virtualenv-path)
   :init
-  (elpy-enable))
+  (advice-add #'python-mode :before #'elpy-enable))
 
 
 (use-package emmet-mode
@@ -666,6 +666,7 @@
 (use-package which-key
   ;; https://github.com/justbur/emacs-which-key
   ;; C-h k tells you about keybindings.
+  :delight
   :config
   (which-key-mode))
 
