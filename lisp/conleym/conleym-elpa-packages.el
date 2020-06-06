@@ -654,6 +654,13 @@
   (flycheck-add-mode 'typescript-tslint 'web-mode))
 
 
+(use-package which-key
+  ;; https://github.com/justbur/emacs-which-key
+  ;; C-h k tells you about keybindings.
+  :config
+  (which-key-mode))
+
+
 (use-package xkcd
   ;; https://github.com/vibhavp/emacs-xkcd
   ;; Read XKCD in Emacs.
