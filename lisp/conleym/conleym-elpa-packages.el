@@ -318,6 +318,15 @@
   (lastpass-auth-source-enable))
 
 
+(use-package lsp-mode
+  ;; https://github.com/emacs-lsp/lsp-mode
+  ;; lsp support for emacs.
+  :hook ((lsp-mode . lsp-enable-which-key-integration))
+  :commands (lsp lsp-deferred lsp-enable-which-key-integration)
+  :config
+  (use-package lsp-ui :commands lsp-ui-mode))
+
+
 (use-package mac-pseudo-daemon
   ;; https://github.com/DarwinAwardWinner/mac-pseudo-daemon
   ;; fix the dock icon when running as a --daemon
