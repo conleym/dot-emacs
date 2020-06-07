@@ -99,6 +99,11 @@
   :hook prog-mode)
 
 
+(use-package eshell
+   ;; Turn line numbers off.
+  :hook (eshell-mode . conleym:disable-display-line-numbers-mode))
+
+
 (use-package files
   ;; Remove trailing whitespace (always) and convert tabs to spaces (usually) before saving.
   :hook (before-save . (delete-trailing-whitespace conleym:maybe-untabify-buffer))
