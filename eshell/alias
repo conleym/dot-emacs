@@ -1,1 +1,6 @@
+# Most aliases come from the shell directly.
+
 alias ff find-file $1
+
+# Shell alias for ls isn't great in eshell. Replace with the builtin.
+alias ls eshell/ls $*
