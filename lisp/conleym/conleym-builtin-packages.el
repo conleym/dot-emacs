@@ -101,7 +101,12 @@
 
 (use-package eshell
    ;; Turn line numbers off.
-  :hook (eshell-mode . conleym:disable-display-line-numbers-mode))
+  :hook (eshell-mode . conleym:disable-display-line-numbers-mode)
+  :custom
+  (eshell-directory-name (conleym:persistence-dir-file "eshell"))
+  (eshell-aliases-file (conleym:dot-dir-file "eshell/alias"))
+  (eshell-login-script (conleym:dot-dir-file "eshell/login"))
+  (eshell-rc-script (conleym:dot-dir-file "eshell/profile")))
 
 
 (use-package files
