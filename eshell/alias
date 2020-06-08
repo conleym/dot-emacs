@@ -1,6 +1,11 @@
-# Most aliases come from the shell directly.
+# Most aliases come from the shell directly. Aliases here either have no direct
+# shell analogue or are here to override aliases from the shell that don't work
+# well in eshell.
 
 alias ff find-file $1
 
 # Shell alias for ls isn't great in eshell. Replace with the builtin.
 alias ls eshell/ls $*
+
+alias clear eshell/clear ""
+alias cls clear
