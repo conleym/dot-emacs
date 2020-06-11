@@ -354,6 +354,11 @@
   (global-subword-mode t))
 
 
+(use-package term
+  :custom
+  (explicit-shell-file-name (executable-find "zsh")))
+
+
 (use-package tramp
   :custom
   (tramp-default-method "ssh" "Faster than scp."))
