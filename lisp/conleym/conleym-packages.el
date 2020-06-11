@@ -17,7 +17,7 @@
 
 (advice-add #'package-install :before #'conleym:package-install-refresh-contents)
 
-;; Ensure req-package and its dependencies are installed.
+;; Ensure use-package and its dependencies are installed.
 (unless (require 'use-package "use-package" t)
   (progn
     (package-install 'use-package)))
@@ -57,7 +57,7 @@
   (setq exec-path-from-shell-arguments '("-l"))
   (setq exec-path-from-shell-variables
         '("AWS_ACCESS_KEY_ID" "AWS_DEFAULT_PROFILE" "AWS_PROFILE" "AWS_SECRET_ACCESS_KEY"
-          "MANPATH" "PATH" "PKG_CONFIG_PATH" "PYTHONPATH" "WORKON_HOME"))
+          "MANPATH" "PATH" "PKG_CONFIG_PATH" "WORKON_HOME"))
   (exec-path-from-shell-initialize))
 
 
