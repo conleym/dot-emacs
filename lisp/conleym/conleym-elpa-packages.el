@@ -665,7 +665,7 @@
 
 (use-package which-key
   ;; https://github.com/justbur/emacs-which-key
-  ;; C-h k tells you about keybindings.
+  ;; Pop up a list of possible completions for the sequence of keys typed after a short delay.
   :delight
   :config
   (which-key-mode))
