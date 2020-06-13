@@ -85,6 +85,15 @@
   (auto-package-update-maybe))
 
 
+(use-package beacon
+  ;; https://github.com/Malabarba/beacon
+  ;; Make cursor position obvious when it might otherwise not be.
+  :delight
+  :custom
+  (beacon-blink-when-focused t)
+  :config
+  (beacon-mode 1))
+
 (use-package browse-at-remote
   ;; https://github.com/rmuslimov/browse-at-remote
   ;; Show the current file in the remote repository.
