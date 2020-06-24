@@ -398,6 +398,8 @@
 
 
 (use-package oauth
+  :functions
+  (sasl-unique-id)
   :config
   ;; Require sasl so that oauth will use it to generate nonces.
   (require 'sasl)
@@ -547,6 +549,8 @@
 
 (use-package smooth-scroll
   :delight
+  :commands
+  (smooth-scroll-mode)
   :custom
   (smooth-scroll/vscroll-step-size 3)
   (smooth-scroll/hscroll-step-size 1)
@@ -565,6 +569,8 @@
 (use-package tex-site
   :ensure auctex
   :after (auctex-latexmk reftex company-auctex)
+  :functions
+  (TeX-revert-document-buffer)
   :hook ((TeX-mode . TeX-source-correlate-mode)
          (LaTeX-mode . LaTeX-math-mode))
   :bind (:map TeX-mode-map
@@ -628,12 +634,14 @@
 
 (use-package twittering-mode
   :defer t
+  :commands ;; why doesn't :functions silence warnings here?
+  (twittering-icon-mode)
   :hook (twittering-mode . (lambda()
                              (conleym:disable-display-line-numbers-mode)
                              (twittering-icon-mode)))
   :config
   ;; https://github.com/hayamiz/twittering-mode/issues/154
-  (defalias #'epa--decode-coding-string #'decode-coding-string)
+  (defalias 'epa--decode-coding-string #'decode-coding-string)
   :custom
   (twittering-display-remaining t "Show number of remaining API calls in the modeline.")
   (twittering-private-info-file (conleym:persistence-dir-file "twittering-mode/.twittering-mode.gpg"))
@@ -659,13 +667,17 @@
 (use-package vagrant-tramp
   ;; https://github.com/dougm/vagrant-tramp
   ;; vagrant-ssh for tramp.
-  :after (tramp))
+  :after
+  (tramp))
 
 
 (use-package web-mode
   ;; http://web-mode.org
   ;; Major mode for various web template languages.
-  :after (flycheck tide)
+  :after
+  (flycheck tide)
+  :functions
+  (flycheck-add-mode)
   :mode (("\\.hbs\\'" . web-mode) ;; handlebars.js templates
          ("\\.tsx\\'" . web-mode)) ;; typescript react/jsx.
   :init
@@ -690,7 +702,8 @@
 (use-package xkcd
   ;; https://github.com/vibhavp/emacs-xkcd
   ;; Read XKCD in Emacs.
-  ;;
+  :commands ;; why doesn't :functions silence warnings here?
+  (xkcd-next xkcd-prev)
   ;; I want to be able to resize the images. Note that xkcd-mode must be
   ;; added to eimp-ignore-readonly-modes for that to work (it's
   ;; customized).

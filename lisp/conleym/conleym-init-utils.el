@@ -46,12 +46,14 @@
 (defun conleym:recentf-ido-find-file ()
   "Find a recent file using ido."
   (interactive)
+  (eval-when-compile (require 'recentf))
   (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
     (when file
       (find-file file))))
 
 (defun conleym:setup-ido-with-recentf ()
   "Bind up and down arrows to history navigation in ido."
+  (eval-when-compile (require 'ido))
   (define-key ido-completion-map [up] 'previous-history-element)
   (define-key ido-completion-map [down] 'next-history-element))
 

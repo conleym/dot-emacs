@@ -2,7 +2,7 @@
 ;;
 ;; All packages here come with emacs.
 (require 'conleym-init-utils)
-
+(require 'conleym-aliases-from-shell)
 
 
 ;; Expands abbreviations from a dictionary.
@@ -107,41 +107,7 @@
   (eshell-directory-name (conleym:persistence-dir-file "eshell"))
   (eshell-aliases-file (conleym:dot-dir-file "eshell/alias"))
   (eshell-login-script (conleym:dot-dir-file "eshell/login"))
-  (eshell-rc-script (conleym:dot-dir-file "eshell/profile"))
-  :config
-  ;; Variation on https://www.emacswiki.org/emacs/EshellAlias#toc11, with bits of exec-path-from-shell.
-  (defun conleym:eshell-read-aliases ()
-    "Read aliases from the shell itself."
-    (let ((shell (or shell-file-name (getenv "SHELL"))))
-      (with-temp-buffer
-        (let ((exit-code (call-process shell nil t nil '"-l" "-i" "-c" "alias"))
-              (result (buffer-string)))
-          (unless (zerop exit-code)
-            (error "Nonzero exit code (%s) from shell %s: output was %s"
-                   exit-code shell result))
-          result))))
-  
-  (defun conleym:eshell-aliases-from-shell ()
-    "Read aliases from the shell and return a list of definitions suitable for use with eshell."
-    (let* ((shell-output (conleym:eshell-read-aliases))
-           (lines (split-string shell-output "\n" t)))
-      (mapcar #'(lambda (line)
-                  (let* ((split (split-string line "=" t))
-                         (name (car split))
-                         (value (concat
-                           ;; Remove surrounding single quotes
-                           (replace-regexp-in-string "'\\(.*\\)'$" "\\1" (cadr split))
-                           ;; Append $* so eshell aliases respect args, if any.
-                           " $*")))
-                    (list name value)))
-              lines)))
-  
-  (defun conleym:copy-shell-aliases-to-eshell ()
-    "Read shell aliases and insert them into the list of eshell aliases."
-    (eval-when-compile
-      (require 'cl-lib)
-      (require 'em-alias))
-    (setq eshell-command-aliases-list (cl-union eshell-command-aliases-list (conleym:eshell-aliases-from-shell)))))
+  (eshell-rc-script (conleym:dot-dir-file "eshell/profile")))
 
 
 (use-package files
@@ -162,9 +128,9 @@
     (conleym:maybe-mkdir backup-dir)
     (customize-set-variable 'auto-save-list-file-prefix (concat auto-save-list-dir ".saves-"))
     (customize-set-variable 'auto-save-file-name-transforms
-          `((".*" ,auto-save-dir)))
+                            `((".*" ,auto-save-dir)))
     (customize-set-variable 'backup-directory-alist
-          `(( ".*" . ,backup-dir))))
+                            `(( ".*" . ,backup-dir))))
   (if (conleym:is-darwin)
       (progn
         ;; Delete using Mac trash rather than freedesktop.org trash.
@@ -206,7 +172,11 @@
 
 
 (use-package imenu
+  :commands
+  (imenu--sort-by-name)
   :hook (after-change-major-mode . conleym:safe-imenu)
+  :custom
+  (imenu-auto-rescan t)
   :config
   (defun conleym:safe-imenu()
     "Try to add imenu index to the menubar, ignoring errors if imenu isn't supported in this major mode."
@@ -219,9 +189,8 @@
          ;; Don't show it in the echo area. Just plop it into *Messages*.
          (let ((inhibit-message t))
            (message "%s" (error-message-string err)))))))
-  ;; enable auto rescan, and sort by name.
-  (setq imenu-auto-rescan t
-        imenu-sort-function #'imenu--sort-by-name))
+  ;; sort by name.
+  (setq imenu-sort-function #'imenu--sort-by-name))
 
 
 (use-package ispell
@@ -267,6 +236,8 @@
 
 (use-package rcirc
   :defer t
+  :commands
+  (rcirc-cmd-join rcirc-cmd-part)
   :config
   (rcirc-track-minor-mode)
   (setq rcirc-log-flag t
@@ -328,6 +299,8 @@
 
 
 (use-package server
+  :commands
+  (server-running-p)
   :config 
   (unless (or (daemonp) (server-running-p))
     (server-start)))
