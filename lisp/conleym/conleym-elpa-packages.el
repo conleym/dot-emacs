@@ -280,9 +280,10 @@
 (use-package gitconfig-mode
   ;; https://github.com/magit/git-modes
   ;; .gitconfig major mode.
-  :hook (gitconfig-mode . (lambda()
-                            ;; I don't want to indent with tabs. Tabs are stupid.
-                            (setq indent-tabs-mode nil))))
+  :hook
+  (gitconfig-mode . (lambda()
+                      ;; I don't want to indent with tabs. Tabs are stupid.
+                      (setq indent-tabs-mode nil))))
 
 
 (use-package gitignore-mode
@@ -312,7 +313,8 @@
 (use-package imenu-list
   ;; https://github.com/bmag/imenu-list
   :after (imenu)
-  :hook (imenu-list-major-mode . conleym:disable-display-line-numbers-mode))
+  :hook
+  (imenu-list-major-mode . conleym:disable-display-line-numbers-mode))
 
 
 (use-package jq-mode
@@ -337,8 +339,10 @@
 (use-package lsp-mode
   ;; https://github.com/emacs-lsp/lsp-mode
   ;; lsp support for emacs.
-  :hook ((lsp-mode . lsp-enable-which-key-integration))
-  :commands (lsp lsp-deferred lsp-enable-which-key-integration)
+  :hook
+  ((lsp-mode . lsp-enable-which-key-integration))
+  :commands
+  (lsp lsp-deferred lsp-enable-which-key-integration)
   :config
   (use-package lsp-ui :commands lsp-ui-mode))
 
@@ -383,7 +387,8 @@
 (use-package nov
   :mode ("\\.epub\\'" . nov-mode)
   :custom
-  (nov-save-place-file (conleym:persistence-dir-file "nov-places") "Keep saved places in persistence dir."))
+  (nov-save-place-file
+   (conleym:persistence-dir-file "nov-places") "Keep saved places in persistence dir."))
 
 
 (use-package nyan-mode
@@ -415,11 +420,12 @@
   (use-package solar
     :ensure nil)
   ;; using a named function here seems to cause the package to break.
-  :hook (osx-location-changed . (lambda () 
-                                  (setq calendar-latitude osx-location-latitude
-                                        calendar-longitude osx-location-longitude
-                                        calendar-location-name
-                                        (format "%s, %s" osx-location-latitude osx-location-longitude)))))
+  :hook
+  (osx-location-changed . (lambda () 
+                            (setq calendar-latitude osx-location-latitude
+                                  calendar-longitude osx-location-longitude
+                                  calendar-location-name
+                                  (format "%s, %s" osx-location-latitude osx-location-longitude)))))
 
 
 (use-package paradox
@@ -627,9 +633,9 @@
 (use-package tumblesocks
   :after (oauth)
   :hook (tumblesocks-view-mode . conleym:disable-display-line-numbers-mode)
-  :init
+  :custom
   ;; doesn't work with :config and :hook for some reason...
-  (setq tumblesocks-token-file (conleym:persistence-dir-file "tumblr-oauth-token")))
+  (tumblesocks-token-file (conleym:persistence-dir-file "tumblr-oauth-token")))
 
 
 (use-package twittering-mode
@@ -643,10 +649,15 @@
   ;; https://github.com/hayamiz/twittering-mode/issues/154
   (defalias 'epa--decode-coding-string #'decode-coding-string)
   :custom
-  (twittering-display-remaining t "Show number of remaining API calls in the modeline.")
-  (twittering-private-info-file (conleym:persistence-dir-file "twittering-mode/.twittering-mode.gpg"))
-  (twittering-user-id-db-file (conleym:persistence-dir-file "twittering-mode/.twittering-mode-user-info.gz"))
-  (twittering-icon-storage-file (conleym:persistence-dir-file "twittering-mode/twittering-mode-icons.gz") "Keep twitter icons in the persistence directory.")
+  (twittering-display-remaining
+   t "Show number of remaining API calls in the modeline.")
+  (twittering-private-info-file
+   (conleym:persistence-dir-file "twittering-mode/.twittering-mode.gpg"))
+  (twittering-user-id-db-file
+   (conleym:persistence-dir-file "twittering-mode/.twittering-mode-user-info.gz"))
+  (twittering-icon-storage-file
+   (conleym:persistence-dir-file "twittering-mode/twittering-mode-icons.gz")
+   "Keep twitter icons in the persistence directory.")
   (twittering-use-icon-storage t)
   (twittering-use-master-password t "Store the oauth token."))
 
@@ -713,8 +724,10 @@
               ("n" . #'xkcd-next)
               ("p" . #'xkcd-prev))
   :custom
-  (xkcd-cache-dir (conleym:persistence-dir-file "xkcd/")  "Keep xkcd files in the persistence directory.")
-  (xkcd-cache-latest (concat xkcd-cache-dir "latest")  "Keep xkcd files in the persistence directory.")
+  (xkcd-cache-dir
+   (conleym:persistence-dir-file "xkcd/")  "Keep xkcd files in the persistence directory.")
+  (xkcd-cache-latest
+   (concat xkcd-cache-dir "latest")  "Keep xkcd files in the persistence directory.")
   :config
   ;; Avoid stupid mkdir-RET-RET message, plus failure to load, when directory doesn't exist.
   (conleym:maybe-mkdir xkcd-cache-dir))
