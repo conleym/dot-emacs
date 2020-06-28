@@ -12,8 +12,10 @@
   ;; Global abbrev mode. Curiously not customizable.
   (setq-default abbrev-mode t)
   :custom
-  (save-abbrevs 'silently "Never ask me about saving. Just save.")
-  (abbrev-file-name (conleym:persistence-dir-file "abbrev_defs") "Keep abbrev file in persistence dir.")
+  (save-abbrevs
+   'silently "Never ask me about saving. Just save.")
+  (abbrev-file-name
+   (conleym:persistence-dir-file "abbrev_defs") "Keep abbrev file in persistence dir.")
   :config
   ;; Load the file if it exists, don't bother me if it doesn't.
   (if (file-exists-p abbrev-file-name)
@@ -32,8 +34,10 @@
 
 (use-package bookmark
   :custom
-  (bookmark-default-file (conleym:persistence-dir-file "bookmarks") "Keep bookmarks in persistence dir.")
-  (bookmark-save-flag 1 "Save every time the bookmarks are changed."))
+  (bookmark-default-file
+   (conleym:persistence-dir-file "bookmarks") "Keep bookmarks in persistence dir.")
+  (bookmark-save-flag
+   1 "Save every time the bookmarks are changed."))
 
 
 (use-package browse-url
@@ -85,7 +89,8 @@
 (use-package ede/base
   :defer t
   :custom
-  (ede-project-placeholder-cache-file (conleym:persistence-dir-file "ede-projects.el") "Keep ede cache in persistence dir."))
+  (ede-project-placeholder-cache-file
+   (conleym:persistence-dir-file "ede-projects.el") "Keep ede cache in persistence dir."))
 
 
 ;; Shows lisp docstrings in the minibuffer.
@@ -168,7 +173,8 @@
 
 (use-package image-dired
   :custom
-  (image-dired-dir (conleym:persistence-dir-file "image-dired") "Keep thumbnails in the persistence directory."))
+  (image-dired-dir
+   (conleym:persistence-dir-file "image-dired") "Keep thumbnails in the persistence directory."))
 
 
 (use-package imenu
@@ -348,7 +354,8 @@
 
 (use-package vc-hooks
   :custom
-  (vc-make-backup-files t " Just because it's in version control doesn't mean I don't want local backups."))
+  (vc-make-backup-files
+   t " Just because it's in version control doesn't mean I don't want local backups."))
 
 
 (use-package wdired
