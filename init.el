@@ -53,7 +53,7 @@
 
 ;; Ordinarily bound to right click only, but I do this accidentally far too
 ;; often on the ol' trackpad.
-(global-set-key (kbd "<M-mouse-3>") #'mouse-buffer-menu)
+(global-set-key (kbd "<C-M-mouse-3>") #'mouse-buffer-menu)
 
 ;; This fixes fn+delete when running under X11. Without this it's backspace,
 ;; same as plain delete.
@@ -71,7 +71,7 @@
 (global-set-key (kbd "C-<backspace>") #'backward-kill-line)
 
 ;; enable emojis.
-;; https://www.reddit.com/r/emacs/comments/ggd90c/color_emoji_in_emacs_27/fq0nvxc?utm_source=share&utm_medium=web2x
+;; https://www.reddit.com/r/emacs/comments/ggd90c/color_emoji_in_emacs_27/fq0nvxc
 (set-fontset-font "fontset-default" 'symbol "Apple Color Emoji")
 (set-fontset-font "fontset-default" 'symbol "Noto Color Emoji" nil 'append)
 (set-fontset-font "fontset-default" 'symbol "Segoe UI Emoji" nil 'append)
