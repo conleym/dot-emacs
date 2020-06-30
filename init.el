@@ -26,11 +26,6 @@
 ;; Set dark background in terminal to match (customized) frame setting.
 (set-terminal-parameter nil 'background-mode 'dark)
 
-;; Don't ask to kill buffers with processes.
-(setq kill-buffer-query-functions
-      (remq #'process-kill-buffer-query-function
-            kill-buffer-query-functions))
-
 ;; Make mouse work in the terminal.
 ;;
 ;; Note: display-mouse-p returns false in the terminal unless this is already
@@ -43,6 +38,11 @@
 
 ;; Use y/n instead of yes/no. defalias also works here.
 (fset #'yes-or-no-p #'y-or-n-p)
+
+;; Don't ask to kill buffers with processes.
+(setq kill-buffer-query-functions
+      (remq #'process-kill-buffer-query-function
+            kill-buffer-query-functions))
 
 ;; Turn the fucking bell off.
 (setq ring-bell-function #'ignore)
