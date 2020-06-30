@@ -25,7 +25,9 @@
 
 (defun conleym:is-mac-app ()
   "Is this emacs a macOS app?"
-  (memq window-system '(ns)))
+  ;; Technically this also returns true for GNUstep, but I don't run that
+  ;; anywhere, so whatever.
+  (eq window-system 'ns))
 
 (defun conleym:disable-linum-mode ()
   "Disable linum-mode."
