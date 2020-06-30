@@ -142,8 +142,13 @@
   :after (dired imenu))
 
 
+(use-package docker
+  :after
+  (docker-tramp))
+
 (use-package docker-tramp
-  :after (tramp))
+  :after
+  (tramp))
 
 
 (use-package dockerfile-mode
