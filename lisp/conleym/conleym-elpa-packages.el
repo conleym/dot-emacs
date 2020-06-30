@@ -377,6 +377,7 @@
 
 
 (use-package noflet
+  ;; https://github.com/nicferrier/emacs-noflet
   :config
   ;; Eliminate prompt when exiting emacs when processes are running.
   (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
@@ -385,6 +386,7 @@
 
 
 (use-package nov
+  ;; https://depp.brause.cc/nov.el/
   :mode ("\\.epub\\'" . nov-mode)
   :custom
   (nov-save-place-file
