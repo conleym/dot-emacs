@@ -33,11 +33,13 @@
 
 ;; Make mouse work in the terminal.
 ;;
-;; Continue to use deprecated window-system-as-boolean, since display-mouse-p
-;; returns false in the terminal unless this is already enabled.
-(if (not window-system)
-    ;; Xterm setup
-    (xterm-mouse-mode t))
+;; Note: display-mouse-p returns false in the terminal unless this is already
+;; enabled, so cannot be used here.
+(unless (display-graphic-p)
+  ;; Xterm setup
+  (xterm-mouse-mode 1)
+  (global-set-key (kbd "<mouse-4>") #'scroll-down-line)
+  (global-set-key (kbd "<mouse-5>") #'scroll-up-line))
 
 ;; Use y/n instead of yes/no. defalias also works here.
 (fset #'yes-or-no-p #'y-or-n-p)
