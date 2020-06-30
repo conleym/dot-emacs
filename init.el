@@ -1,4 +1,3 @@
-(setq load-prefer-newer t)
 (prefer-coding-system 'utf-8)
 
 ;; Bootstrap.
