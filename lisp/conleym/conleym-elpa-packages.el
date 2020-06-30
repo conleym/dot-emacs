@@ -370,13 +370,16 @@
 (use-package mac-pseudo-daemon
   ;; https://github.com/DarwinAwardWinner/mac-pseudo-daemon
   ;; fix the dock icon when running as a --daemon
-)
+  )
+
+
+(use-package magit)
 
 
 (use-package manage-minor-mode
   ;; https://github.com/ShingoFukuyama/manage-minor-mode
   ;; List, activate and deactivate minor modes easily.
-)
+  )
 
 
 (use-package markdown-mode
