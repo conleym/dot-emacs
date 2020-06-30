@@ -345,7 +345,7 @@
   ;; https://github.com/emacs-lsp/lsp-mode
   ;; lsp support for emacs.
   :hook
-  ((lsp-mode . lsp-enable-which-key-integration))
+  (lsp-mode . lsp-enable-which-key-integration)
   :commands
   (lsp lsp-deferred lsp-enable-which-key-integration)
   :config
