@@ -24,8 +24,10 @@
 
 (use-package autorevert
   :delight auto-revert-mode
-  :after (dired)
-  :hook (dired-mode . auto-revert-mode)
+  :after
+  (dired)
+  :hook
+  (dired-mode . auto-revert-mode)
   :custom
   (auto-revert-interval 1 "Default (5 seconds) is too long to wait.")
   :config
@@ -117,7 +119,8 @@
 
 (use-package files
   ;; Remove trailing whitespace (always) and convert tabs to spaces (usually) before saving.
-  :hook (before-save . (delete-trailing-whitespace conleym:maybe-untabify-buffer))
+  :hook
+  (before-save . (delete-trailing-whitespace conleym:maybe-untabify-buffer))
   :custom
   (version-control t)
   (kept-versions 20)
@@ -180,7 +183,8 @@
 (use-package imenu
   :commands
   (imenu--sort-by-name)
-  :hook (after-change-major-mode . conleym:safe-imenu)
+  :hook
+  (after-change-major-mode . conleym:safe-imenu)
   :custom
   (imenu-auto-rescan t)
   :config
@@ -226,8 +230,9 @@
 (use-package nxml-mode
   ;; Major mode for editing XML.
   :defer t
-  :magic  (("<\\?xml" . nxml-mode)
-           ("<![dD][oO][cC][tT][yY][pP][eE]" . nxml-mode))
+  :magic
+  (("<\\?xml" . nxml-mode)
+   ("<![dD][oO][cC][tT][yY][pP][eE]" . nxml-mode))
   :custom
   (nxml-attribute-indent tab-width)
   (nxml-child-indent tab-width)
@@ -261,7 +266,8 @@
 
 
 (use-package recentf
-  :bind ("C-x C-r" . conleym:recentf-ido-find-file)
+  :bind
+  ("C-x C-r" . conleym:recentf-ido-find-file)
   :custom
   (recentf-save-file (conleym:persistence-dir-file "recentf"))
   (recentf-max-menu-items 25)
@@ -275,13 +281,15 @@
 
 
 (use-package reftex
-  :hook (LaTeX-mode . turn-on-reftex)
+  :hook
+  (LaTeX-mode . turn-on-reftex)
   :custom
   (reftex-plug-into-AUCTeX t))
 
 
 (use-package ruby-mode
-  :mode ("Vagrantfile\\'" . ruby-mode))
+  :mode
+  ("Vagrantfile\\'" . ruby-mode))
 
 
 (use-package savehist
@@ -317,11 +325,13 @@
   (speedbar-default-position 'left)
   (speedbar-show-unknown-files t)
   ;; Turn line numbers off in the speedbar buffer.
-  :hook (speedbar-mode . conleym:disable-display-line-numbers-mode))
+  :hook
+  (speedbar-mode . conleym:disable-display-line-numbers-mode))
 
 
 (use-package sql
-  :after (abbrev)
+  :after
+  (abbrev)
   :config
   ;; I find these abbrevs unhelpful.
   (clear-abbrev-table sql-mode-abbrev-table))

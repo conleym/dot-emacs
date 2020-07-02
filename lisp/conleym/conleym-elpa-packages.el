@@ -6,7 +6,8 @@
 (use-package 2048-game
   ;; https://bitbucket.org/zck/2048.el
   ;; It's a game. It's fun.
-  :hook (2048-mode . conleym:disable-display-line-numbers-mode))
+  :hook
+  (2048-mode . conleym:disable-display-line-numbers-mode))
 
 
 (use-package ag
@@ -26,11 +27,12 @@
   :init
   ;; https://github.com/domtronn/all-the-icons.el/issues/120#issuecomment-480342779
   (let ((font-families (font-family-list)))
-    ;; font-family-list returns nil on terminal!
+    ;; font-family-list returns nil on terminal! We won't try to install the
+    ;; icon fonts unless loaded graphically.
     (unless (or (null font-families) (member "all-the-icons" font-families))
       (all-the-icons-install-fonts t)))
   :config
-    (add-to-list 'all-the-icons-icon-alist
+  (add-to-list 'all-the-icons-icon-alist
                '("\\.dtx\\'" all-the-icons-fileicon "tex" :face all-the-icons-lblue)))
 
 
@@ -38,8 +40,10 @@
   ;; https://github.com/jtbm37/all-the-icons-dired
   ;; Add icons to dired-mode
   :delight
-  :after (all-the-icons dired)
-  :hook (dired-mode . all-the-icons-dired-mode))
+  :after
+  (all-the-icons dired)
+  :hook
+  (dired-mode . all-the-icons-dired-mode))
 
 
 (use-package all-the-icons-ibuffer
@@ -73,7 +77,8 @@
 (use-package auto-compile
   ;; https://github.com/tarsius/auto-compile
   ;; Automatically byte (re)compile elisp files.
-  :hook (emacs-lisp-mode . auto-compile-mode)
+  :hook
+  (emacs-lisp-mode . auto-compile-mode)
   :custom
   (auto-compile-display-buffer nil "Don't bring up the compile log buffer.")
   (auto-compile-mode-line-counter t "Show warnings on modeline.")
@@ -119,7 +124,7 @@
 (use-package company-auctex
   ;; https://github.com/alexeyr/company-auctex
   ;; auctex completion
-)
+  )
 
 
 (use-package company-emoji
@@ -139,7 +144,8 @@
 
 
 (use-package dired-imenu
-  :after (dired imenu))
+  :after
+  (dired imenu))
 
 
 (use-package docker
@@ -170,7 +176,8 @@
   ;; http://mph-emacs-pkgs.alioth.debian.org/EimpEl.html
   ;; Image manipulation using ImageMagick, which must be installed and available
   ;;   in the $PATH.
-  :hook (image-mode . eimp-mode)
+  :hook
+  (image-mode . eimp-mode)
   :custom
   (eimp-enable-undo t))
 
@@ -178,7 +185,8 @@
 (use-package elpy
   ;; https://github.com/jorgenschaefer/elpy
   ;; Python development env
-  :hook (elpy-mode . flycheck-mode)
+  :hook
+  (elpy-mode . flycheck-mode)
   :custom
   (elpy-rpc-virtualenv-path (conleym:persistence-dir-file "elpy") "Keep the elpy venv in the persistence directory.")
   :config
@@ -193,8 +201,9 @@
   ;; https://github.com/smihica/emmet-mode
   ;; emmet.io stuff (web editing shortcuts) for emacs.
   :delight
-  :hook ((sgml-mode . emmet-mode)
-         (css-mode . emmet-mode)))
+  :hook
+  ((sgml-mode . emmet-mode)
+   (css-mode . emmet-mode)))
 
 
 (use-package emojify
@@ -213,9 +222,11 @@
 (use-package emr
   ;; https://github.com/chrisbarrett/emacs-refactor
   ;; Refactoring library
-  :hook (prog-mode . emr-initialize)
-  :bind (:map prog-mode-map
-              ("M-RET" . #'emr-show-refactor-menu)))
+  :hook
+  (prog-mode . emr-initialize)
+  :bind
+  (:map prog-mode-map
+        ("M-RET" . #'emr-show-refactor-menu)))
 
 
 (use-package es-mode
@@ -240,7 +251,8 @@
 (use-package flx-ido
   ;; https://github.com/lewang/flx
   ;; Fuzzy matching for ido-mode.
-  :after (ido)
+  :after
+  (ido)
   :custom
   (ido-use-faces nil "Disable ido's faces so we can see flx's highlighting instead.")
   (flx-ido-threshold 10000)
@@ -265,7 +277,8 @@
 (use-package flycheck-relint
   ;; https://github.com/purcell/flycheck-relint
   ;; flycheck for elisp regexes.
-  :after (flycheck relint)
+  :after
+  (flycheck relint)
   :init
   (flycheck-relint-setup))
 
@@ -310,14 +323,16 @@
 (use-package ido-completing-read+
   ;; https://github.com/DarwinAwardWinner/ido-completing-read-plus
   ;; Even more ido.
-  :after (ido)
+  :after
+  (ido)
   :config
   (ido-ubiquitous-mode t))
 
 
 (use-package imenu-list
   ;; https://github.com/bmag/imenu-list
-  :after (imenu)
+  :after
+  (imenu)
   :hook
   (imenu-list-major-mode . conleym:disable-display-line-numbers-mode))
 
@@ -392,7 +407,8 @@
 
 (use-package nov
   ;; https://depp.brause.cc/nov.el/
-  :mode ("\\.epub\\'" . nov-mode)
+  :mode
+  ("\\.epub\\'" . nov-mode)
   :custom
   (nov-save-place-file
    (conleym:persistence-dir-file "nov-places") "Keep saved places in persistence dir."))
@@ -453,11 +469,13 @@
 
 
 (use-package pdf-tools
-  :magic ("%PDF" . pdf-view-mode)
+  :magic
+  ("%PDF" . pdf-view-mode)
   ;; Disable line numbers. I don't want them. Also make sure linum mode is off,
   ;; because it can break this mode:
   ;; https://github.com/politza/pdf-tools#linum-mode
-  :hook (pdf-view-mode . conleym:disable-line-numbers)
+  :hook
+  (pdf-view-mode . conleym:disable-line-numbers)
   :config
   (pdf-tools-install :no-query))
 
@@ -472,8 +490,10 @@
   ;; https://github.com/prettier/prettier-emacs
   ;; use prettier to format javascript code.
   :delight
-  :ensure-system-package (prettier . "npm install -g prettier")
-  :hook (js-mode . prettier-js-mode)
+  :ensure-system-package
+  (prettier . "npm install -g prettier")
+  :hook
+  (js-mode . prettier-js-mode)
   :custom
   (prettier-js-args
    '("--bracket-spacing" "false"
@@ -518,7 +538,8 @@
 
 
 (use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
+  :hook
+  (prog-mode . rainbow-delimiters-mode))
 
 
 (use-package relint)
@@ -551,8 +572,9 @@
 (use-package smex
   ;; https://github.com/nonsequitur/smex
   ;; Better M-x, built on ido.
-  :bind (("M-x" . smex)
-         ("M-X" . smex-major-mode-commands))
+  :bind
+  (("M-x" . smex)
+   ("M-X" . smex-major-mode-commands))
   :custom
   (smex-history-length 200)
   (smex-save-file (conleym:persistence-dir-file "smex-items"))
@@ -581,14 +603,17 @@
 
 (use-package tex-site
   :ensure auctex
-  :after (auctex-latexmk reftex company-auctex)
+  :after
+  (auctex-latexmk reftex company-auctex)
   :functions
   (TeX-revert-document-buffer)
-  :hook ((TeX-mode . TeX-source-correlate-mode)
-         (LaTeX-mode . LaTeX-math-mode))
-  :bind (:map TeX-mode-map
-              ;; cmd-shift-click = TeX-view
-              ("<S-s-mouse-1>" . TeX-view))
+  :hook
+  ((TeX-mode . TeX-source-correlate-mode)
+   (LaTeX-mode . LaTeX-math-mode))
+  :bind
+  (:map TeX-mode-map
+        ;; cmd-shift-click = TeX-view
+        ("<S-s-mouse-1>" . TeX-view))
   :init
   (auctex-latexmk-setup)
   (company-auctex-init)
@@ -633,13 +658,16 @@
     ;; slight difference from readme version because
     ;; company, flycheck, and eldoc are all globally enabled.
     (tide-hl-identifier-mode +1))
-  :hook ((typescript-mode . conleym:setup-tide-mode)
-         (before-save . tide-format-before-save)))
+  :hook
+  ((typescript-mode . conleym:setup-tide-mode)
+   (before-save . tide-format-before-save)))
 
 
 (use-package tumblesocks
-  :after (oauth)
-  :hook (tumblesocks-view-mode . conleym:disable-display-line-numbers-mode)
+  :after
+  (oauth)
+  :hook
+  (tumblesocks-view-mode . conleym:disable-display-line-numbers-mode)
   :custom
   ;; doesn't work with :config and :hook for some reason...
   (tumblesocks-token-file (conleym:persistence-dir-file "tumblr-oauth-token")))
@@ -649,9 +677,10 @@
   :defer t
   :commands ;; why doesn't :functions silence warnings here?
   (twittering-icon-mode)
-  :hook (twittering-mode . (lambda()
-                             (conleym:disable-display-line-numbers-mode)
-                             (twittering-icon-mode)))
+  :hook
+  (twittering-mode . (lambda()
+                       (conleym:disable-display-line-numbers-mode)
+                       (twittering-icon-mode)))
   :config
   ;; https://github.com/hayamiz/twittering-mode/issues/154
   (defalias 'epa--decode-coding-string #'decode-coding-string)
@@ -696,8 +725,9 @@
   (flycheck tide)
   :functions
   (flycheck-add-mode)
-  :mode (("\\.hbs\\'" . web-mode) ;; handlebars.js templates
-         ("\\.tsx\\'" . web-mode)) ;; typescript react/jsx.
+  :mode
+  (("\\.hbs\\'" . web-mode) ;; handlebars.js templates
+   ("\\.tsx\\'" . web-mode)) ;; typescript react/jsx.
   :init
   (add-hook 'web-mode-hook
             (lambda ()
@@ -725,11 +755,13 @@
   ;; I want to be able to resize the images. Note that xkcd-mode must be
   ;; added to eimp-ignore-readonly-modes for that to work (it's
   ;; customized).
-  :hook (xkcd-mode . eimp-mode)
+  :hook
+  (xkcd-mode . eimp-mode)
   ;; Rebind keys, since eimp uses the arrows.
-  :bind (:map xkcd-mode-map
-              ("n" . #'xkcd-next)
-              ("p" . #'xkcd-prev))
+  :bind
+  (:map xkcd-mode-map
+        ("n" . #'xkcd-next)
+        ("p" . #'xkcd-prev))
   :custom
   (xkcd-cache-dir
    (conleym:persistence-dir-file "xkcd/")  "Keep xkcd files in the persistence directory.")
