@@ -126,6 +126,7 @@
   (kept-versions 20)
   (kept-new-versions 20)
   (kept-old-versions 20)
+  (confirm-kill-processes nil)
   :config
   ;; autosave, backup, etc. files go in the persistence dir.
   (let ((auto-save-list-dir (conleym:persistence-dir-file "auto-save-list/"))
