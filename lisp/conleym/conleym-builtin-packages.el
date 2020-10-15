@@ -268,7 +268,7 @@
 
 (use-package recentf
   :bind
-  ("C-x C-r" . conleym:recentf-ido-find-file)
+  ("C-x r" . conleym:recentf-ido-find-file)
   :custom
   (recentf-save-file (conleym:persistence-dir-file "recentf"))
   (recentf-max-menu-items 25)
