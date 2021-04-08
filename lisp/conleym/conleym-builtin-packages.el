@@ -318,8 +318,11 @@
   (server-running-p)
   :config 
   (unless (or (daemonp) (server-running-p))
+    (server-start))
+  (defun conleym:server-restart()
+    (interactive)
+    (server-force-delete)
     (server-start)))
-
 
 (use-package speedbar
   :custom
