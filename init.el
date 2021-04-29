@@ -93,3 +93,4 @@
 
 (require 'conleym-packages)
 (require 'conleym-secrets)
+(require 'mac-opt-chars-mode)
