@@ -175,6 +175,11 @@
   (ido-everywhere t))
 
 
+(use-package ibuffer
+  :bind
+  ("C-x C-b" . #'ibuffer))
+
+
 (use-package image-dired
   :custom
   (image-dired-dir

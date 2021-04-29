@@ -59,8 +59,6 @@
 ;; same as plain delete.
 (global-set-key [delete] #'delete-char)
 
-(global-set-key (kbd "C-x C-b") #'ibuffer)
-
 ;; c-backspace is backwards-kill-line
 ;; https://emacsredux.com/blog/2013/04/08/kill-line-backward/
 (defun backward-kill-line ()
