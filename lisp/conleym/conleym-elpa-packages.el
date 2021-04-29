@@ -18,7 +18,7 @@
   ;; TODO do I want this?
   ;; (ag-reuse-window 't)
   ;; (ag-reuse-buffers 't)
-  )
+)
 
 
 (use-package all-the-icons
@@ -106,6 +106,7 @@
   :config
   (beacon-mode 1))
 
+
 (use-package browse-at-remote
   ;; https://github.com/rmuslimov/browse-at-remote
   ;; Show the current file in the remote repository.
@@ -124,7 +125,7 @@
 (use-package company-auctex
   ;; https://github.com/alexeyr/company-auctex
   ;; auctex completion
-  )
+)
 
 
 (use-package company-emoji
@@ -151,6 +152,7 @@
 (use-package docker
   :after
   (docker-tramp))
+
 
 (use-package docker-tramp
   :after
@@ -787,11 +789,18 @@
 
 
 (use-package zone-nyan
+  ;; https://depp.brause.cc/zone-nyan/
+  ;; nyan screensaver ("zone program")
   :after (zone)
   :defer t
   :defines zone-programs
   :config
-  (add-to-list 'zone-programs #'zone-nyan))
-
+  (add-to-list 'zone-programs #'zone-nyan)
+  ;;  :custom
+  ;; Not ideal, with the GUI elements
+  ;; (zone-nyan-bg-music-program "VLC"  "Use VLC to play the music")
+  ;; (zone-nyan-bg-music-args
+  ;; `("-L", (expand-file-name "~/Downloads/original.mp3"))  "Set the music"))
+)
 
 (provide 'conleym-elpa-packages)
