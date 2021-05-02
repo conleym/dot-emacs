@@ -354,11 +354,7 @@
 
 (use-package term
   :custom
-  (explicit-shell-file-name (executable-find "zsh"))
-  :config
-  (defadvice ansi-term (before use-term)
-    (interactive (list explicit-shell-file-name)))
-  (ad-activate 'ansi-term))
+  (explicit-shell-file-name (executable-find "zsh")))
 
 
 (use-package tramp
