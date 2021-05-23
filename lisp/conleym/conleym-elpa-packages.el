@@ -401,11 +401,6 @@
   (ns-auto-titlebar-mode))
 
 
-(use-package noflet
-  ;; https://github.com/nicferrier/emacs-noflet
-  )
-
-
 (use-package nov
   ;; https://depp.brause.cc/nov.el/
   :mode
