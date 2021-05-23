@@ -369,12 +369,6 @@
   (use-package lsp-ui :commands lsp-ui-mode))
 
 
-;;(use-package mac-pseudo-daemon
-;; https://github.com/DarwinAwardWinner/mac-pseudo-daemon
-;; fix the dock icon when running as a --daemon
-;;)
-
-
 (use-package magit)
 
 
