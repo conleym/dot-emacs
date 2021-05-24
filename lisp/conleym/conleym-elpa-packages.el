@@ -532,7 +532,10 @@
   (prog-mode . rainbow-delimiters-mode))
 
 
-(use-package relint)
+(use-package relint
+  ;; https://github.com/mattiase/relint
+  ;; elisp regex linter. See also flycheck-relint.
+  )
 
 
 (use-package restclient
