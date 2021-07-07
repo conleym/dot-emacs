@@ -18,7 +18,7 @@
   ;; TODO do I want this?
   ;; (ag-reuse-window 't)
   ;; (ag-reuse-buffers 't)
-)
+  )
 
 
 (use-package all-the-icons
@@ -37,11 +37,13 @@
 
 
 (use-package all-the-icons-dired
-  ;; https://github.com/jtbm37/all-the-icons-dired
+  ;; https://github.com/wyuenho/all-the-icons-dired
   ;; Add icons to dired-mode
   :delight
   :after
   (all-the-icons dired)
+  :custom
+  (all-the-icons-dired-monochrome nil)
   :hook
   (dired-mode . all-the-icons-dired-mode))
 
@@ -763,7 +765,6 @@
   :config
   ;; Avoid stupid mkdir-RET-RET message, plus failure to load, when directory doesn't exist.
   (conleym:maybe-mkdir xkcd-cache-dir))
-  
 
 
 (use-package yagist
