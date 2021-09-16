@@ -144,7 +144,7 @@
       (progn
         ;; Delete using Mac trash rather than freedesktop.org trash.
         (customize-set-value 'trash-directory "~/.Trash")
-        ;; OS X ls doesn't suport --dired. Try to use GNU ls instead, if
+        ;; OS X ls doesn't support --dired. Try to use GNU ls instead, if
         ;; available.
         (when-let ((gls (executable-find "gls")))
           (setq insert-directory-program gls)))))
@@ -328,6 +328,7 @@
     (interactive)
     (server-force-delete)
     (server-start)))
+
 
 (use-package speedbar
   :custom
