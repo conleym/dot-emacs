@@ -22,8 +22,8 @@
                 (let* ((split (split-string line "=" t))
                        (name (car split))
                        (value (concat
-                               ;; Remove surrounding single quotes
-                               (replace-regexp-in-string "'\\(.*\\)'$" "\\1" (cadr split))
+                               ;; Remove any surrounding single quotes
+                               (replace-regexp-in-string "^'\\(.*\\)'$" "\\1" (string-join (cdr split) "="))
                                ;; Append $* so eshell aliases respect args, if any.
                                " $*")))
                   (list name value)))
