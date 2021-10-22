@@ -292,28 +292,23 @@
   ;; go forward and backward in git history with "n" and "p", etc.
   :defer t)
 
-
-(use-package gitattributes-mode
+(use-package git-modes
   ;; https://github.com/magit/git-modes
-  ;; .gitattributes major mode.
-  :defer t)
-
-
-(use-package gitconfig-mode
-  ;; https://github.com/magit/git-modes
-  ;; .gitconfig major mode.
-  :hook
-  (gitconfig-mode . (lambda()
-                      ;; I don't want to indent with tabs. Tabs are stupid.
-                      (setq indent-tabs-mode nil))))
-
-
-(use-package gitignore-mode
-  ;; https://github.com/magit/git-modes
-  ;; .gitignore major mode.
-  :mode
-  ;; My global settings.
-  "\\.gitignore_global\\'")
+  ;; Automatically installs gitconfig, gitignore, gitattributes modes.
+  :init
+  (use-package gitconfig-mode
+    ;; .gitconfig major mode.
+    :ensure f
+    :hook
+    (gitconfig-mode . (lambda()
+                        ;; I don't want to indent with tabs. Tabs are stupid.
+                        (setq indent-tabs-mode nil))))
+  (use-package gitignore-mode
+    ;; .gitignore major mode.
+    :ensure f
+    :mode
+    ;; My global settings.
+    "\\.gitignore_global\\'"))
 
 
 (use-package hungry-delete
