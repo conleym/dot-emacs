@@ -209,6 +209,11 @@
   (setq imenu-sort-function #'imenu--sort-by-name))
 
 
+(use-package indent-tabs-mode
+  ;; Ensure tsv files are indented with tabs for obvious reasons.
+  :mode "\\.tsv\\'")
+
+
 (use-package ispell
   :config
   ;; Prefer hunspell if available.
