@@ -156,11 +156,6 @@
   (docker-tramp))
 
 
-(use-package docker-tramp
-  :after
-  (tramp))
-
-
 (use-package dockerfile-mode
   ;; https://github.com/spotify/dockerfile-mode
   :mode "Dockerfile[a-zA-Z.-]*\\'"
