@@ -342,12 +342,6 @@
   ("\\.har\\'" "\\.json\\'"))
 
 
-(use-package lastpass
-  :config
-  ;; Enable lastpass custom auth-source
-  (lastpass-auth-source-enable))
-
-
 (use-package lsp-mode
   ;; https://github.com/emacs-lsp/lsp-mode
   ;; lsp support for emacs.
