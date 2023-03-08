@@ -650,36 +650,11 @@
   (tumblesocks-token-file (conleym:persistence-dir-file "tumblr-oauth-token")))
 
 
-(use-package twittering-mode
-  :defer t
-  :commands ;; why doesn't :functions silence warnings here?
-  (twittering-icon-mode)
-  :hook
-  (twittering-mode . (lambda()
-                       (conleym:disable-display-line-numbers-mode)
-                       (twittering-icon-mode)))
-  :config
-  ;; https://github.com/hayamiz/twittering-mode/issues/154
-  (defalias 'epa--decode-coding-string #'decode-coding-string)
-  :custom
-  (twittering-display-remaining
-   t "Show number of remaining API calls in the modeline.")
-  (twittering-private-info-file
-   (conleym:persistence-dir-file "twittering-mode/.twittering-mode.gpg"))
-  (twittering-user-id-db-file
-   (conleym:persistence-dir-file "twittering-mode/.twittering-mode-user-info.gz"))
-  (twittering-icon-storage-file
-   (conleym:persistence-dir-file "twittering-mode/twittering-mode-icons.gz")
-   "Keep twitter icons in the persistence directory.")
-  (twittering-use-icon-storage t)
-  (twittering-use-master-password t "Store the oauth token."))
-
-
 (use-package unicode-troll-stopper
   ;; https://github.com/camsaul/emacs-unicode-troll-stopper
   ;; Highlight homoglpyhs.
   ;; TODO turn on global mode when available. See issue #2.
-)
+  )
 
 
 (use-package vagrant
