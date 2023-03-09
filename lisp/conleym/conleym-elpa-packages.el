@@ -640,16 +640,6 @@
    (before-save . tide-format-before-save)))
 
 
-(use-package tumblesocks
-  :after
-  (oauth)
-  :hook
-  (tumblesocks-view-mode . conleym:disable-display-line-numbers-mode)
-  :custom
-  ;; doesn't work with :config and :hook for some reason...
-  (tumblesocks-token-file (conleym:persistence-dir-file "tumblr-oauth-token")))
-
-
 (use-package unicode-troll-stopper
   ;; https://github.com/camsaul/emacs-unicode-troll-stopper
   ;; Highlight homoglpyhs.
