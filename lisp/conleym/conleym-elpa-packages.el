@@ -63,11 +63,6 @@
   (global-aggressive-indent-mode 1))
 
 
-(use-package apples-mode
-  ;; https://github.com/tequilasunset/apples-mode
-  ;; Major mode for applescript.
-  :mode "\\.applescript\\'")
-
 
 (use-package auctex-latexmk
   ;; https://github.com/tom-tan/auctex-latexmk
