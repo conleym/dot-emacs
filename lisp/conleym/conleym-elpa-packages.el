@@ -189,15 +189,6 @@
   (advice-add #'python-mode :before #'elpy-enable))
 
 
-(use-package emmet-mode
-  ;; https://github.com/smihica/emmet-mode
-  ;; emmet.io stuff (web editing shortcuts) for emacs.
-  :delight
-  :hook
-  ((sgml-mode . emmet-mode)
-   (css-mode . emmet-mode)))
-
-
 (use-package emojify
   ;; https://github.com/iqbalansari/emacs-emojify
   ;; Convert some sequences of characters to emojis.
