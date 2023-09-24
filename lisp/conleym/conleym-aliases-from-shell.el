@@ -15,7 +15,7 @@
 
 
 (defun conleym:eshell-aliases-from-shell ()
-  "Read aliases from the shell and return a list of definitions suitable for use with eshell."
+  "Read aliases from the shell and return a list of eshell definitions."
   (let* ((shell-output (conleym:eshell-read-aliases))
          (lines (split-string shell-output "\n" t)))
     (mapcar #'(lambda (line)
