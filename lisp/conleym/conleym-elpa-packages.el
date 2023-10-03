@@ -633,19 +633,6 @@
   )
 
 
-(use-package vagrant
-  ;; https://github.com/ottbot/vagrant.el
-  ;; Manage vagrant boxes from emacs.
-  :defer t)
-
-
-(use-package vagrant-tramp
-  ;; https://github.com/dougm/vagrant-tramp
-  ;; vagrant-ssh for tramp.
-  :after
-  (tramp))
-
-
 (use-package web-mode
   ;; http://web-mode.org
   ;; Major mode for various web template languages.
