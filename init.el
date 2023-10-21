@@ -26,16 +26,6 @@
 ;; Set dark background in terminal to match (customized) frame setting.
 (set-terminal-parameter nil 'background-mode 'dark)
 
-;; Make mouse work in the terminal.
-;;
-;; Note: display-mouse-p returns false in the terminal unless this is already
-;; enabled, so cannot be used here.
-(unless (display-graphic-p)
-  ;; Xterm setup
-  (xterm-mouse-mode 1)
-  (global-set-key (kbd "<mouse-4>") #'scroll-down-line)
-  (global-set-key (kbd "<mouse-5>") #'scroll-up-line))
-
 ;; Use y/n instead of yes/no. defalias also works here.
 (fset #'yes-or-no-p #'y-or-n-p)
 
@@ -47,27 +37,6 @@
 ;; Turn the fucking bell off.
 (setq ring-bell-function #'ignore)
 
-;; Easily change text size with control + mouse wheel.
-(global-set-key (kbd "<C-wheel-up>") #'text-scale-increase)
-(global-set-key (kbd "<C-wheel-down>") #'text-scale-decrease)
-
-;; Ordinarily bound to right click only, but I do this accidentally far too
-;; often on the ol' trackpad.
-(global-set-key (kbd "<C-M-mouse-3>") #'mouse-buffer-menu)
-
-;; This fixes fn+delete when running under X11. Without this it's backspace,
-;; same as plain delete.
-(global-set-key [delete] #'delete-char)
-
-;; c-backspace is backwards-kill-line
-;; https://emacsredux.com/blog/2013/04/08/kill-line-backward/
-(defun backward-kill-line ()
-  (interactive)
-  (kill-line 0)
-  (indent-according-to-mode))
-
-(global-set-key (kbd "C-<backspace>") #'backward-kill-line)
-
 ;; enable emojis.
 ;; https://www.reddit.com/r/emacs/comments/ggd90c/color_emoji_in_emacs_27/fq0nvxc
 (set-fontset-font "fontset-default" 'symbol "Apple Color Emoji")
@@ -78,4 +47,4 @@
 
 (require 'conleym-packages)
 (require 'conleym-secrets)
-(require 'mac-opt-chars-mode)
+(require 'conleym-keys)
