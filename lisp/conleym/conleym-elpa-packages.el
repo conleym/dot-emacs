@@ -419,11 +419,11 @@
 
 
 (use-package pdf-tools
+  ;; https://github.com/vedang/pdf-tools
   :magic
   ("%PDF" . pdf-view-mode)
-  ;; Disable line numbers. I don't want them. Also make sure linum mode is off,
-  ;; because it can break this mode:
-  ;; https://github.com/politza/pdf-tools#linum-mode
+  ;; Disable line numbers. I don't want them, because it can break this mode:
+  ;; https://github.com/vedang/pdf-tools#display-line-numbers-mode
   :hook
   (pdf-view-mode . conleym:disable-line-numbers)
   :config
