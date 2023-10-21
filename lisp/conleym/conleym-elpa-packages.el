@@ -63,7 +63,6 @@
   (global-aggressive-indent-mode 1))
 
 
-
 (use-package auctex-latexmk
   ;; https://github.com/tom-tan/auctex-latexmk
   ;; Sets auctex up to use the latexmk command.
@@ -267,9 +266,10 @@
 
 
 (use-package git-timemachine
-  ;; https://gitlab.com/pidu/git-timemachine/
+  ;; https://codeberg.org/pidu/git-timemachine
   ;; go forward and backward in git history with "n" and "p", etc.
   :defer t)
+
 
 (use-package git-modes
   ;; https://github.com/magit/git-modes
