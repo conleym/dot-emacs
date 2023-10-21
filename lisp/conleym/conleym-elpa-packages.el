@@ -385,16 +385,6 @@
   (nyan-mode))
 
 
-(use-package oauth
-  :functions
-  (sasl-unique-id)
-  :config
-  ;; Require sasl so that oauth will use it to generate nonces.
-  (require 'sasl)
-  ;; oauth tries and fails to figure this out when compiling.
-  (setq oauth-nonce-function #'sasl-unique-id))
-
-
 (use-package osx-location
   ;; https://github.com/purcell/osx-location
   ;; Location services for emacs.
