@@ -256,6 +256,11 @@
   (setq nsm-settings-file (conleym:persistence-dir-file "network-security.data")))
 
 
+(use-package pixel-scroll
+  :custom
+  (pixel-scroll-precision-mode t))
+
+
 (use-package rcirc
   :defer t
   :commands

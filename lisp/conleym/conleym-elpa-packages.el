@@ -545,17 +545,6 @@
   (smex-initialize))
 
 
-(use-package smooth-scroll
-  :delight
-  :commands
-  (smooth-scroll-mode)
-  :custom
-  (smooth-scroll/vscroll-step-size 3)
-  (smooth-scroll/hscroll-step-size 1)
-  :config
-  (smooth-scroll-mode 1))
-
-
 (use-package sr-speedbar
   ;;
   ;; Speedbar without the separate frame.
