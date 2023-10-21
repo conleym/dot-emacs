@@ -29,10 +29,6 @@
   ;; anywhere, so whatever.
   (eq window-system 'ns))
 
-(defun conleym:disable-linum-mode ()
-  "Disable linum-mode."
-  (interactive)
-  (linum-mode -1))
 
 (defun conleym:disable-display-line-numbers-mode ()
   "Disable display-line-numbers-mode."
@@ -42,7 +38,6 @@
 (defun conleym:disable-line-numbers ()
   "Disable both linum-mode and display-line-numbers-mode."
   (interactive)
-  (conleym:disable-linum-mode)
   (conleym:disable-display-line-numbers-mode))
 
 (defun conleym:recentf-ido-find-file ()
