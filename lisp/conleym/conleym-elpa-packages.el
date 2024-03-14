@@ -543,6 +543,12 @@
   (sr-speedbar-right-side nil "Keep it on the left."))
 
 
+(use-package sudo-edit
+  ;; https://github.com/nflath/sudo-edit
+  ;; Edit a file as another user easily.
+  :defer t
+  )
+
 (use-package tex-site
   :ensure auctex
   :after
