@@ -12,6 +12,14 @@
       '(("melpa" . "https://melpa.org/packages/")
         ("org" . "https://orgmode.org/elpa/")))
 
+;; Set an explicit order for archive priority in case a package is available in more than one place.
+;; In particular, this is true of magit, and it has caused issues in the past:
+;; https://www.reddit.com/r/emacs/comments/1f6hemt/magit_issues/
+(customize-set-variable 'package-archive-priorities '(("gnu"    . 99)
+                                                      ("nongnu" . 10)
+                                                      ("org"    . 70)
+                                                      ("melpa"  . 98)))
+
 (setq gnutls-verify-error t)
 
 (package-initialize)
