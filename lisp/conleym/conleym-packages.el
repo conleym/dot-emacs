@@ -17,13 +17,6 @@
 
 (advice-add #'package-install :before #'conleym:package-install-refresh-contents)
 
-;; Ensure use-package and its dependencies are installed.
-(unless (require 'use-package "use-package" t)
-  (progn
-    (package-install 'use-package)))
-
-(require 'use-package)
-
 ;; use-package configuration
 
 (setq use-package-verbose t)
