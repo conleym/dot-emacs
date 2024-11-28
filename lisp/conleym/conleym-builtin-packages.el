@@ -152,8 +152,8 @@
 
 (use-package gamegrid
   :defer t
-  :custom
-  (gamegrid-user-score-file-directory (conleym:persistence-dir-file "games/"))
+  :config
+  (setq gamegrid-user-score-file-directory (conleym:persistence-dir-file "games/"))
   (conleym:maybe-mkdir gamegrid-user-score-file-directory))
 
 
