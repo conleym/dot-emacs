@@ -439,9 +439,8 @@
 (use-package prettier-js
   ;; https://github.com/prettier/prettier-emacs
   ;; use prettier to format javascript code.
+  ;; prettier must be installed (use `npm install -g prettier').
   :delight
-  :ensure-system-package
-  (prettier . "npm install -g prettier")
   :hook
   (js-mode . prettier-js-mode)
   :custom
