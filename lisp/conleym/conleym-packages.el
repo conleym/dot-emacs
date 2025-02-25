@@ -24,21 +24,6 @@
 (setq use-package-always-ensure t)
 (setq use-package-compute-statistics t)
 
-;; system-packages is required by use-package-ensure-system-package.
-;; Configure the system package manager to use macports on mac. No config for
-;; other systems yet. Maybe someday.
-(if (conleym:is-darwin)
-    (use-package system-packages
-      ;; https://gitlab.com/jabranham/system-packages
-      :config
-      (setq system-packages-use-sudo t)
-      (setq system-packages-package-manager 'port)))
-;; implements the :ensure-system-package keyword
-(use-package use-package-ensure-system-package
-  ;; do not try to install -- this is built-in, and, for unknown reasons, we
-  ;; get an error: Failed to install <package>: Package <package> is unavailable.
-  :ensure nil)
-
 ;; implements the :delight keyword
 (use-package delight)
 
