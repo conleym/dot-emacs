@@ -470,6 +470,8 @@
 
 
 (use-package rainbow-delimiters
+  ;; https://github.com/Fanael/rainbow-delimiters
+  ;; Color-codes delimiters according to depth.
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
