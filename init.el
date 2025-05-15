@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (prefer-coding-system 'utf-8)
 
 ;; Bootstrap.
