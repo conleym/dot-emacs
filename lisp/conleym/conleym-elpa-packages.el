@@ -289,7 +289,6 @@
     ;; My global settings.
     "\\.gitignore_global\\'"))
 
-
 (use-package hungry-delete
   ;; https://github.com/nflath/hungry-delete
   ;; Deletes all the whitespace at once.
@@ -340,6 +339,14 @@
 
 
 (use-package magit)
+
+
+;; https://www.reddit.com/r/emacs/comments/1kq6i4f/comment/mt3nboq/
+;;(setq package-install-upgrade-built-in t)
+;; Pin to melpa, since builtin and gnu versions are too old to work w/ magit.
+;;(use-package transient
+;;  :pin melpa)
+
 
 
 (use-package manage-minor-mode
