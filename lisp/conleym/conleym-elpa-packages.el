@@ -289,6 +289,14 @@
     ;; My global settings.
     "\\.gitignore_global\\'"))
 
+
+(use-package gnu-elpa-keyring-update
+  ;; https://elpa.gnu.org/packages/gnu-elpa-keyring-update.html
+  ;; Required to keep GNU elpa's GPG keys up to date.
+  ;; See also https://lists.gnu.org/archive/html/emacs-devel/2024-06/msg01157.html
+  )
+
+
 (use-package hungry-delete
   ;; https://github.com/nflath/hungry-delete
   ;; Deletes all the whitespace at once.
