@@ -48,6 +48,7 @@
  '(show-paren-style 'expression)
  '(size-indication-mode t)
  '(tab-width 4 nil nil "Who the hell uses a tab width of 8 (the default)?")
+ '(tetris-allow-repetitions nil nil nil "Default method repeats tiles with alarming frequency. I do not believe it is truly random.")
  '(tool-bar-mode nil)
  '(tramp-syntax 'default nil (tramp))
  '(use-dialog-box nil nil nil "The dialog box is annoying and, in some situations, works incorrectly on Mac.")
